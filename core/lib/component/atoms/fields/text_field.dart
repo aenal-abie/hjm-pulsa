@@ -25,6 +25,8 @@ class GSTextField extends StatefulWidget {
   final Color? maxLengthColor;
   final bool? currencyFormat;
   final bool? numericOnly;
+  final TextStyle? style;
+  final TextStyle? hintsStyle;
 
   const GSTextField(
     this.hint, {
@@ -44,7 +46,8 @@ class GSTextField extends StatefulWidget {
     this.minLines,
     this.maxLines,
     this.textInputAction,
-    this.numericOnly,
+    this.numericOnly, this.style,
+        this.hintsStyle,
   }) : super(key: key);
 
   @override
@@ -100,7 +103,7 @@ class _GSTextFieldState extends State<GSTextField> {
           isDense: true,
           enabled: widget.enable ?? true,
           hintText: widget.hint,
-          hintStyle: bodyStyle.copyWith(color: neutralColor200),
+          hintStyle: widget.hintsStyle ??bodyStyle.copyWith(color: neutralColor200),
           contentPadding: widget.padding ?? defaultPadding,
           labelStyle: GoogleFonts.poppins(color: neutralColor200, fontSize: 12),
           fillColor: neutralColor50,
@@ -122,7 +125,7 @@ class _GSTextFieldState extends State<GSTextField> {
         keyboardType: widget.textInputType ?? TextInputType.text,
         minLines: widget.minLines,
         maxLines: widget.maxLines,
-        style: bodyStyle,
+        style: widget.style ?? bodyStyle,
         onFieldSubmitted: (val) async {
           if (widget.onSubmitted != null) {
             widget.onSubmitted!();
