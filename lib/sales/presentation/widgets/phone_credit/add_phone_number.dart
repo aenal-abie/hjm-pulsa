@@ -8,9 +8,14 @@ class AddPhoneNumber extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GSText("Nomor HP"),
-          GSTextField("masukkan no hp"),
+          GSTextField(
+            "081907666555",
+            textInputType: TextInputType.phone,
+            numericOnly: true,
+          ),
         ],
       ),
     );
