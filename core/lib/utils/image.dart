@@ -9,7 +9,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'dart:ui' as ui;
 
 import '../data/data_sources/cache/session.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ImageUtils {
@@ -47,15 +46,6 @@ Future<String?> pickGalleryImage() async {
   }
 }
 
-Future<BitmapDescriptor> bitmapDescriptorFromSvgAsset(
-    BuildContext context, String assetName, double devicePixelRatio,
-    {double width = 30, double height = 30}) async {
-  var widthRatio = width * devicePixelRatio; // SVG's original width
-  var heightRatio = height * devicePixelRatio; // same thing
-  var svgString =
-      await _svgStringToPngBytes(context, assetName, widthRatio, heightRatio);
-  return BitmapDescriptor.bytes(svgString);
-}
 
 Future<Uint8List> _svgStringToPngBytes(
   BuildContext context,
