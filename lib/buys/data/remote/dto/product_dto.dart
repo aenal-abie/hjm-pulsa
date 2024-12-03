@@ -18,14 +18,14 @@ class ProductDTO {
   }
   String? code;
   String? name;
-  double? price;
-  double? sellingPrice;
+  int? price;
+  int? sellingPrice;
   int? groupId;
   ProductDTO copyWith({
     String? code,
     String? name,
-    double? price,
-    double? sellingPrice,
+    int? price,
+    int? sellingPrice,
     int? groupId,
   }) =>
       ProductDTO(

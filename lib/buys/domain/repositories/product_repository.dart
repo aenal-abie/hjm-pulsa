@@ -1,5 +1,5 @@
-import '../use_cases/get_prices.dart';
+import '../use_cases/get_products.dart';
 
 abstract class IProductRepository {
-  GetPricesEither getProducts();
+  GetProductsEither getProducts();
 }

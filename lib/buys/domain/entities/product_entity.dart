@@ -1,8 +1,8 @@
 class ProductEntity {
   String? code;
   String? name;
-  double? price;
-  double? sellingPrice;
+  int? price;
+  int? sellingPrice;
   int? groupId;
 
   ProductEntity(

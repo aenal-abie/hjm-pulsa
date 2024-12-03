@@ -51,7 +51,7 @@ class _Config {
   static const agoraAppId = "AGORA_APP_ID";
 
   static Map<String, dynamic> debugConstants = {
-    server: "https://sandbox.getsurvey.id/",
+    server: "http://127.0.0.1:8000/api/",
     amplitudeKey: "07f8afa312c255c5a953130c82f88f2d",
     sentryKey:
         'https://4f188d52999c477ebd0a63e0c0c13576@o1154705.ingest.sentry.io/62345351',

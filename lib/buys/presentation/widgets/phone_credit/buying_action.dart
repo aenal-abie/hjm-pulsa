@@ -1,9 +1,13 @@
 import 'package:core/component/atoms/fields/index.dart';
 import 'package:core/component/atoms/buttons/index.dart';
+import 'package:core/utils/get.dart';
 import 'package:flutter/material.dart';
+import 'package:pulsa/buys/presentation/manager/buy_controller.dart';
 
 class BuyingAction extends StatelessWidget {
-  const BuyingAction({super.key});
+  final BuyController controller;
+
+  const BuyingAction({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +16,16 @@ class BuyingAction extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          GSText("Rp.5,000"),
+          Obx(() {
+            return GSText(
+              controller.selectedProduct.value.sellingPrice.toString(),
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .labelLarge
+                  ?.copyWith(color: Colors.teal, fontSize: 18),
+            );
+          }),
           Container(
               width: 100,
               child: const GSPrimaryButton(
