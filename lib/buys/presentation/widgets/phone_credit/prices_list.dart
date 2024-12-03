@@ -1,7 +1,7 @@
 import 'package:core/component/atoms/fields/text.dart';
 import 'package:core/component/atoms/gap.dart';
 import 'package:flutter/material.dart';
-import 'package:pulsa/sales/presentation/widgets/phone_credit/buying_action.dart';
+import 'package:pulsa/buys/presentation/widgets/phone_credit/buying_action.dart';
 
 class PricesList extends StatelessWidget {
   const PricesList({super.key});

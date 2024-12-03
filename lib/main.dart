@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'sales/presentation/pages/phone_credit_screen.dart';
+import 'buys/presentation/pages/phone_credit_screen.dart';
 
 void main() {
   runApp(const MyApp());

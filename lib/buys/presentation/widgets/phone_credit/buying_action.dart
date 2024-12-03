@@ -15,7 +15,7 @@ class BuyingAction extends StatelessWidget {
           GSText("Rp.5,000"),
           Container(
               width: 100,
-              child: GSPrimaryButton(
+              child: const GSPrimaryButton(
                 text: "Pesan",
               ))
         ],
