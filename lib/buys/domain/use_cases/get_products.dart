@@ -5,15 +5,15 @@ import 'package:pulsa/buys/domain/entities/product_entity.dart';
 
 import '../repositories/product_repository.dart';
 
-typedef GetProductsEither = Future<Either<Failure, List<ProductEntity>>>;
+typedef EGetProducts = Future<Either<Failure, List<ProductEntity>>>;
 
 class GetProducts extends UseCase<List<ProductEntity>, String> {
-  final IProductRepository priceRepository;
-  GetProducts(this.priceRepository);
+  final IProductRepository productRepository;
+  GetProducts(this.productRepository);
 
   @override
-  GetProductsEither call(String params) async {
-    var data = priceRepository.getProducts();
+  EGetProducts call(String params) async {
+    var data = productRepository.getProducts();
     return data;
   }
 }

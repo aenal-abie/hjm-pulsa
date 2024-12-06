@@ -24,10 +24,11 @@ class AddPhoneNumber extends StatelessWidget {
               hintsStyle: heading6Style.copyWith(color: Colors.black26),
               style: heading6Style.copyWith(color: Colors.black),
               numericOnly: true,
-              onChange: (value)  {
+              onChange: (value) {
                 if (value.length == 4) {
                   buyController.getProducts("XL");
                 }
+                buyController.phone.value = value;
               },
             ),
           ],

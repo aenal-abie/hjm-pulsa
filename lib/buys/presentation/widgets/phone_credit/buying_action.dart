@@ -26,13 +26,18 @@ class BuyingAction extends StatelessWidget {
                   ?.copyWith(color: Colors.teal, fontSize: 18),
             );
           }),
-          Container(
+          SizedBox(
               width: 100,
-              child: const GSPrimaryButton(
+              child: GSPrimaryButton(
                 text: "Pesan",
+                onPress: buyProduct,
               ))
         ],
       ),
     );
+  }
+
+  void buyProduct() {
+    controller.buyProduct();
   }
 }

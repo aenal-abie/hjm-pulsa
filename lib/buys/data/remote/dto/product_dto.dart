@@ -7,9 +7,11 @@ class ProductDTO {
     this.price,
     this.sellingPrice,
     this.groupId,
+    this.id,
   });
 
   ProductDTO.fromJson(dynamic json) {
+    id = json['id'];
     code = json['code'];
     name = json['name'];
     price = json['price'];
@@ -21,32 +23,27 @@ class ProductDTO {
   int? price;
   int? sellingPrice;
   int? groupId;
+  int? id;
   ProductDTO copyWith({
     String? code,
     String? name,
+    int? id,
     int? price,
     int? sellingPrice,
     int? groupId,
   }) =>
       ProductDTO(
+        id: id ?? this.id,
         code: code ?? this.code,
         name: name ?? this.name,
         price: price ?? this.price,
         sellingPrice: sellingPrice ?? this.sellingPrice,
         groupId: groupId ?? this.groupId,
       );
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['code'] = code;
-    map['name'] = name;
-    map['price'] = price;
-    map['selling_price'] = sellingPrice;
-    map['group_id'] = groupId;
-    return map;
-  }
 
   ProductEntity toEntity() {
     return ProductEntity(
+      id: id,
       name: name,
       code: code,
       groupId: groupId,

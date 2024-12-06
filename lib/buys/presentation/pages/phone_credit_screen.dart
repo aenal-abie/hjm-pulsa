@@ -15,7 +15,7 @@ class PhoneCreditScreen extends StatefulWidget {
 }
 
 class _PhoneCreditScreenState extends State<PhoneCreditScreen> {
-  BuyController controller = Get.put(BuyController(di()));
+  BuyController controller = Get.put(BuyController(di(),di()));
 
   @override
   Widget build(BuildContext context) {
