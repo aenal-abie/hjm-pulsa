@@ -66,7 +66,7 @@ class ProductList extends StatelessWidget {
                                 padding: const EdgeInsets.all(18.0),
                                 child: Center(
                                   child: Text(
-                                    '${products[index].price}',
+                                    '${products[index].name}',
                                     style: Theme.of(context)
                                         .textTheme
                                         .headlineSmall

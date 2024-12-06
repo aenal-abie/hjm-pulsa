@@ -25,13 +25,6 @@ Dio get initDio => Dio(
 
 class ApiProvider {
   final Dio dio;
-  static const consultationServiceName = "/consultation";
-  static const consultationV2ServiceName = "/consultation/v2";
-  static const kjsbServiceName = "/kjsb";
-  static const userServiceName = "/user";
-  static const irkServiceName = "/irk";
-  static const irkV2ServiceName = "/irk/v2";
-  static const logService = "/log";
 
   ApiProvider(this.dio);
 

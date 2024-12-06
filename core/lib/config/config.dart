@@ -37,9 +37,6 @@ class Constants {
     return _config?[_Config.chatServer];
   }
 
-  static get agoraApId {
-    return _config?[_Config.agoraAppId];
-  }
 }
 
 class _Config {
@@ -48,16 +45,14 @@ class _Config {
   static const amplitudeKey = "AMPLITUDE_KEY";
   static const sentryKey = "SENTRY_KEY";
   static const chatServer = "CHAT_SERVER";
-  static const agoraAppId = "AGORA_APP_ID";
 
   static Map<String, dynamic> debugConstants = {
-    server: "http://127.0.0.1:8000/api/",
+    server: "https://b49a-125-163-67-15.ngrok-free.app/",
     amplitudeKey: "07f8afa312c255c5a953130c82f88f2d",
     sentryKey:
         'https://4f188d52999c477ebd0a63e0c0c13576@o1154705.ingest.sentry.io/62345351',
     env: Environment.dev,
     chatServer: "https://chatdev.getsurvey.id",
-    agoraAppId: "467046265cbe4be8be97ed7ee832d4b8",
   };
 
   static Map<String, dynamic> stagingConstants = {
@@ -67,7 +62,6 @@ class _Config {
         'https://4f188d52999c477ebd0a63e0c0c13576@o1154705.ingest.sentry.io/62345351',
     env: Environment.staging,
     chatServer: "https://chatstg.getsurvey.id",
-    agoraAppId: "467046265cbe4be8be97ed7ee832d4b8",
   };
 
   static Map<String, dynamic> prodConstants = {
@@ -77,6 +71,5 @@ class _Config {
         'https://4f188d52999c477ebd0a63e0c0c13576@o1154705.ingest.sentry.io/6234535',
     env: Environment.prod,
     chatServer: "https://chat.getsurvey.id",
-    agoraAppId: "467046265cbe4be8be97ed7ee832d4b8",
   };
 }
