@@ -3,10 +3,9 @@ import 'package:get/get.dart';
 import 'package:pulsa/di.dart';
 
 import 'authentication/presentation/pages/login_screen.dart';
-import 'buys/di.dart';
-import 'buys/presentation/pages/phone_credit_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   injectDI();
   runApp(const MyApp());
 }

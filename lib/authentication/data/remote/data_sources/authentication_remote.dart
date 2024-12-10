@@ -1,3 +1,4 @@
+import 'package:pulsa/authentication/data/remote/models/user_dto.dart';
 import 'package:pulsa/authentication/domain/use_cases/login.dart';
 
 import '../../../../core/data/remotes/api_provider.dart';
@@ -8,10 +9,9 @@ class AuthenticationRemote extends IAuthenticationRemote {
 
   AuthenticationRemote(this.apiProvider);
   @override
-  Future<bool> login(LoginParams params) async {
-    ///todo : change with the correct url
-    // var url = "/login";
-    // var result = await apiProvider.post(url, params.toJson());
-    return true;
+  Future<UserDto> login(LoginParams params) async {
+    var url = "/login";
+    var result = await apiProvider.post(url, params.toJson());
+    return UserDto.fromJson(result);
   }
 }

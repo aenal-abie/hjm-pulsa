@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
               const Gap(22),
               PText.heading2Medium("Masuk ke"),
               PText.heading4Regular(
-                "Trengginas Workout Tracker",
+                "CHM Pulsa Agent",
                 color: bluePothan[800],
               ),
               const Gap(41),
@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 controller: username,
               ),
               const Gap(25),
-              PTextField(
+              PTextField.password(
                 hintText: "Password",
                 labelText: "Password",
                 controller: password,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:heroicons_flutter/heroicons_flutter.dart';
 
 import '../style/colors.dart';
 import '../style/text_style.dart';
@@ -56,6 +57,14 @@ class PTextField extends StatefulWidget {
 }
 
 class _PTextFieldState extends State<PTextField> {
+  bool _obscureText = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _obscureText = widget.obscureText;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -70,12 +79,27 @@ class _PTextFieldState extends State<PTextField> {
           child: TextField(
             controller: widget.controller,
             keyboardType: widget.keyboardType,
-            obscureText: widget.obscureText,
+            obscureText: _obscureText,
             style: body1Regular.copyWith(color: black[950]),
             decoration: InputDecoration(
               hintText: widget.hintText,
               hintStyle: body1Regular.copyWith(color: natural[300]),
               prefixIcon: widget.icon,
+              suffixIcon: widget.obscureText
+                  ? IconButton(
+                      icon: Icon(
+                        _obscureText
+                            ? HeroiconsSolid.eyeSlash
+                            : HeroiconsSolid.eye,
+                        size: 24,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureText = !_obscureText;
+                        });
+                      },
+                    )
+                  : null,
               contentPadding:
                   widget.contentPadding ?? const EdgeInsets.all(16.0),
               border: OutlineInputBorder(

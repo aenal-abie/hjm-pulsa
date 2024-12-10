@@ -1,17 +1,25 @@
+import 'package:pulsa/authentication/data/local/data_sources/base/authentication_cache.dart';
 import 'package:pulsa/authentication/domain/use_cases/login.dart';
 
+import '../../../core/data/remotes/custom_exception.dart';
 import '../../../core/domain/use_cases/either.dart';
 import '../../domain/repositories/authentication_repository.dart';
 import '../remote/data_sources/base/authentication_remote.dart';
 
 class AuthenticationRepository extends IAuthenticationRepository {
   final IAuthenticationRemote _authenticationRemote;
+  final IAuthenticationCache _iAuthenticationCache;
 
-  AuthenticationRepository(this._authenticationRemote);
+  AuthenticationRepository(
+      this._authenticationRemote, this._iAuthenticationCache);
   @override
-  ELogin login(LoginParams loginParams) async{
-    var data = await _authenticationRemote.login(loginParams);
-    return Right(data);
-
+  ELogin login(LoginParams loginParams) async {
+    try {
+      var result = await _authenticationRemote.login(loginParams);
+      _iAuthenticationCache.saveUser(result);
+      return Right(true);
+    } on CustomException catch (e) {
+      return Left(e.toFailure());
+    }
   }
 }
