@@ -1,9 +1,9 @@
-import 'package:core/component/atoms/fields/text.dart';
-import 'package:core/component/atoms/gap.dart';
-import 'package:core/utils/get.dart';
+
 import 'package:flutter/material.dart';
 import 'package:pulsa/buys/presentation/widgets/phone_credit/buying_action.dart';
 
+import '../../../../core/presentation/atoms/text/p_text.dart';
+import '../../../../core/presentation/atoms/utils/gap.dart';
 import '../../manager/buy_controller.dart';
 
 class ProductList extends StatelessWidget {
@@ -24,8 +24,8 @@ class ProductList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        GSText.headingSeven("Pilih jumlah pulsa"),
-        const GSGap(10),
+        PText.heading5Regular("Pilih jumlah pulsa"),
+        const Gap(10),
         Expanded(
           child: GridView.count(
             childAspectRatio: (itemWidth / itemHeight),

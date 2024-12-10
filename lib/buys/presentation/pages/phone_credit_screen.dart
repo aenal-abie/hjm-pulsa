@@ -1,9 +1,9 @@
-import 'package:core/component/atoms/gap.dart';
-import 'package:core/di/container.dart';
-import 'package:core/utils/get.dart';
+
 import 'package:flutter/material.dart';
 import 'package:pulsa/buys/presentation/manager/buy_controller.dart';
 
+import '../../../core/di/container.dart';
+import '../../../core/presentation/atoms/utils/gap.dart';
 import '../widgets/phone_credit/add_phone_number.dart';
 import '../widgets/phone_credit/product_list.dart';
 
@@ -23,7 +23,7 @@ class _PhoneCreditScreenState extends State<PhoneCreditScreen> {
       body: Column(
         children: [
           AddPhoneNumber(buyController: controller),
-          const GSGap(10),
+          const Gap(10),
           Obx(() {
             return Expanded(
                 child: Padding(

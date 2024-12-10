@@ -31,8 +31,14 @@ dependencies:
   flutter:
     sdk: flutter
 
-  core:
-    path: core
+  dio: 5.7.0
+  either_dart: ^1.0.0
+  equatable: 2.0.7
+  gap: ^3.0.1
+  get: 4.6.6
+  get_it: 8.0.2
+  google_fonts:
+  heroicons_flutter: ^0.4.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -42,6 +48,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  pretty_dio_logger: 1.4.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

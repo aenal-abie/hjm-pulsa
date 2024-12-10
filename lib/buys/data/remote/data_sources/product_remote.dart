@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:pulsa/buys/data/remote/dto/product_dto.dart';
 import 'package:pulsa/buys/domain/use_cases/buy_product.dart';
 import 'package:pulsa/buys/domain/use_cases/get_products.dart';
-import 'package:core/data/data_sources/remotes/api_provider.dart';
+
+import '../../../../core/data/remotes/api_provider.dart';
 import 'abstract/product_remote_data.dart';
 
 class ProductRemoteData extends IProductRemoteData {

@@ -1,8 +1,8 @@
-import 'package:core/common/domain/use_cases/functional.dart';
-import 'package:core/domain/error/failures.dart';
-import 'package:core/domain/usecases/usecase.dart';
 import 'package:pulsa/buys/domain/entities/product_entity.dart';
 
+import '../../../core/domain/error/failures.dart';
+import '../../../core/domain/use_cases/either.dart';
+import '../../../core/domain/use_cases/usecase.dart';
 import '../repositories/product_repository.dart';
 
 typedef EBuyProduct = Future<Either<Failure, bool>>;

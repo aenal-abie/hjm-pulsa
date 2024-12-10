@@ -1,8 +1,9 @@
-import 'package:core/component/atoms/fields/index.dart';
-import 'package:core/component/atoms/buttons/index.dart';
-import 'package:core/utils/get.dart';
 import 'package:flutter/material.dart';
 import 'package:pulsa/buys/presentation/manager/buy_controller.dart';
+
+import '../../../../core/presentation/atoms/buttons/primary_button.dart';
+import '../../../../core/presentation/atoms/text/p_text.dart';
+import '../../../../core/presentation/atoms/utils/gap.dart';
 
 class BuyingAction extends StatelessWidget {
   final BuyController controller;
@@ -17,7 +18,7 @@ class BuyingAction extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Obx(() {
-            return GSText(
+            return PText(
               controller.selectedProduct.value.sellingPrice.toString(),
               style: Theme
                   .of(context)
@@ -28,9 +29,9 @@ class BuyingAction extends StatelessWidget {
           }),
           SizedBox(
               width: 100,
-              child: GSPrimaryButton(
+              child: PrimaryButton(
                 text: "Pesan",
-                onPress: buyProduct,
+                onPressed: buyProduct,
               ))
         ],
       ),

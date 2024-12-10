@@ -1,8 +1,8 @@
-import 'package:core/component/atoms/fields/index.dart';
-import 'package:core/component/atoms/index.dart';
-import 'package:core/component/styles/index.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/presentation/atoms/fields/text_field.dart';
+import '../../../../core/presentation/atoms/text/p_text.dart';
+import '../../../../core/presentation/atoms/widgets/box_shadow.dart';
 import '../../manager/buy_controller.dart';
 
 class AddPhoneNumber extends StatelessWidget {
@@ -17,19 +17,19 @@ class AddPhoneNumber extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            GSText.headingSeven("Nomor HP"),
-            GSTextField(
-              "081907666555",
-              textInputType: TextInputType.phone,
-              hintsStyle: heading6Style.copyWith(color: Colors.black26),
-              style: heading6Style.copyWith(color: Colors.black),
-              numericOnly: true,
-              onChange: (value) {
-                if (value.length == 4) {
-                  buyController.getProducts("XL");
-                }
-                buyController.phone.value = value;
-              },
+            PText.heading4Regular("Nomor HP"),
+            PTextField(
+              hintText: "081907666555",
+              // textInputType: TextInputType.phone,
+              // hintsStyle: heading6Style.copyWith(color: Colors.black26),
+              // style: heading6Style.copyWith(color: Colors.black),
+              // numericOnly: true,
+              // onChange: (value) {
+              //   if (value.length == 4) {
+              //     buyController.getProducts("XL");
+              //   }
+              //   buyController.phone.value = value;
+              // },
             ),
           ],
         ),
