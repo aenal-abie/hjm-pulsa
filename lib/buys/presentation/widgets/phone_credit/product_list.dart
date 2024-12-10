@@ -1,6 +1,9 @@
-
 import 'package:flutter/material.dart';
+import 'package:indonesia/indonesia.dart';
+import 'package:pulsa/buys/domain/entities/product_entity.dart';
 import 'package:pulsa/buys/presentation/widgets/phone_credit/buying_action.dart';
+import 'package:pulsa/core/presentation/atoms/style/colors.dart';
+import 'package:pulsa/core/presentation/atoms/style/text_style.dart';
 
 import '../../../../core/presentation/atoms/text/p_text.dart';
 import '../../../../core/presentation/atoms/utils/gap.dart';
@@ -34,69 +37,69 @@ class ProductList extends StatelessWidget {
             crossAxisCount: 2,
             children: List.generate(products.length, (index) {
               var isEven = index % 2 == 0;
-              return Padding(
-                padding: EdgeInsets.only(
-                    left: isEven ? 0 : 8, bottom: 8, right: isEven ? 8 : 0),
-                child: InkWell(
-                  onTap: () {
-                    controller.selectProduct(products[index]);
-                  },
-                  child: Obx(() {
-                    return Container(
-                      decoration: BoxDecoration(
-                          color: Colors.black12,
-                          border: Border.fromBorderSide(BorderSide(
-                              width: 1,
-                              color: controller.selectedProduct.value.code ==
-                                      products[index].code
-                                  ? Colors.amber
-                                  : Colors.black12)),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(10))),
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: Container(
-                              width: size.width,
-                              decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
-                              child: Padding(
-                                padding: const EdgeInsets.all(18.0),
-                                child: Center(
-                                  child: Text(
-                                    '${products[index].name}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headlineSmall
-                                        ?.copyWith(color: Colors.black87),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: Text(
-                              'Rp ${products[index].sellingPrice}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelLarge
-                                  ?.copyWith(color: Colors.teal, fontSize: 18),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }),
+              return Container(
+                decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(10))),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: isEven ? 0 : 8, bottom: 8, right: isEven ? 8 : 0),
+                  child: InkWell(
+                    onTap: () {
+                      controller.selectProduct(products[index]);
+                    },
+                    child: Obx(() {
+                      return Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.fromBorderSide(BorderSide(
+                                width: 1,
+                                color: controller.selectedProduct.value.code ==
+                                        products[index].code
+                                    ? bluePothan
+                                    : natural[100]!)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10))),
+                        child: PriceItem(product: products[index]),
+                      );
+                    }),
+                  ),
                 ),
               );
             }),
           ),
         ),
         Column(
-          children: [BuyingAction(controller: controller,)],
+          children: [
+            BuyingAction(
+              controller: controller,
+            )
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class PriceItem extends StatelessWidget {
+  const PriceItem({
+    super.key,
+    required this.product,
+  });
+
+  final ProductEntity product;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text('${product.name}', style: heading3Semibold),
+        Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Text(
+            rupiah(product.sellingPrice),
+            style: body1Regular.copyWith(color: bluePothan[500]),
+          ),
         ),
       ],
     );

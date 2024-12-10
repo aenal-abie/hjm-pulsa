@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:heroicons_flutter/heroicons_flutter.dart';
+import 'package:pulsa/core/presentation/atoms/style/text_style.dart';
 
 import '../../../../core/presentation/atoms/fields/text_field.dart';
+import '../../../../core/presentation/atoms/style/colors.dart';
 import '../../../../core/presentation/atoms/text/p_text.dart';
 import '../../../../core/presentation/atoms/widgets/box_shadow.dart';
 import '../../manager/buy_controller.dart';
@@ -11,28 +15,27 @@ class AddPhoneNumber extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 100, 16, 0),
-      child: GSBoxShadow(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            PText.heading4Regular("Nomor HP"),
-            PTextField(
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: PTextField(
               hintText: "081907666555",
-              // textInputType: TextInputType.phone,
-              // hintsStyle: heading6Style.copyWith(color: Colors.black26),
-              // style: heading6Style.copyWith(color: Colors.black),
-              // numericOnly: true,
-              // onChange: (value) {
-              //   if (value.length == 4) {
-              //     buyController.getProducts("XL");
-              //   }
-              //   buyController.phone.value = value;
-              // },
+              keyboardType: TextInputType.phone,
+              labelText: "NO HP",
+              hintStyle: heading4Regular.copyWith(color: Colors.black26),
+              style: heading4Regular.copyWith(color: Colors.black),
+              onChanged: (value) {
+                if (value.length == 4) {
+                  buyController.getProducts("XL");
+                }
+                buyController.phone.value = value;
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

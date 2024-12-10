@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:indonesia/indonesia.dart';
 import 'package:pulsa/buys/presentation/manager/buy_controller.dart';
+import 'package:pulsa/core/presentation/atoms/style/colors.dart';
+import 'package:pulsa/core/presentation/atoms/style/text_style.dart';
 
 import '../../../../core/presentation/atoms/buttons/primary_button.dart';
 import '../../../../core/presentation/atoms/text/p_text.dart';
@@ -18,17 +21,19 @@ class BuyingAction extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Obx(() {
-            return PText(
-              controller.selectedProduct.value.sellingPrice.toString(),
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .labelLarge
-                  ?.copyWith(color: Colors.teal, fontSize: 18),
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                PText.body1Regular("Jumlah bayar"),
+                PText(
+                  rupiah(controller.selectedProduct.value.sellingPrice ?? 0),
+                  style: heading4Bold.copyWith(color: bluePothan[700]),
+                ),
+              ],
             );
           }),
           SizedBox(
-              width: 100,
+              width: 150,
               child: PrimaryButton(
                 text: "Pesan",
                 onPressed: buyProduct,

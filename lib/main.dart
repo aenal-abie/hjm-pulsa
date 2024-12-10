@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pulsa/buys/presentation/pages/phone_credit_screen.dart';
 import 'package:pulsa/di.dart';
 
 import 'authentication/presentation/pages/login_screen.dart';
@@ -22,6 +23,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const LoginScreen());
+        home: const PhoneCreditScreen());
   }
 }

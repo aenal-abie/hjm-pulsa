@@ -14,12 +14,14 @@ dependencies:
   dio: 5.7.0
   either_dart: ^1.0.0
   equatable: 2.0.7
+  flutter_svg: ^2.0.16
   gap: ^3.0.1
   get: 4.6.6
   get_it: 8.0.2
   google_fonts:
   heroicons_flutter: ^0.4.0
   hive: 2.2.3
+  indonesia: ^2.0.0
   path_provider: ^2.1.5
 
 
