@@ -12,13 +12,14 @@ class PAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     this.actions = const [],
     this.leading = const Icon(Icons.menu),
-    this.backgroundColor = Colors.blue,
+    this.backgroundColor = Colors.white,
     this.elevation = 4.0,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: backgroundColor,
       leading: IconButton(
         onPressed: () {},
         icon: Icon(

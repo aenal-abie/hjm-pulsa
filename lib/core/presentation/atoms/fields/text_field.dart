@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 import '../style/colors.dart';
 import '../style/text_style.dart';
 import '../text/p_text.dart';
@@ -30,6 +29,28 @@ class PTextField extends StatefulWidget {
     this.textInputAction,
   });
 
+  factory PTextField.password({
+    Key? key,
+    TextEditingController? controller,
+    String? hintText,
+    String? labelText,
+    TextStyle? style,
+    EdgeInsetsGeometry? contentPadding,
+    TextInputAction? textInputAction,
+  }) {
+    return PTextField(
+      key: key,
+      controller: controller,
+      hintText: hintText,
+      labelText: labelText,
+      keyboardType: TextInputType.visiblePassword,
+      obscureText: true,
+      style: style,
+      contentPadding: contentPadding,
+      textInputAction: textInputAction,
+    );
+  }
+
   @override
   State<PTextField> createState() => _PTextFieldState();
 }
@@ -41,17 +62,16 @@ class _PTextFieldState extends State<PTextField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        (widget.labelText != null)
-            ? PText.body2Regular(widget.labelText ?? "")
-            : const SizedBox.shrink(),
-        (widget.labelText != null) ? const Gap(5) : const SizedBox.shrink(),
+        if (widget.labelText != null)
+          PText.body2Regular(widget.labelText ?? ""),
+        if (widget.labelText != null) const Gap(5),
         SizedBox(
           height: 50,
           child: TextField(
             controller: widget.controller,
             keyboardType: widget.keyboardType,
             obscureText: widget.obscureText,
-            style: body1Regular.copyWith(color: black[950]), // Default style
+            style: body1Regular.copyWith(color: black[950]),
             decoration: InputDecoration(
               hintText: widget.hintText,
               hintStyle: body1Regular.copyWith(color: natural[300]),
