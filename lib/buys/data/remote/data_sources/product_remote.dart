@@ -14,7 +14,7 @@ class ProductRemoteData extends IProductRemoteData {
 
   @override
   Future<List<ProductDTO>> getProducts() async {
-    var result = await apiProvider.get("api/products",
+    var result = await apiProvider.get("products",
         authToken: "4|BZoCyNMcKi79AH2A941ERzKJocM6GJVV2qjCz7ylefa7600c");
 
     return (result['data'] as List).map((e) => ProductDTO.fromJson(e)).toList();

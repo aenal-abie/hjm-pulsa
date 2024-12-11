@@ -8,7 +8,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import '../../domain/use_cases/either.dart';
 import 'custom_exception.dart';
 
-const String baseUrl = "https://10fd-125-163-63-35.ngrok-free.app/api";
+const String baseUrl = "https://10fd-125-163-63-35.ngrok-free.app/api/";
 Dio get initDio => Dio(
       BaseOptions(
         validateStatus: (status) {

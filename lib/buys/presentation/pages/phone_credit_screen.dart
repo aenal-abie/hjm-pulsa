@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:pulsa/buys/presentation/manager/buy_controller.dart';
+import 'package:pulsa/core/presentation/atoms/widgets/app_bar.dart';
 
 import '../../../core/di/container.dart';
 import '../../../core/presentation/atoms/utils/gap.dart';
@@ -20,6 +21,8 @@ class _PhoneCreditScreenState extends State<PhoneCreditScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: PAppBar(),
       body: Column(
         children: [
           AddPhoneNumber(buyController: controller),

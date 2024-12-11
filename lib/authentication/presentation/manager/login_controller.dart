@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:pulsa/buys/presentation/pages/phone_credit_screen.dart';
 
 import '../../domain/use_cases/login.dart';
 
@@ -17,6 +18,7 @@ class LoginController extends GetxController {
       Get.snackbar('Login failed', fail.message ?? "");
     }, (success) {
       Get.snackbar('Sukses', "Anda berhasil login $username");
+      Get.to(PhoneCreditScreen());
     });
   }
 

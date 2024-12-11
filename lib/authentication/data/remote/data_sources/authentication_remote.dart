@@ -10,7 +10,7 @@ class AuthenticationRemote extends IAuthenticationRemote {
   AuthenticationRemote(this.apiProvider);
   @override
   Future<UserDto> login(LoginParams params) async {
-    var url = "/login";
+    var url = "login";
     var result = await apiProvider.post(url, params.toJson());
     return UserDto.fromJson(result);
   }

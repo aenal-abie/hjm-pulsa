@@ -16,6 +16,7 @@ class PTextField extends StatefulWidget {
   final TextStyle? style;
   final EdgeInsetsGeometry? contentPadding;
   final TextInputAction? textInputAction;
+  final ValueChanged<String>? onChanged;
 
   const PTextField({
     super.key,
@@ -28,6 +29,7 @@ class PTextField extends StatefulWidget {
     this.style,
     this.contentPadding,
     this.textInputAction,
+    this.onChanged,
   });
 
   factory PTextField.password({
@@ -38,6 +40,7 @@ class PTextField extends StatefulWidget {
     TextStyle? style,
     EdgeInsetsGeometry? contentPadding,
     TextInputAction? textInputAction,
+    final ValueChanged<String>? onChanged
   }) {
     return PTextField(
       key: key,
@@ -49,6 +52,7 @@ class PTextField extends StatefulWidget {
       style: style,
       contentPadding: contentPadding,
       textInputAction: textInputAction,
+      onChanged: onChanged,
     );
   }
 
@@ -117,6 +121,7 @@ class _PTextFieldState extends State<PTextField> {
               ),
             ),
             textInputAction: widget.textInputAction,
+            onChanged: widget.onChanged,
           ),
         ),
       ],
