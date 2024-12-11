@@ -14,8 +14,11 @@ class PTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final bool obscureText;
   final TextStyle? style;
+  final TextStyle? hintStyle;
   final EdgeInsetsGeometry? contentPadding;
   final TextInputAction? textInputAction;
+  final ValueChanged<String>? onChanged;
+
   final ValueChanged<String>? onChanged;
 
   const PTextField({
@@ -27,6 +30,7 @@ class PTextField extends StatefulWidget {
     this.keyboardType,
     this.obscureText = false,
     this.style,
+    this.hintStyle,
     this.contentPadding,
     this.textInputAction,
     this.onChanged,
@@ -84,18 +88,20 @@ class _PTextFieldState extends State<PTextField> {
             controller: widget.controller,
             keyboardType: widget.keyboardType,
             obscureText: _obscureText,
-            style: body1Regular.copyWith(color: black[950]),
+            onChanged: widget.onChanged,
+            style: widget.style ?? body1Regular.copyWith(color: black[950]),
             decoration: InputDecoration(
               hintText: widget.hintText,
-              hintStyle: body1Regular.copyWith(color: natural[300]),
+              hintStyle: widget.hintStyle ??  body1Regular.copyWith(color: natural[300]),
               prefixIcon: widget.icon,
               suffixIcon: widget.obscureText
                   ? IconButton(
                       icon: Icon(
+                        color: natural[300],
                         _obscureText
                             ? HeroiconsSolid.eyeSlash
                             : HeroiconsSolid.eye,
-                        size: 24,
+                        size: 17,
                       ),
                       onPressed: () {
                         setState(() {
