@@ -3,7 +3,6 @@ import 'package:pulsa/buys/data/remote/data_sources/product_remote.dart';
 import 'package:pulsa/buys/domain/repositories/product_repository.dart';
 import 'package:pulsa/buys/domain/use_cases/buy_product.dart';
 import 'package:pulsa/buys/domain/use_cases/get_products.dart';
-import 'package:pulsa/buys/presentation/manager/buy_controller.dart';
 
 import '../core/di/container.dart';
 import 'data/repositories/product_repository.dart';
@@ -11,6 +10,7 @@ import 'data/repositories/product_repository.dart';
 Future<void> injectBuys() async {
   di.registerLazySingleton(() => BuyProduct(di()));
   di.registerLazySingleton(() => GetProducts(di()));
-  di.registerLazySingleton<IProductRepository>(() => PriceRepository(di()));
+  di.registerLazySingleton<IProductRepository>(
+      () => PriceRepository(di(), di()));
   di.registerLazySingleton<IProductRemoteData>(() => ProductRemoteData(di()));
 }

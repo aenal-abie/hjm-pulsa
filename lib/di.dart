@@ -5,6 +5,6 @@ import 'buys/di.dart';
 
 void injectDI(){
   injectCore();
-  injectBuys();
   injectAuthentication();
+  injectBuys();
 }

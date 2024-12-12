@@ -1,12 +1,11 @@
 import 'package:pulsa/buys/domain/use_cases/buy_product.dart';
-import 'package:pulsa/buys/domain/use_cases/get_products.dart';
 
 import '../../dto/product_dto.dart';
 
 
 
 abstract class IProductRemoteData {
-  Future<List<ProductDTO>> getProducts();
+  Future<List<ProductDTO>> getProducts(String authToken);
 
- Future<bool> buyProduct(BuyProductParam param);
+  Future<bool> buyProduct(BuyProductParam param, String authToken);
 }

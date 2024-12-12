@@ -97,7 +97,7 @@ class PriceItem extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(4.0),
           child: Text(
-            rupiah(product.sellingPrice),
+            rupiah(product.price),
             style: body1Regular.copyWith(color: bluePothan[500]),
           ),
         ),
