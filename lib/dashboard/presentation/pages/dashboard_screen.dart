@@ -25,7 +25,7 @@ class DashboardScreen extends StatelessWidget {
         children: [
           // Header Section
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16),
             decoration: BoxDecoration(
               color: bluePothan[50],
               borderRadius: const BorderRadius.only(
