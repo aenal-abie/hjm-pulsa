@@ -12,9 +12,9 @@ class PriceRepository extends IProductRepository {
 
   PriceRepository(this.product, this.authenticationCache);
   @override
-  EGetProducts getProducts() async {
+  EGetProducts getProducts(String params) async {
     var token = await authenticationCache.getToken();
-    var data = await product.getProducts(token ?? "");
+    var data = await product.getProducts(params, token ?? "");
 
     return Right(data.map((e) => e.toEntity()).toList());
   }

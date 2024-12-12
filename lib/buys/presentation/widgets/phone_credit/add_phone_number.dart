@@ -24,7 +24,7 @@ class AddPhoneNumber extends StatelessWidget {
               style: heading4Regular.copyWith(color: Colors.black),
               onChanged: (value) {
                 if (value.length == 4) {
-                  buyController.getProducts("XL");
+                  buyController.getProducts(value);
                 }
                 buyController.phoneNumber.value = value;
               },

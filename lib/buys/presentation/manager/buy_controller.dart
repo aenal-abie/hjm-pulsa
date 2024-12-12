@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:pulsa/buys/domain/entities/product_entity.dart';
 
+import '../../domain/entities/provider_type.dart';
 import '../../domain/use_cases/buy_product.dart';
 import '../../domain/use_cases/get_products.dart';
 
@@ -13,8 +14,9 @@ class BuyController {
   var selectedProduct = ProductEntity().obs;
   var phoneNumber = ''.obs;
 
-  void getProducts(String groupCode) async {
-    var results = await _getProducts(groupCode);
+  void getProducts(String phoneNumber) async {
+    var groupCode = getOperatorName(phoneNumber);
+    var results = await _getProducts(groupCode ?? "");
     results.fold((fail) {}, (products) {
       this.products.value = products;
     });

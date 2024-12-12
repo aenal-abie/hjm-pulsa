@@ -13,7 +13,7 @@ class GetProducts extends UseCase<List<ProductEntity>, String> {
 
   @override
   EGetProducts call(String params) async {
-    var data = productRepository.getProducts();
+    var data = productRepository.getProducts(params);
     return data;
   }
 }

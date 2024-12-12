@@ -1,58 +1,44 @@
-enum ProviderType {
-  telkomsel,
-  indosat,
-  xl,
-  tri,
-  smartfren,
-  unknown,
-}
-
-ProviderType getProviderType(String phoneNumber) {
-  // Bersihkan nomor telepon dari karakter non-angka
-  phoneNumber = phoneNumber.replaceAll(RegExp(r'[^\d]'), '');
-
-  // Pastikan nomor menggunakan format lokal tanpa kode negara
-  if (phoneNumber.startsWith('62')) {
-    phoneNumber = '0${phoneNumber.substring(2)}';
-  }
-
-  // Daftar prefix berdasarkan provider
-  const Map<String, ProviderType> providerPrefixes = {
-    '0811': ProviderType.telkomsel,
-    '0812': ProviderType.telkomsel,
-    '0813': ProviderType.telkomsel,
-    '0821': ProviderType.telkomsel,
-    '0822': ProviderType.telkomsel,
-    '0823': ProviderType.telkomsel,
-    '0851': ProviderType.telkomsel,
-    '0852': ProviderType.telkomsel,
-    '0853': ProviderType.telkomsel,
-    '0855': ProviderType.indosat,
-    '0856': ProviderType.indosat,
-    '0857': ProviderType.indosat,
-    '0858': ProviderType.indosat,
-    '0817': ProviderType.xl,
-    '0818': ProviderType.xl,
-    '0819': ProviderType.xl,
-    '0859': ProviderType.xl,
-    '0877': ProviderType.xl,
-    '0878': ProviderType.xl,
-    '0896': ProviderType.tri,
-    '0897': ProviderType.tri,
-    '0898': ProviderType.tri,
-    '0899': ProviderType.tri,
-    '0881': ProviderType.smartfren,
-    '0882': ProviderType.smartfren,
-    '0883': ProviderType.smartfren,
-    '0884': ProviderType.smartfren,
-    '0885': ProviderType.smartfren,
-    '0886': ProviderType.smartfren,
-    '0887': ProviderType.smartfren,
+String? getOperatorName(String input) {
+  final Map<String, List<String>> operatorCodes = {
+    'TELKOMSEL': [
+      '0811',
+      '0812',
+      '0813',
+      '0821',
+      '0822',
+      '0823',
+      '0851',
+      '0852',
+      '0853'
+    ],
+    'INDOSAT': ['0814', '0815', '0816', '0855', '0856', '0857', '0858'],
+    'XL': ['0817', '0818', '0819', '0859', '0877', '0878'],
+    'AXIS': ['0831', '0832', '0833', '0838'],
+    'SMARTFREN': [
+      '0881',
+      '0882',
+      '0883',
+      '0884',
+      '0885',
+      '0886',
+      '0887',
+      '0888',
+      '0889'
+    ],
+    'TRI': ['0895', '0896', '0897', '0898', '0899'],
   };
 
-  // Ambil prefix 4 digit pertama
-  String prefix = phoneNumber.length >= 4 ? phoneNumber.substring(0, 4) : '';
+  // Ambil 4 digit pertama dari nomor HP
+  String prefix = input.substring(0, 4);
 
-  // Cari provider berdasarkan prefix
-  return providerPrefixes[prefix] ?? ProviderType.unknown;
+  // Cari operator berdasarkan prefix
+  String? operatorName;
+  for (var entry in operatorCodes.entries) {
+    if (entry.value.contains(prefix)) {
+      operatorName = entry.key;
+      break;
+    }
+  }
+
+  return operatorName;
 }
