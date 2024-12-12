@@ -18,9 +18,6 @@ class PTextField extends StatefulWidget {
   final EdgeInsetsGeometry? contentPadding;
   final TextInputAction? textInputAction;
   final ValueChanged<String>? onChanged;
-
-  final ValueChanged<String>? onChanged;
-
   const PTextField({
     super.key,
     this.icon,
@@ -127,7 +124,6 @@ class _PTextFieldState extends State<PTextField> {
               ),
             ),
             textInputAction: widget.textInputAction,
-            onChanged: widget.onChanged,
           ),
         ),
       ],
