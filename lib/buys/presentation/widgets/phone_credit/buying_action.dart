@@ -36,14 +36,45 @@ class BuyingAction extends StatelessWidget {
               width: 150,
               child: PrimaryButton(
                 text: "Pesan",
-                onPressed: buyProduct,
+                onPressed: () => buyProduct(context),
               ))
         ],
       ),
     );
   }
 
-  void buyProduct() {
-    controller.buyProduct();
+  void buyProduct(BuildContext context) async {
+    var success = await controller.buyProduct();
+    if (success) {
+      !context.mounted ? null : _showDialogSuccess(context);
+    }
+  }
+
+  void _showDialogSuccess(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (ctx) {
+        return AlertDialog(
+          title: PText(
+            "Transaksi Sukses",
+            textAlign: TextAlign.center,
+            style: heading4Medium.copyWith(
+              color: bluePothan[700],
+            ),
+          ),
+          content: PText.body1Regular(
+              "Transaksi pembelian pulsa ke nomor ${controller.phoneNumber.value} berhasil"),
+          actions: [
+            PrimaryButton(
+              onPressed: () {
+                Navigator.of(ctx).pop();
+                // Navigator.of(ctx).pop();
+              },
+              text: 'OK',
+            ),
+          ],
+        );
+      },
+    );
   }
 }

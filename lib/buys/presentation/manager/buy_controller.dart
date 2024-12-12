@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:pulsa/buys/domain/entities/product_entity.dart';
+
 import '../../domain/use_cases/buy_product.dart';
 import '../../domain/use_cases/get_products.dart';
 
@@ -10,7 +11,7 @@ class BuyController {
   BuyController(this._getProducts, this._buyProduct);
   var products = <ProductEntity>[].obs;
   var selectedProduct = ProductEntity().obs;
-  var phone = ''.obs;
+  var phoneNumber = ''.obs;
 
   void getProducts(String groupCode) async {
     var results = await _getProducts(groupCode);
@@ -23,16 +24,18 @@ class BuyController {
     selectedProduct.value = product;
   }
 
-  void buyProduct() async {
+  Future<bool> buyProduct() async {
+    var success = false;
     var param = setBuyProductParam();
     var results = await _buyProduct(param);
     results.fold((fail) {
       Get.snackbar('Gagal', 'Gagal membeli produk. ${fail.message}');
-    }, (success) {
-      Get.snackbar('Berhasil', 'Berhasil membeli produk');
+    }, (_) {
+      success = true;
     });
+    return success;
   }
 
   BuyProductParam setBuyProductParam() => BuyProductParam(
-      productId: selectedProduct.value.id, phoneNumber: phone.value);
+      productId: selectedProduct.value.id, phoneNumber: phoneNumber.value);
 }

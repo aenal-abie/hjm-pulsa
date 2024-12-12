@@ -18,7 +18,9 @@ class ProductRemoteData extends IProductRemoteData {
 
   @override
   Future<bool> buyProduct(BuyProductParam param, String authToken) async {
-    await apiProvider.post("api/transactions", param.toJson(),
+    await apiProvider.post(
+      "transactions",
+      param.toJson(),
     );
     return true;
   }
