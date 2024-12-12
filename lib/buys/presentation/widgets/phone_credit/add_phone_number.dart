@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pulsa/core/presentation/atoms/style/text_style.dart';
 
 import '../../../../core/presentation/atoms/fields/text_field.dart';
@@ -28,6 +29,14 @@ class AddPhoneNumber extends StatelessWidget {
                 }
                 buyController.phoneNumber.value = value;
               },
+              inputFormatters: [
+                MaskTextInputFormatter(
+                  mask: '### ### ### ### ##',
+                  filter: {
+                    '#': RegExp(r'[0-9]'),
+                  },
+                ),
+              ],
             ),
           ),
         ],

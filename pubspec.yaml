@@ -22,6 +22,7 @@ dependencies:
   heroicons_flutter: ^0.4.0
   hive: 2.2.3
   indonesia: ^2.0.0
+  mask_text_input_formatter: ^2.9.0
   path_provider: ^2.1.5
 
 

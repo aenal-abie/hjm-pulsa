@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:heroicons_flutter/heroicons_flutter.dart';
 
 import '../style/colors.dart';
@@ -18,31 +19,32 @@ class PTextField extends StatefulWidget {
   final EdgeInsetsGeometry? contentPadding;
   final TextInputAction? textInputAction;
   final ValueChanged<String>? onChanged;
-  const PTextField({
-    super.key,
-    this.icon,
-    this.controller,
-    this.hintText,
-    this.labelText,
-    this.keyboardType,
-    this.obscureText = false,
-    this.style,
-    this.hintStyle,
-    this.contentPadding,
-    this.textInputAction,
-    this.onChanged,
-  });
+  final List<TextInputFormatter>? inputFormatters;
 
-  factory PTextField.password({
-    Key? key,
-    TextEditingController? controller,
-    String? hintText,
-    String? labelText,
-    TextStyle? style,
-    EdgeInsetsGeometry? contentPadding,
-    TextInputAction? textInputAction,
-    final ValueChanged<String>? onChanged
-  }) {
+  const PTextField(
+      {super.key,
+      this.icon,
+      this.controller,
+      this.hintText,
+      this.labelText,
+      this.keyboardType,
+      this.obscureText = false,
+      this.style,
+      this.hintStyle,
+      this.contentPadding,
+      this.textInputAction,
+      this.onChanged,
+      this.inputFormatters});
+
+  factory PTextField.password(
+      {Key? key,
+      TextEditingController? controller,
+      String? hintText,
+      String? labelText,
+      TextStyle? style,
+      EdgeInsetsGeometry? contentPadding,
+      TextInputAction? textInputAction,
+      final ValueChanged<String>? onChanged}) {
     return PTextField(
       key: key,
       controller: controller,
@@ -87,9 +89,11 @@ class _PTextFieldState extends State<PTextField> {
             obscureText: _obscureText,
             onChanged: widget.onChanged,
             style: widget.style ?? body1Regular.copyWith(color: black[950]),
+            inputFormatters: widget.inputFormatters,
             decoration: InputDecoration(
               hintText: widget.hintText,
-              hintStyle: widget.hintStyle ??  body1Regular.copyWith(color: natural[300]),
+              hintStyle: widget.hintStyle ??
+                  body1Regular.copyWith(color: natural[300]),
               prefixIcon: widget.icon,
               suffixIcon: widget.obscureText
                   ? IconButton(
