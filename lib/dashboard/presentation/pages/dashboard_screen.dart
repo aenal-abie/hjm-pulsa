@@ -25,7 +25,7 @@ class DashboardScreen extends StatelessWidget {
         children: [
           // Header Section
           Container(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 16),
             decoration: BoxDecoration(
               color: bluePothan[50],
               borderRadius: const BorderRadius.only(
@@ -50,7 +50,7 @@ class DashboardScreen extends StatelessWidget {
                           ),
                           const SizedBox(width: 8),
                           PText(
-                            "CHM",
+                            "CHM Pulsa",
                             style:
                                 heading3Medium.copyWith(color: bluePothan[600]),
                           ),
@@ -59,19 +59,20 @@ class DashboardScreen extends StatelessWidget {
                       Row(
                         children: [
                           Icon(
-                            HeroiconsMicro.currencyDollar,
+                            HeroiconsMicro.wallet,
                             color: bluePothan,
                           ),
-                          PText.body1Regular(
+                          Gap(5),
+                          PText.heading6Medium(
                             rupiah(
-                              10000,
+                              1000000,
                             ),
-                            color: bluePothan,
+                            color: bluePothan[950],
                           ),
                           SizedBox(width: 16),
                           Icon(
-                            HeroiconsMicro.bell,
-                            color: bluePothan[800],
+                            HeroiconsOutline.bell,
+                            color: bluePothan[500],
                           ),
                         ],
                       ),
@@ -86,13 +87,9 @@ class DashboardScreen extends StatelessWidget {
           // Convert Pulsa Section
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              "CHM Service",
-              style: TextStyle(
-                fontSize: 16,
-                color: bluePothan[600],
-                fontWeight: FontWeight.bold,
-              ),
+            child: PText(
+              "Prabayar",
+              style: heading4Medium.copyWith(color: bluePothan[600]),
             ),
           ),
           const SizedBox(height: 16),
@@ -115,15 +112,11 @@ class DashboardScreen extends StatelessWidget {
           // Rate Pulsa Section
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: const Text(
-              "Rate Pulsa",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+            child: PText(
+              "Paket Terlaris",
+              style: heading4Medium.copyWith(color: bluePothan[600]),
             ),
           ),
-          const SizedBox(height: 16),
           Expanded(
             child: GridView.count(
               crossAxisCount: 2,
@@ -142,6 +135,7 @@ class DashboardScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: bluePothan[500],
         items: const [
           BottomNavigationBarItem(
             icon: Icon(HeroiconsSolid.home),
@@ -169,7 +163,10 @@ class DashboardScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(icon),
+              Icon(
+                icon,
+                color: bluePothan[500],
+              ),
               PText(
                 title,
                 style: body1Regular.copyWith(

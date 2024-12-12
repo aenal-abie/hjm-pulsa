@@ -61,8 +61,9 @@ class PText extends Text {
 
   factory PText.heading6Regular(String text) =>
       PText(text, style: heading6Regular);
-  factory PText.heading6Medium(String text) =>
-      PText(text, style: heading6Medium);
+
+  factory PText.heading6Medium(String text, {Color? color}) =>
+      PText(text, style: heading6Medium.copyWith(color: color));
   factory PText.heading6Semibold(String text) =>
       PText(text, style: heading6Semibold);
   factory PText.heading6Bold(String text) => PText(text, style: heading6Bold);
