@@ -158,8 +158,10 @@ class DashboardScreen extends StatelessWidget {
     return Center(
       child: InkWell(
         onTap: onTap,
+        overlayColor: WidgetStateProperty.all(bluePothan[200]),
+        borderRadius: BorderRadius.circular(12),
         child: Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
