@@ -27,8 +27,11 @@ class ProductList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        PText.heading5Regular("Pilih jumlah pulsa"),
-        const Gap(10),
+        PText(
+          "Pilih jumlah pulsa",
+          style: heading6Regular.copyWith(color: bluePothan[400]),
+        ),
+        const Gap(5),
         Expanded(
           child: GridView.count(
             childAspectRatio: (itemWidth / itemHeight),
@@ -44,6 +47,7 @@ class ProductList extends StatelessWidget {
                   padding: EdgeInsets.only(
                       left: isEven ? 0 : 8, bottom: 8, right: isEven ? 8 : 0),
                   child: InkWell(
+                    borderRadius: const BorderRadius.all(Radius.circular(7)),
                     onTap: () {
                       controller.selectProduct(products[index]);
                     },
@@ -93,7 +97,12 @@ class PriceItem extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('${product.name}', style: heading3Semibold),
+        Text(
+          '${product.name}',
+          style: heading3Medium.copyWith(fontSize: 20, color: bluePothan[950]),
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
+        ),
         Padding(
           padding: const EdgeInsets.all(4.0),
           child: Text(

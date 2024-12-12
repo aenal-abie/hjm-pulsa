@@ -14,6 +14,8 @@ class BuyController {
   var selectedProduct = ProductEntity().obs;
   var phoneNumber = ''.obs;
 
+  bool get emptyList => products.isEmpty || phoneNumber.isEmpty;
+
   void getProducts(String phoneNumber) async {
     var groupCode = getOperatorName(phoneNumber);
     var results = await _getProducts(groupCode ?? "");
@@ -40,4 +42,13 @@ class BuyController {
 
   BuyProductParam setBuyProductParam() => BuyProductParam(
       productId: selectedProduct.value.id, phoneNumber: phoneNumber.value);
+
+  void setPhoneNumber(String value) {
+    if (value.length == 4) {
+      getProducts(value);
+    } else if (value.length < 4) {
+      products.clear();
+    }
+    phoneNumber.value = value;
+  }
 }

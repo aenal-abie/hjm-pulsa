@@ -28,13 +28,12 @@ class _PhoneCreditScreenState extends State<PhoneCreditScreen> {
       body: Column(
         children: [
           AddPhoneNumber(buyController: controller),
-          const Gap(10),
           Obx(() {
             return Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: controller.products.isEmpty
-                      ? const Center(
+              child: controller.emptyList
+                  ? const Center(
                     child: NoProvider(),
                   )
                       : ProductList(

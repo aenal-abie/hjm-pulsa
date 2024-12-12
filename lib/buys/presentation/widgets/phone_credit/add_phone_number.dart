@@ -23,11 +23,9 @@ class AddPhoneNumber extends StatelessWidget {
               labelText: "NO HP",
               hintStyle: heading4Regular.copyWith(color: Colors.black26),
               style: heading4Regular.copyWith(color: Colors.black),
-              onChanged: (value) {
-                if (value.length == 4) {
-                  buyController.getProducts(value);
-                }
-                buyController.phoneNumber.value = value;
+              onChanged: (temp) {
+                var value = temp.replaceAll(' ', '');
+                buyController.setPhoneNumber(value);
               },
               inputFormatters: [
                 MaskTextInputFormatter(
