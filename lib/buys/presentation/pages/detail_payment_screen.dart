@@ -14,7 +14,6 @@ class TransactionDetailPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PAppBar(
-        // backgroundColor: bluePothan[200],
         title: "Detail Transaksi",
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
