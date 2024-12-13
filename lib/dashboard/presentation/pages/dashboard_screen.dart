@@ -37,47 +37,44 @@ class DashboardScreen extends StatelessWidget {
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Gap(20),
-                Positioned(
-                  top: 1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            HeroiconsSolid.devicePhoneMobile,
-                            color: bluePothan,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          HeroiconsSolid.devicePhoneMobile,
+                          color: bluePothan,
+                        ),
+                        const SizedBox(width: 8),
+                        PText(
+                          "CHM Pulsa",
+                          style:
+                              heading3Medium.copyWith(color: bluePothan[600]),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          HeroiconsMicro.wallet,
+                          color: bluePothan,
+                        ),
+                        Gap(5),
+                        PText.heading6Medium(
+                          rupiah(
+                            1000000,
                           ),
-                          const SizedBox(width: 8),
-                          PText(
-                            "CHM Pulsa",
-                            style:
-                                heading3Medium.copyWith(color: bluePothan[600]),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            HeroiconsMicro.wallet,
-                            color: bluePothan,
-                          ),
-                          Gap(5),
-                          PText.heading6Medium(
-                            rupiah(
-                              1000000,
-                            ),
-                            color: bluePothan[950],
-                          ),
-                          SizedBox(width: 16),
-                          Icon(
-                            HeroiconsOutline.bell,
-                            color: bluePothan[500],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                          color: bluePothan[950],
+                        ),
+                        SizedBox(width: 16),
+                        Icon(
+                          HeroiconsOutline.bell,
+                          color: bluePothan[500],
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),

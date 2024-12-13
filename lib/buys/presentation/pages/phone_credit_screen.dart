@@ -31,15 +31,24 @@ class _PhoneCreditScreenState extends State<PhoneCreditScreen> {
           Obx(() {
             return Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-              child: controller.emptyList
-                  ? const Center(
-                    child: NoProvider(),
-                  )
+              padding: const EdgeInsets.all(16.0),
+              child: controller.getProductLoading.isTrue
+                  ? Center(
+                      child: SizedBox(
+                          width: 10,
+                          height: 10,
+                          child: const CircularProgressIndicator(
+                            strokeWidth: 2,
+                          )),
+                    )
+                  : controller.emptyList
+                      ? const Center(
+                          child: NoProvider(),
+                        )
                       : ProductList(
-                    controller: controller,
-                  ),
-                ));
+                          controller: controller,
+                        ),
+            ));
           }),
         ],
       ),

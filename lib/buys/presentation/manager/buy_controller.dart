@@ -18,15 +18,18 @@ class BuyController {
   var phoneNumber = ''.obs;
   var orderSuccess = false.obs;
   var secondNavigation = "0".obs;
+  var getProductLoading = false.obs;
 
   bool get emptyList => products.isEmpty || phoneNumber.isEmpty;
 
   void getProducts(String phoneNumber) async {
+    getProductLoading.value = true;
     var groupCode = getOperatorName(phoneNumber);
     var results = await _getProducts(groupCode ?? "");
     results.fold((fail) {}, (products) {
       this.products.value = products;
     });
+    getProductLoading.value = false;
   }
 
   void selectProduct(ProductEntity product) {
