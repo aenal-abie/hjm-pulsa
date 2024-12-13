@@ -4,6 +4,7 @@ import 'package:pulsa/core/presentation/atoms/buttons/primary_button.dart';
 import 'package:pulsa/core/presentation/atoms/style/colors.dart';
 
 import '../../../core/presentation/atoms/text/p_text.dart';
+import '../../../core/presentation/atoms/utils/gap.dart';
 import '../../../core/presentation/atoms/widgets/app_bar.dart';
 
 class DetailPaymentScreen extends StatelessWidget {
@@ -136,7 +137,9 @@ class DetailPaymentScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: PrimaryButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.back();
+                },
                 text: 'Kembali',
               ),
             ),

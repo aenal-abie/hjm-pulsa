@@ -42,7 +42,6 @@ class BuyController {
       Get.snackbar('Gagal', 'Gagal membeli produk. ${fail.message}');
     }, (_) {
       success = true;
-      orderSuccess.value = true;
       if (success) {
         navigateToDetail();
       }
@@ -57,6 +56,7 @@ class BuyController {
         secondNavigation.value = count.toString();
         count--;
       } else {
+        orderSuccess.value = true;
         timer.cancel();
         Get.back();
         Get.back();
