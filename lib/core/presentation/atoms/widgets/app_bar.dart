@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pulsa/core/presentation/atoms/text/p_text.dart';
 
 import '../style/colors.dart';
 
@@ -7,6 +8,7 @@ class PAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget leading;
   final Color backgroundColor;
   final double elevation;
+  final String title;
 
   const PAppBar({
     super.key,
@@ -14,12 +16,14 @@ class PAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leading = const Icon(Icons.menu),
     this.backgroundColor = Colors.white,
     this.elevation = 4.0,
+    this.title = '',
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: backgroundColor,
+      title: PText.body1Medium(title),
       leading: IconButton(
         onPressed: () {},
         icon: Icon(
