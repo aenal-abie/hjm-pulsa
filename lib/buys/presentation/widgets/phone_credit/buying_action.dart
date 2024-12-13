@@ -48,10 +48,12 @@ class BuyingAction extends StatelessWidget {
     controller.secondNavigation.value = "";
     !context.mounted ? null : showDialogProcess(context);
     await controller.buyProduct();
+    //todo; handle failure
   }
 
   void showDialogProcess(BuildContext context) {
     showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (context) {
           return AlertDialog(
