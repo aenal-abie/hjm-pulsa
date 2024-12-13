@@ -6,13 +6,9 @@ import 'package:pulsa/core/presentation/atoms/style/colors.dart';
 import '../../../core/presentation/atoms/text/p_text.dart';
 import '../../../core/presentation/atoms/widgets/app_bar.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: TransactionDetailPage(),
-  ));
-}
-
 class TransactionDetailPage extends StatelessWidget {
+  const TransactionDetailPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
