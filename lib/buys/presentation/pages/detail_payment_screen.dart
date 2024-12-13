@@ -6,8 +6,8 @@ import 'package:pulsa/core/presentation/atoms/style/colors.dart';
 import '../../../core/presentation/atoms/text/p_text.dart';
 import '../../../core/presentation/atoms/widgets/app_bar.dart';
 
-class TransactionDetailPage extends StatelessWidget {
-  const TransactionDetailPage({super.key});
+class DetailPaymentScreen extends StatelessWidget {
+  const DetailPaymentScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

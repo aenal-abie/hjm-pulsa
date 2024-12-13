@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:indonesia/indonesia.dart';
 import 'package:pulsa/buys/presentation/manager/buy_controller.dart';
+import 'package:pulsa/buys/presentation/widgets/phone_credit/processing_product.dart';
 import 'package:pulsa/core/presentation/atoms/style/colors.dart';
 import 'package:pulsa/core/presentation/atoms/style/text_style.dart';
 
 import '../../../../core/presentation/atoms/buttons/primary_button.dart';
 import '../../../../core/presentation/atoms/text/p_text.dart';
-import '../../../../core/presentation/atoms/utils/dialogs.dart';
 import '../../../../core/presentation/atoms/utils/gap.dart';
 
 class BuyingAction extends StatelessWidget {
@@ -45,18 +45,23 @@ class BuyingAction extends StatelessWidget {
   }
 
   void buyProduct(BuildContext context) async {
-    var success = await controller.buyProduct();
-    if (success) {
-      !context.mounted ? null : _showDialogSuccess(context);
-    }
+    controller.secondNavigation.value = "";
+    !context.mounted ? null : showDialogProcess(context);
+    await controller.buyProduct();
   }
 
-  void _showDialogSuccess(BuildContext context) {
-    showDialogSuccess(context,
-        "Transaksi pembelian pulsa ke nomor ${controller.phoneNumber.value} berhasil",
-        onPressed: () {
-      Navigator.of(context).pop();
-      Navigator.of(context).pop();
-    });
+  void showDialogProcess(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: PText(
+              "Pembelian pulsa",
+              style: heading6Bold,
+              textAlign: TextAlign.center,
+            ),
+            content: ProcessingProduct(controller: controller),
+          );
+        });
   }
 }
