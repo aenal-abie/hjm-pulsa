@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pulsa/buys/domain/entities/product_entity.dart';
 import 'package:pulsa/buys/presentation/pages/detail_payment_screen.dart';
+import 'package:pulsa/core/presentation/atoms/style/colors.dart';
 
 import '../../domain/entities/provider_type.dart';
 import '../../domain/use_cases/buy_product.dart';
@@ -42,7 +44,12 @@ class BuyController {
     var param = setBuyProductParam();
     var results = await _buyProduct(param);
     results.fold((fail) {
-      Get.snackbar('Gagal', 'Gagal membeli produk. ${fail.message}');
+      Get.back();
+      Get.snackbar('Gagal', 'Gagal membeli produk. ${fail.message}',
+          backgroundColor: natural[50],
+          margin: const EdgeInsets.all(16),
+          snackPosition: SnackPosition.BOTTOM,
+          colorText: brightRed);
     }, (_) {
       success = true;
       if (success) {
