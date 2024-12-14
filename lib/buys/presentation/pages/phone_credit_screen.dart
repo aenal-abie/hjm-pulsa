@@ -35,8 +35,8 @@ class _PhoneCreditScreenState extends State<PhoneCreditScreen> {
               child: controller.getProductLoading.isTrue
                   ? Center(
                       child: SizedBox(
-                          width: 10,
-                          height: 10,
+                          width: 40,
+                          height: 40,
                           child: const CircularProgressIndicator(
                             strokeWidth: 2,
                           )),

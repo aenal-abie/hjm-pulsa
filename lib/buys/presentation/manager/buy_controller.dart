@@ -45,9 +45,9 @@ class BuyController {
     var results = await _buyProduct(param);
     results.fold((fail) {
       Get.back();
-      Get.snackbar('Gagal', 'Gagal membeli produk. ${fail.message}',
+      Get.snackbar('Kesalahan', 'Gagal membeli produk. ${fail.message}',
           backgroundColor: natural[50],
-          margin: const EdgeInsets.all(16),
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           snackPosition: SnackPosition.BOTTOM,
           colorText: brightRed);
     }, (_) {
