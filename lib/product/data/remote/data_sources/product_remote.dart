@@ -1,5 +1,4 @@
 import '../../../../core/data/remotes/api_provider.dart';
-import '../../../domain/use_cases/buy_product.dart';
 import '../dto/product_dto.dart';
 import 'abstract/product_remote_data.dart';
 
@@ -14,14 +13,5 @@ class ProductRemoteData extends IProductRemoteData {
         authToken: authToken);
 
     return (result['data'] as List).map((e) => ProductDTO.fromJson(e)).toList();
-  }
-
-  @override
-  Future<bool> buyProduct(BuyProductParam param, String authToken) async {
-    await apiProvider.post(
-      "transactions",
-      param.toJson(),
-    );
-    return true;
   }
 }

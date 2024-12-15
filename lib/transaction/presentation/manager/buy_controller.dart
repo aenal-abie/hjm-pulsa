@@ -6,8 +6,8 @@ import 'package:pulsa/core/presentation/atoms/style/colors.dart';
 import 'package:pulsa/product/domain/entities/product_entity.dart';
 
 import '../../../product/domain/entities/provider_type.dart';
+import '../../../product/domain/use_cases/get_products.dart';
 import '../../domain/use_cases/buy_product.dart';
-import '../../domain/use_cases/get_products.dart';
 import '../pages/detail_payment_screen.dart';
 
 class BuyController {

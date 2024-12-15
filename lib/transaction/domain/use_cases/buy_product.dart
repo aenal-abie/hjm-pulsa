@@ -1,19 +1,21 @@
+import 'package:pulsa/transaction/domain/repositories/transaction_repository.dart';
+
 import '../../../core/domain/error/failures.dart';
 import '../../../core/domain/use_cases/either.dart';
 import '../../../core/domain/use_cases/usecase.dart';
-import '../repositories/product_repository.dart';
 
 typedef EBuyProduct = Future<Either<Failure, bool>>;
 
 class BuyProduct extends UseCase<bool, BuyProductParam> {
-  final IProductRepository productRepository;
-  BuyProduct(this.productRepository);
+  final ITransactionRepository transactionRepository;
+
+  BuyProduct(this.transactionRepository);
 
   @override
   EBuyProduct call(BuyProductParam params) async {
     try {
       params.isValid();
-      var data = productRepository.buyProduct(params);
+      var data = transactionRepository.buyProduct(params);
       return data;
     } catch (e) {
       return Left(InvalidParam(message: e.toString()));

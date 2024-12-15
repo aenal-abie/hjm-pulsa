@@ -1,15 +1,15 @@
-import '../core/di/container.dart';
-import 'data/remote/data_sources/abstract/product_remote_data.dart';
-import 'data/remote/data_sources/product_remote.dart';
-import 'data/repositories/product_repository.dart';
-import 'domain/repositories/product_repository.dart';
-import 'domain/use_cases/buy_product.dart';
-import 'domain/use_cases/get_products.dart';
+import 'package:pulsa/transaction/data/remote/data_sources/abstract/transaction_remote_data.dart';
+import 'package:pulsa/transaction/data/remote/data_sources/transaction_remote.dart';
+import 'package:pulsa/transaction/domain/repositories/transaction_repository.dart';
 
-Future<void> injectBuys() async {
+import '../core/di/container.dart';
+import 'data/repositories/transaction_repository.dart';
+import 'domain/use_cases/buy_product.dart';
+
+Future<void> injectTransactions() async {
   di.registerLazySingleton(() => BuyProduct(di()));
-  di.registerLazySingleton(() => GetProducts(di()));
-  di.registerLazySingleton<IProductRepository>(
-      () => PriceRepository(di(), di()));
-  di.registerLazySingleton<IProductRemoteData>(() => ProductRemoteData(di()));
+  di.registerLazySingleton<ITransactionRepository>(
+      () => TransactionRepository(di(), di()));
+  di.registerLazySingleton<ITransactionRemoteData>(
+      () => TransactionRemote(di()));
 }
