@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pulsa/core/presentation/atoms/style/colors.dart';
 import 'package:pulsa/product/domain/entities/product_entity.dart';
+import 'package:pulsa/transaction/domain/entities/transaction_dto.dart';
 
 import '../../../product/domain/entities/provider_type.dart';
 import '../../../product/domain/use_cases/get_products.dart';
@@ -50,16 +51,16 @@ class BuyController {
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           snackPosition: SnackPosition.BOTTOM,
           colorText: brightRed);
-    }, (_) {
+    }, (result) {
       success = true;
       if (success) {
-        navigateToDetail();
+        navigateToDetail(result);
       }
     });
     return success;
   }
 
-  void navigateToDetail() {
+  void navigateToDetail(TransactionEntity transaction) {
     var count = 3;
     Timer.periodic(Duration(seconds: 1), (timer) {
       if (count > 0) {
@@ -70,7 +71,9 @@ class BuyController {
         timer.cancel();
         Get.back();
         Get.back();
-        Get.to(DetailPaymentScreen());
+        Get.to(DetailPaymentScreen(
+          transactionId: transaction.id ?? 0,
+        ));
       }
     });
   }

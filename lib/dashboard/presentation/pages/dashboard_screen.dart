@@ -48,7 +48,7 @@ class DashboardScreen extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         PText(
-                          "CHM Pulsa",
+                          "HJM Pulsa",
                           style:
                               heading3Medium.copyWith(color: bluePothan[600]),
                         ),

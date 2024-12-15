@@ -1,12 +1,13 @@
+import 'package:pulsa/transaction/domain/entities/transaction_dto.dart';
 import 'package:pulsa/transaction/domain/repositories/transaction_repository.dart';
 
 import '../../../core/domain/error/failures.dart';
 import '../../../core/domain/use_cases/either.dart';
 import '../../../core/domain/use_cases/usecase.dart';
 
-typedef EBuyProduct = Future<Either<Failure, bool>>;
+typedef EBuyProduct = Future<Either<Failure, TransactionEntity>>;
 
-class BuyProduct extends UseCase<bool, BuyProductParam> {
+class BuyProduct extends UseCase<TransactionEntity, BuyProductParam> {
   final ITransactionRepository transactionRepository;
 
   BuyProduct(this.transactionRepository);
@@ -35,7 +36,7 @@ class BuyProductParam {
   void isValid() {
     if (!isPhoneNumberValid()) {
       throw InvalidParam(
-          message: 'Nomor telepon tidak valid, harus 10-15 angka');
+          message: 'Nomor telepon tidak sesuai, harus 10-15 angka');
     } else if (!isProductValid()) {
       throw InvalidParam(message: 'Anda belum memilih paket pulsa');
     }

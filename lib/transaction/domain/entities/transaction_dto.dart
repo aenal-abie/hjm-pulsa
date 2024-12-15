@@ -1,5 +1,17 @@
-class Transaction {
-  Transaction({
+import 'package:pulsa/product/domain/entities/product_entity.dart';
+
+enum TransactionStatus {
+  pending("Pending"),
+  success("Sukses"),
+  failed("Gagal");
+
+  final String value;
+
+  const TransactionStatus(this.value);
+}
+
+class TransactionEntity {
+  TransactionEntity({
     this.id,
     this.customerId,
     this.productId,
@@ -11,21 +23,9 @@ class Transaction {
     this.trxId,
     this.refId,
     this.sn,
+    this.productEntity,
   });
 
-  Transaction.fromJson(dynamic json) {
-    id = json['id'];
-    customerId = json['customer_id'];
-    productId = json['product_id'];
-    price = json['price'];
-    status = json['status'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    phoneNumber = json['phone_number'];
-    trxId = json['trx_id'];
-    refId = json['ref_id'];
-    sn = json['sn'];
-  }
   int? id;
   int? customerId;
   int? productId;
@@ -37,7 +37,9 @@ class Transaction {
   String? trxId;
   String? refId;
   String? sn;
-  Transaction copyWith({
+  ProductEntity? productEntity;
+
+  TransactionEntity copyWith({
     int? id,
     int? customerId,
     int? productId,
@@ -50,7 +52,7 @@ class Transaction {
     String? refId,
     String? sn,
   }) =>
-      Transaction(
+      TransactionEntity(
         id: id ?? this.id,
         customerId: customerId ?? this.customerId,
         productId: productId ?? this.productId,
@@ -63,19 +65,4 @@ class Transaction {
         refId: refId ?? this.refId,
         sn: sn ?? this.sn,
       );
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['customer_id'] = customerId;
-    map['product_id'] = productId;
-    map['price'] = price;
-    map['status'] = status;
-    map['created_at'] = createdAt;
-    map['updated_at'] = updatedAt;
-    map['phone_number'] = phoneNumber;
-    map['trx_id'] = trxId;
-    map['ref_id'] = refId;
-    map['sn'] = sn;
-    return map;
-  }
 }
