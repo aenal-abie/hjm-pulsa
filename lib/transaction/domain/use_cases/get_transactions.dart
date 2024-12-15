@@ -5,17 +5,17 @@ import '../../../core/domain/error/failures.dart';
 import '../../../core/domain/use_cases/either.dart';
 import '../../../core/domain/use_cases/usecase.dart';
 
-typedef EGetTransaction = Future<Either<Failure, TransactionEntity>>;
+typedef EGetTransactions = Future<Either<Failure, List<TransactionEntity>>>;
 
-class GetTransaction extends UseCase<TransactionEntity, int> {
+class GetTransactions extends UseCase<List<TransactionEntity>, NoParams> {
   final ITransactionRepository transactionRepository;
 
-  GetTransaction(this.transactionRepository);
+  GetTransactions(this.transactionRepository);
 
   @override
-  EGetTransaction call(int params) async {
+  EGetTransactions call(NoParams params) async {
     try {
-      return await transactionRepository.getTransaction(params);
+      return await transactionRepository.getTransactions();
     } catch (e) {
       return Left(InvalidParam(message: e.toString()));
     }

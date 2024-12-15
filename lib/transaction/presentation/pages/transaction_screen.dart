@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:indonesia/indonesia.dart';
 import 'package:pulsa/core/presentation/atoms/buttons/primary_button.dart';
 import 'package:pulsa/core/presentation/atoms/style/colors.dart';
-import 'package:pulsa/transaction/domain/entities/transaction_dto.dart';
+import 'package:pulsa/transaction/domain/entities/transaction_entity.dart';
 import 'package:pulsa/transaction/presentation/manager/transaction_controller.dart';
 
 import '../../../core/di/container.dart';
@@ -11,17 +11,17 @@ import '../../../core/presentation/atoms/text/p_text.dart';
 import '../../../core/presentation/atoms/utils/gap.dart';
 import '../../../core/presentation/atoms/widgets/app_bar.dart';
 
-class DetailPaymentScreen extends StatefulWidget {
+class TransactionScreen extends StatefulWidget {
   final int transactionId; // Pass the transaction
-  const DetailPaymentScreen({super.key, this.transactionId = 0});
+  const TransactionScreen({super.key, this.transactionId = 0});
 
   @override
-  State<DetailPaymentScreen> createState() => _DetailPaymentScreenState();
+  State<TransactionScreen> createState() => _TransactionScreenState();
 }
 
-class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
+class _TransactionScreenState extends State<TransactionScreen> {
   final TransactionController _transactionController =
-      Get.put(TransactionController(di()));
+      Get.put(TransactionController(di(), di()));
 
   @override
   void initState() {
@@ -198,7 +198,6 @@ class _DetailPaymentScreenState extends State<DetailPaymentScreen> {
       return PText(status ?? '-',
           style: heading4Bold.copyWith(color: brightRed));
     }
-    return PText("Menunggu" ?? '-',
-        style: heading4Bold.copyWith(color: bluePothan));
+    return PText("Menunggu", style: heading4Bold.copyWith(color: bluePothan));
   }
 }

@@ -1,4 +1,4 @@
-import 'package:pulsa/transaction/domain/entities/transaction_dto.dart';
+import 'package:pulsa/transaction/domain/entities/transaction_entity.dart';
 import 'package:pulsa/transaction/domain/repositories/transaction_repository.dart';
 
 import '../../../core/domain/error/failures.dart';

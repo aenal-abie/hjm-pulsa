@@ -1,5 +1,5 @@
 import 'package:pulsa/product/data/remote/dto/product_dto.dart';
-import 'package:pulsa/transaction/domain/entities/transaction_dto.dart';
+import 'package:pulsa/transaction/domain/entities/transaction_entity.dart';
 
 class TransactionDto {
   TransactionDto({

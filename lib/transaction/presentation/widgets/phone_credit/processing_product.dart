@@ -4,7 +4,7 @@ import 'package:pulsa/core/presentation/atoms/text/p_text.dart';
 
 import '../../../../core/presentation/atoms/utils/gap.dart';
 import '../../manager/buy_controller.dart';
-import '../../pages/detail_payment_screen.dart';
+import '../../pages/transaction_screen.dart';
 
 class ProcessingProduct extends StatelessWidget {
   final BuyController controller;
@@ -51,7 +51,7 @@ class ProcessingProduct extends StatelessWidget {
                         child: PrimaryButton(
                           text: "Lihat detail",
                           onPressed: () {
-                            Get.to(DetailPaymentScreen());
+                            Get.to(TransactionScreen());
                           },
                         ),
                       ),

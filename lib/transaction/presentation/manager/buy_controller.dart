@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pulsa/core/presentation/atoms/style/colors.dart';
 import 'package:pulsa/product/domain/entities/product_entity.dart';
-import 'package:pulsa/transaction/domain/entities/transaction_dto.dart';
+import 'package:pulsa/transaction/domain/entities/transaction_entity.dart';
 
 import '../../../product/domain/entities/provider_type.dart';
 import '../../../product/domain/use_cases/get_products.dart';
 import '../../domain/use_cases/buy_product.dart';
-import '../pages/detail_payment_screen.dart';
+import '../pages/transaction_screen.dart';
 
 class BuyController {
   final GetProducts _getProducts;
@@ -71,7 +71,7 @@ class BuyController {
         timer.cancel();
         Get.back();
         Get.back();
-        Get.to(DetailPaymentScreen(
+        Get.to(TransactionScreen(
           transactionId: transaction.id ?? 0,
         ));
       }

@@ -23,7 +23,7 @@ class PAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: backgroundColor,
-      title: PText.body1Medium(title),
+      title: PText.heading6Semibold(title),
       leading: IconButton(
         onPressed: () {},
         icon: Icon(

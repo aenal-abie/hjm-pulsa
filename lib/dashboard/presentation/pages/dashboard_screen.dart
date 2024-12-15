@@ -131,23 +131,6 @@ class DashboardScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: bluePothan[500],
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(HeroiconsSolid.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(HeroiconsSolid.queueList),
-            label: "Transaksi",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(HeroiconsSolid.cog),
-            label: "Pengaturan",
-          ),
-        ],
-      ),
     );
   }
 

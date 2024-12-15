@@ -6,4 +6,6 @@ abstract class ITransactionRemoteData {
   Future<TransactionDto> buyProduct(BuyProductParam param, String authToken);
 
   Future<TransactionDto> getTransaction(int id, String authToken);
+
+  Future<List<TransactionDto>> getTransactions(String authToken);
 }

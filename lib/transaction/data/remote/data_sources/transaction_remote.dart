@@ -22,4 +22,12 @@ class TransactionRemote extends ITransactionRemoteData {
     var data = await apiProvider.get("transactions/$id", authToken: authToken);
     return TransactionDto.fromJson(data['data']);
   }
+
+  @override
+  Future<List<TransactionDto>> getTransactions(String authToken) async {
+    var data = await apiProvider.get("transactions", authToken: authToken);
+    return (data['data']['data'] as List)
+        .map((e) => TransactionDto.fromJson(e))
+        .toList();
+  }
 }

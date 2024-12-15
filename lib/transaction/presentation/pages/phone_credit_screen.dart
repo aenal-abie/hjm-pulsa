@@ -14,7 +14,7 @@ class PhoneCreditScreen extends StatefulWidget {
   const PhoneCreditScreen({super.key});
 
   @override
-  _PhoneCreditScreenState createState() => _PhoneCreditScreenState();
+  State<PhoneCreditScreen> createState() => _PhoneCreditScreenState();
 }
 
 class _PhoneCreditScreenState extends State<PhoneCreditScreen> {
@@ -24,7 +24,9 @@ class _PhoneCreditScreenState extends State<PhoneCreditScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PAppBar(),
+      appBar: PAppBar(
+        title: "Pembelian",
+      ),
       body: Column(
         children: [
           AddPhoneNumber(buyController: controller),

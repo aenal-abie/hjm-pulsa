@@ -1,4 +1,5 @@
 import 'package:pulsa/transaction/domain/use_cases/get_transaction.dart';
+import 'package:pulsa/transaction/domain/use_cases/get_transactions.dart';
 
 import '../../../authentication/data/local/data_sources/base/authentication_cache.dart';
 import '../../../core/domain/error/failures.dart';
@@ -32,6 +33,17 @@ class TransactionRepository extends ITransactionRepository {
       var data =
           await transactionRemoteData.getTransaction(id, await getToken ?? "");
       return Right(data.toEntity());
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  EGetTransactions getTransactions() async {
+    try {
+      var data =
+          await transactionRemoteData.getTransactions(await getToken ?? "");
+      return Right(data.map((e) => e.toEntity()).toList());
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
