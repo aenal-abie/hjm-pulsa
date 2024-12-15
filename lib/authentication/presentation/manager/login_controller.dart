@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:pulsa/buys/presentation/pages/phone_credit_screen.dart';
 
+import '../../../transaction/presentation/pages/phone_credit_screen.dart';
 import '../../domain/use_cases/login.dart';
 
 class LoginController extends GetxController {

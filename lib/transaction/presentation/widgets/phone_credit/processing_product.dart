@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pulsa/buys/presentation/manager/buy_controller.dart';
 import 'package:pulsa/core/presentation/atoms/buttons/primary_button.dart';
 import 'package:pulsa/core/presentation/atoms/text/p_text.dart';
 
 import '../../../../core/presentation/atoms/utils/gap.dart';
+import '../../manager/buy_controller.dart';
 import '../../pages/detail_payment_screen.dart';
 
 class ProcessingProduct extends StatelessWidget {

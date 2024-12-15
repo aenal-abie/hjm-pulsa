@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:indonesia/indonesia.dart';
-import 'package:pulsa/buys/domain/entities/product_entity.dart';
-import 'package:pulsa/buys/presentation/widgets/phone_credit/buying_action.dart';
 import 'package:pulsa/core/presentation/atoms/style/colors.dart';
 import 'package:pulsa/core/presentation/atoms/style/text_style.dart';
+import 'package:pulsa/product/domain/entities/product_entity.dart';
 
 import '../../../../core/presentation/atoms/text/p_text.dart';
 import '../../../../core/presentation/atoms/utils/gap.dart';
 import '../../manager/buy_controller.dart';
+import 'buying_action.dart';
 
 class ProductList extends StatelessWidget {
   final BuyController controller;

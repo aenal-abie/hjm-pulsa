@@ -6,6 +6,10 @@ class ProductEntity {
   int? groupId;
   int? id;
 
-  ProductEntity(
-      {this.code, this.name, this.price, this.sellingPrice, this.groupId, this.id});
+  ProductEntity({this.code,
+    this.name,
+    this.price,
+    this.sellingPrice,
+    this.groupId,
+    this.id});
 }

@@ -1,4 +1,4 @@
-import 'package:pulsa/buys/domain/entities/product_entity.dart';
+import 'package:pulsa/product/domain/entities/product_entity.dart';
 
 class ProductDTO {
   ProductDTO({

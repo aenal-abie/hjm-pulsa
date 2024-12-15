@@ -1,5 +1,4 @@
-import 'package:pulsa/buys/domain/use_cases/buy_product.dart';
-
+import '../../../../domain/use_cases/buy_product.dart';
 import '../../dto/product_dto.dart';
 
 

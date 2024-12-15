@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:heroicons_flutter/heroicons_flutter.dart';
 import 'package:indonesia/indonesia.dart';
-import 'package:pulsa/buys/presentation/pages/phone_credit_screen.dart';
 
 import '../../../core/presentation/atoms/style/colors.dart';
 import '../../../core/presentation/atoms/style/text_style.dart';
 import '../../../core/presentation/atoms/text/p_text.dart';
 import '../../../core/presentation/atoms/utils/gap.dart';
+import '../../../transaction/presentation/pages/phone_credit_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});

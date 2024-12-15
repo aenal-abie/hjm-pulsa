@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pulsa/buys/domain/entities/product_entity.dart';
-import 'package:pulsa/buys/presentation/pages/detail_payment_screen.dart';
 import 'package:pulsa/core/presentation/atoms/style/colors.dart';
+import 'package:pulsa/product/domain/entities/product_entity.dart';
 
-import '../../domain/entities/provider_type.dart';
+import '../../../product/domain/entities/provider_type.dart';
 import '../../domain/use_cases/buy_product.dart';
 import '../../domain/use_cases/get_products.dart';
+import '../pages/detail_payment_screen.dart';
 
 class BuyController {
   final GetProducts _getProducts;

@@ -1,11 +1,10 @@
-import 'package:pulsa/buys/data/remote/data_sources/abstract/product_remote_data.dart';
-import 'package:pulsa/buys/domain/use_cases/buy_product.dart';
-import 'package:pulsa/buys/domain/use_cases/get_products.dart';
-
 import '../../../authentication/data/local/data_sources/base/authentication_cache.dart';
 import '../../../core/domain/error/failures.dart';
 import '../../../core/domain/use_cases/either.dart';
 import '../../domain/repositories/product_repository.dart';
+import '../../domain/use_cases/buy_product.dart';
+import '../../domain/use_cases/get_products.dart';
+import '../remote/data_sources/abstract/product_remote_data.dart';
 
 class PriceRepository extends IProductRepository {
   final IProductRemoteData product;
