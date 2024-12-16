@@ -2,14 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:heroicons_flutter/heroicons_flutter.dart';
 import 'package:indonesia/indonesia.dart';
 
+import '../../../core/di/container.dart';
 import '../../../core/presentation/atoms/style/colors.dart';
 import '../../../core/presentation/atoms/style/text_style.dart';
 import '../../../core/presentation/atoms/text/p_text.dart';
 import '../../../core/presentation/atoms/utils/gap.dart';
+import '../../../customer/presentation/manager/customer_controller.dart';
 import '../../../transaction/presentation/pages/phone_credit_screen.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
+
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  final customerController = Get.put(CustomerController(di()));
+
+  @override
+  void initState() {
+    super.initState();
+    customerController.getBalance();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,12 +76,14 @@ class DashboardScreen extends StatelessWidget {
                           color: bluePothan,
                         ),
                         Gap(5),
-                        PText.heading6Medium(
-                          rupiah(
-                            1000000,
-                          ),
-                          color: bluePothan[950],
-                        ),
+                        Obx(() {
+                          return PText.heading6Medium(
+                            rupiah(
+                              customerController.balance.value.balance ?? 0,
+                            ),
+                            color: bluePothan[950],
+                          );
+                        }),
                         SizedBox(width: 16),
                         Icon(
                           HeroiconsOutline.bell,
