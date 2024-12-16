@@ -25,10 +25,12 @@ class BuyController {
 
   bool get emptyList => products.isEmpty || phoneNumber.isEmpty;
 
-  void getProducts(String phoneNumber) async {
+  void getProducts(String categoryCode, String phoneNumber) async {
     getProductLoading.value = true;
     var groupCode = getOperatorName(phoneNumber);
-    var results = await _getProducts(groupCode ?? "");
+    var param =
+        GetProductsParam(categoryCode: categoryCode, groupCode: groupCode);
+    var results = await _getProducts(param);
     results.fold((fail) {}, (products) {
       this.products.value = products;
     });
@@ -83,9 +85,10 @@ class BuyController {
 
   void setPhoneNumber(String value) {
     if (value.length == 4) {
-      getProducts(value);
+      getProducts("PULSA", value);
     } else if (value.length < 4) {
       products.clear();
+      selectedProduct.value = ProductEntity();
     }
     phoneNumber.value = value;
   }

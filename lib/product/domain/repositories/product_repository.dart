@@ -1,5 +1,5 @@
 import '../use_cases/get_products.dart';
 
 abstract class IProductRepository {
-  EGetProducts getProducts(String params);
+  EGetProducts getProducts(GetProductsParam params);
 }

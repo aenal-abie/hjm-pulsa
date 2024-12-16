@@ -47,65 +47,73 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Obx(
-          () => ListView(
-            children: [
-              ...controller.transactions.map(
-                (transaction) => Card(
-                  margin: EdgeInsets.symmetric(vertical: 5),
-                  color: natural[50],
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  child: InkWell(
-                    onTap: () {
-                      Get.to(TransactionScreen(
-                          transactionId: transaction.id ?? 0));
-                    },
-                    child: ListTile(
-                      contentPadding: EdgeInsets.all(12),
-                      leading: CircleAvatar(
-                        radius: 24,
-                        backgroundColor: bluePothan[50],
-                        child: SvgPicture.asset(
-                          "assets/provider/three.svg",
+          () => controller.getTransactionsLoading.isTrue
+              ? const Center(
+                  child: CircularProgressIndicator(
+                  color: bluePothan,
+                ))
+              : ListView(
+                  children: [
+                    ...controller.transactions.map(
+                      (transaction) => Card(
+                        margin: EdgeInsets.symmetric(vertical: 5),
+                        color: natural[50],
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(TransactionScreen(
+                                transactionId: transaction.id ?? 0));
+                          },
+                          child: ListTile(
+                            contentPadding: EdgeInsets.all(12),
+                            leading: CircleAvatar(
+                              radius: 24,
+                              backgroundColor: bluePothan[50],
+                              child: SvgPicture.asset(
+                                "assets/provider/${transaction.productEntity?.groupEntity?.name?.toLowerCase()}.svg",
+                              ),
+                            ),
+                            title: Text(
+                              transaction.productEntity?.name ?? "-",
+                              style: heading5Semibold.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
+                            subtitle: PText.body2Regular(
+                              rupiah(transaction.productEntity?.price),
+                            ),
+                            trailing: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  transaction.status ?? "-",
+                                  style: body1Medium.copyWith(
+                                      color: transaction.status ==
+                                              TransactionStatus.success.value
+                                          ? Colors.green
+                                          : transaction.status ==
+                                                  TransactionStatus.failed.value
+                                              ? Colors.red
+                                              : bluePothan),
+                                ),
+                                SizedBox(height: 4),
+                                Text(
+                                    tanggal(DateTime.parse(
+                                        transaction.updatedAt ??
+                                            DateTime.now().toString())),
+                                    style: body2Regular.copyWith(
+                                        color: Colors.grey)),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
-                      title: Text(
-                        transaction.productEntity?.name ?? "-",
-                        style: heading5Semibold.copyWith(
-                            fontWeight: FontWeight.bold, color: Colors.black),
-                      ),
-                      subtitle: PText.body2Regular(
-                        rupiah(transaction.productEntity?.price),
-                      ),
-                      trailing: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            transaction.status ?? "-",
-                            style: body1Medium.copyWith(
-                                color: transaction.status ==
-                                        TransactionStatus.success.value
-                                    ? Colors.green
-                                    : transaction.status ==
-                                            TransactionStatus.failed.value
-                                        ? Colors.red
-                                        : bluePothan),
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                              tanggal(DateTime.parse(transaction.updatedAt ??
-                                  DateTime.now().toString())),
-                              style: body2Regular.copyWith(color: Colors.grey)),
-                        ],
-                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ),
-            ],
-          ),
         ),
       ),
     );

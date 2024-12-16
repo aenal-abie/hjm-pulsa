@@ -11,7 +11,7 @@ class PriceRepository extends IProductRepository {
   PriceRepository(this.product, this.authenticationCache);
 
   @override
-  EGetProducts getProducts(String params) async {
+  EGetProducts getProducts(GetProductsParam params) async {
     var token = await authenticationCache.getToken();
     var data = await product.getProducts(params, token ?? "");
 

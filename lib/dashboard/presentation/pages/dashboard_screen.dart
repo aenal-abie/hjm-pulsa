@@ -112,11 +112,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildIconTile(HeroiconsSolid.devicePhoneMobile, "Pulsa",
-                    onTap: () => Get.to(PhoneCreditScreen())),
-                _buildIconTile(HeroiconsSolid.bell, "Paket Data"),
-                _buildIconTile(HeroiconsSolid.archiveBox, "Token Listrik"),
-                _buildIconTile(HeroiconsSolid.adjustmentsVertical, "Top Up"),
+                Expanded(
+                  child: _buildIconTile(
+                      HeroiconsSolid.devicePhoneMobile, "Pulsa",
+                      onTap: () => Get.to(PhoneCreditScreen())),
+                ),
+                Expanded(
+                    child: _buildIconTile(HeroiconsSolid.bell, "Paket Data")),
+              ],
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Expanded(
+                    child: _buildIconTile(
+                        HeroiconsSolid.archiveBox, "Token Listrik")),
+                Expanded(
+                    child: _buildIconTile(
+                        HeroiconsSolid.adjustmentsVertical, "Top Up")),
               ],
             ),
           ),
@@ -158,12 +175,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
         overlayColor: WidgetStateProperty.all(bluePothan[200]),
         borderRadius: BorderRadius.circular(12),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(
                 icon,
+                size: 30,
                 color: bluePothan[500],
               ),
               PText(

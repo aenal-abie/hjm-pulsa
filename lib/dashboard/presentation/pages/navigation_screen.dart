@@ -13,7 +13,7 @@ class NavigationScreen extends StatefulWidget {
 }
 
 class _NavigationScreenState extends State<NavigationScreen> {
-  var _index = 1;
+  var _index = 0;
 
   @override
   Widget build(BuildContext context) {
