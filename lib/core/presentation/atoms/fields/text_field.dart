@@ -79,7 +79,7 @@ class _PTextFieldState extends State<PTextField> {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (widget.labelText != null)
-          PText.body2Regular(widget.labelText ?? ""),
+          PText.body2Semibold(widget.labelText ?? ""),
         if (widget.labelText != null) const Gap(5),
         SizedBox(
           height: 50,

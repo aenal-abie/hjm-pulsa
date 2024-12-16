@@ -19,7 +19,7 @@ class PrimaryButton extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: SizedBox(
-        height: 40,
+        height: 50,
         child: ElevatedButton(
           style: ButtonStyle(
             textStyle: WidgetStateProperty.all(
@@ -35,9 +35,9 @@ class PrimaryButton extends StatelessWidget {
           ),
           onPressed: onPressed,
           child: SizedBox(
-            child: PText.body2Regular(
+            child: PText(
               text,
-              color: Colors.white,
+              style: heading6Regular.copyWith(color: Colors.white),
             ),
           ),
         ),
