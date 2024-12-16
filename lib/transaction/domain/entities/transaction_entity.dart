@@ -65,4 +65,7 @@ class TransactionEntity {
         refId: refId ?? this.refId,
         sn: sn ?? this.sn,
       );
+
+  DateTime get getCreatedAt =>
+      DateTime.parse(createdAt ?? DateTime.now().toString());
 }

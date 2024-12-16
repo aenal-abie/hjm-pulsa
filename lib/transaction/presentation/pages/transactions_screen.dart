@@ -101,9 +101,8 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                                 ),
                                 SizedBox(height: 4),
                                 Text(
-                                    tanggal(DateTime.parse(
-                                        transaction.updatedAt ??
-                                            DateTime.now().toString())),
+                                    "${tanggal(transaction.getCreatedAt, shortMonth: true)}"
+                                    " ${transaction.getCreatedAt.hour}:${transaction.getCreatedAt.minute}",
                                     style: body2Regular.copyWith(
                                         color: Colors.grey)),
                               ],

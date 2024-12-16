@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pulsa/di.dart';
 
-import 'dashboard/presentation/pages/dashboard_screen.dart';
+import 'dashboard/presentation/pages/navigation_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
