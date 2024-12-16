@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:indonesia/indonesia.dart';
 import 'package:pulsa/core/presentation/atoms/style/colors.dart';
 import 'package:pulsa/core/presentation/atoms/style/text_style.dart';
+import 'package:pulsa/core/presentation/atoms/utils/keyboard.dart';
 import 'package:pulsa/product/domain/entities/product_entity.dart';
 
 import '../../../../core/presentation/atoms/text/p_text.dart';
@@ -49,6 +50,7 @@ class ProductList extends StatelessWidget {
                   child: InkWell(
                     borderRadius: const BorderRadius.all(Radius.circular(7)),
                     onTap: () {
+                      hideKeyboard(context);
                       controller.selectProduct(products[index]);
                     },
                     child: Obx(() {
