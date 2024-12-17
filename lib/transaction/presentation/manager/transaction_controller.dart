@@ -3,7 +3,6 @@ import 'package:pulsa/product/domain/entities/product_entity.dart';
 import 'package:pulsa/transaction/domain/entities/transaction_entity.dart';
 import 'package:pulsa/transaction/domain/use_cases/get_transaction.dart';
 
-import '../../../core/domain/use_cases/usecase.dart';
 import '../../domain/use_cases/get_transactions.dart';
 
 class TransactionController {
@@ -20,6 +19,8 @@ class TransactionController {
   var secondNavigation = "0".obs;
   var getTransactionLoading = false.obs;
   var getTransactionsLoading = false.obs;
+  bool hasMaxReached = false;
+  var currentPage = 0;
 
   void getTransaction(int id) async {
     getTransactionLoading.value = true;
@@ -30,11 +31,20 @@ class TransactionController {
     getTransactionLoading.value = false;
   }
 
-  void getTransactions() async {
-    getTransactionsLoading.value = true;
-    var results = await _getTransactions(NoParams());
+  void getTransactions({bool initPage = false}) async {
+    if (initPage) {
+      transactions.clear();
+      getTransactionsLoading.value = true;
+      currentPage = 1;
+      hasMaxReached = false;
+    } else {
+      currentPage++;
+    }
+    if (hasMaxReached) return;
+    var results = await _getTransactions(currentPage);
     results.fold((fail) {}, (transactions) {
-      this.transactions.value = transactions;
+      this.transactions.value = this.transactions.value + transactions;
+      hasMaxReached = transactions.isEmpty || transactions.length < 20;
     });
     getTransactionsLoading.value = false;
   }

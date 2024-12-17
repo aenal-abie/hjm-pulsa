@@ -22,15 +22,24 @@ class TransactionsScreen extends StatefulWidget {
 class _TransactionsScreenState extends State<TransactionsScreen> {
   final TransactionController controller =
       Get.put(TransactionController(di(), di()), tag: "transactions");
-
+  ScrollController scrollController = ScrollController();
   @override
   void initState() {
     super.initState();
-    controller.getTransactions();
+    controller.getTransactions(initPage: true);
+  }
+
+  void onScroll() {
+    double maxScroll = scrollController.position.maxScrollExtent;
+    double curScroll = scrollController.position.pixels;
+    if (curScroll == maxScroll) {
+      controller.getTransactions();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    scrollController.addListener(onScroll);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PAppBar(
@@ -52,69 +61,102 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                   child: CircularProgressIndicator(
                   color: bluePothan,
                 ))
-              : ListView(
-                  children: [
-                    ...controller.transactions.map(
-                      (transaction) => Card(
-                        margin: EdgeInsets.symmetric(vertical: 5),
-                        color: natural[50],
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        child: InkWell(
-                          onTap: () {
-                            Get.to(TransactionScreen(
-                                transactionId: transaction.id ?? 0));
-                          },
-                          child: ListTile(
-                            contentPadding: EdgeInsets.all(12),
-                            leading: CircleAvatar(
-                              radius: 24,
-                              backgroundColor: bluePothan[50],
-                              child: SvgPicture.asset(
-                                "assets/provider/${transaction.productEntity?.groupEntity?.name?.toLowerCase()}.svg",
-                              ),
-                            ),
-                            title: Text(
-                              transaction.productEntity?.name ?? "-",
-                              style: heading5Semibold.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
-                            ),
-                            subtitle: PText.body2Regular(
-                              rupiah(transaction.productEntity?.price),
-                            ),
-                            trailing: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  transaction.status ?? "-",
-                                  style: body1Medium.copyWith(
-                                      color: transaction.status ==
-                                              TransactionStatus.success.value
-                                          ? Colors.green
-                                          : transaction.status ==
-                                                  TransactionStatus.failed.value
-                                              ? Colors.red
-                                              : bluePothan),
-                                ),
-                                SizedBox(height: 4),
-                                Text(
-                                    "${tanggal(transaction.getCreatedAt, shortMonth: true)}"
-                                    " ${transaction.getCreatedAt.hour}:${transaction.getCreatedAt.minute}",
-                                    style: body2Regular.copyWith(
-                                        color: Colors.grey)),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              : ListView.builder(
+                  controller: scrollController,
+                  shrinkWrap: true,
+                  itemCount: controller.transactions.length + 1,
+                  itemBuilder: (context, index) {
+                    return (index == controller.transactions.length)
+                        ? ShowLoading(transactionController: controller)
+                        : ItemTransaction(
+                            transaction: controller.transactions[index]);
+                  }),
         ),
       ),
     );
   }
+}
+
+class ItemTransaction extends StatelessWidget {
+  final TransactionEntity transaction;
+
+  const ItemTransaction({
+    super.key,
+    required this.transaction,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.symmetric(vertical: 5),
+      color: natural[50],
+      elevation: 0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      child: InkWell(
+        onTap: () {
+          Get.to(TransactionScreen(transactionId: transaction.id ?? 0));
+        },
+        child: ListTile(
+          contentPadding: EdgeInsets.all(12),
+          leading: CircleAvatar(
+            radius: 24,
+            backgroundColor: bluePothan[50],
+            child: SvgPicture.asset(
+              "assets/provider/${transaction.productEntity?.groupEntity?.name?.toLowerCase()}.svg",
+            ),
+          ),
+          title: Text(
+            transaction.productEntity?.name ?? "-",
+            style: heading5Semibold.copyWith(
+                fontWeight: FontWeight.bold, color: Colors.black),
+          ),
+          subtitle: PText.body2Regular(
+            rupiah(transaction.productEntity?.price),
+          ),
+          trailing: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                transaction.status ?? "-",
+                style: body1Medium.copyWith(
+                    color: transaction.status == TransactionStatus.success.value
+                        ? Colors.green
+                        : transaction.status == TransactionStatus.failed.value
+                            ? Colors.red
+                            : bluePothan),
+              ),
+              SizedBox(height: 4),
+              Text(
+                  "${tanggal(transaction.getCreatedAt, shortMonth: true)}"
+                  " ${transaction.getCreatedAt.hour}:${transaction.getCreatedAt.minute}",
+                  style: body2Regular.copyWith(color: Colors.grey)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ShowLoading extends StatelessWidget {
+  const ShowLoading({
+    super.key,
+    required this.transactionController,
+  });
+
+  final TransactionController transactionController;
+
+  @override
+  Widget build(BuildContext context) => (transactionController.hasMaxReached)
+      ? const SizedBox()
+      : Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: const SizedBox(
+              height: 42,
+              child: Center(
+                  child: CircularProgressIndicator(
+                color: bluePothan,
+              ))),
+        );
 }

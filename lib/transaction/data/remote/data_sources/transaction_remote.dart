@@ -24,8 +24,10 @@ class TransactionRemote extends ITransactionRemoteData {
   }
 
   @override
-  Future<List<TransactionDto>> getTransactions(String authToken) async {
-    var data = await apiProvider.get("transactions", authToken: authToken);
+  Future<List<TransactionDto>> getTransactions(
+      int page, String authToken) async {
+    var data = await apiProvider.get("transactions",
+        authToken: authToken, queryParameters: {"page": page});
     return (data['data']['data'] as List)
         .map((e) => TransactionDto.fromJson(e))
         .toList();

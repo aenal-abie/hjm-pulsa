@@ -8,5 +8,5 @@ abstract class ITransactionRepository {
 
   EGetTransaction getTransaction(int id);
 
-  EGetTransactions getTransactions();
+  EGetTransactions getTransactions(int page);
 }

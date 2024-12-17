@@ -7,5 +7,5 @@ abstract class ITransactionRemoteData {
 
   Future<TransactionDto> getTransaction(int id, String authToken);
 
-  Future<List<TransactionDto>> getTransactions(String authToken);
+  Future<List<TransactionDto>> getTransactions(int page, String authToken);
 }

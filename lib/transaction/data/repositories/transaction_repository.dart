@@ -39,10 +39,10 @@ class TransactionRepository extends ITransactionRepository {
   }
 
   @override
-  EGetTransactions getTransactions() async {
+  EGetTransactions getTransactions(int page) async {
     try {
-      var data =
-          await transactionRemoteData.getTransactions(await getToken ?? "");
+      var data = await transactionRemoteData.getTransactions(
+          page, await getToken ?? "");
       return Right(data.map((e) => e.toEntity()).toList());
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));

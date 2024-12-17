@@ -7,15 +7,15 @@ import '../../../core/domain/use_cases/usecase.dart';
 
 typedef EGetTransactions = Future<Either<Failure, List<TransactionEntity>>>;
 
-class GetTransactions extends UseCase<List<TransactionEntity>, NoParams> {
+class GetTransactions extends UseCase<List<TransactionEntity>, int> {
   final ITransactionRepository transactionRepository;
 
   GetTransactions(this.transactionRepository);
 
   @override
-  EGetTransactions call(NoParams params) async {
+  EGetTransactions call(int params) async {
     try {
-      return await transactionRepository.getTransactions();
+      return await transactionRepository.getTransactions(params);
     } catch (e) {
       return Left(InvalidParam(message: e.toString()));
     }
