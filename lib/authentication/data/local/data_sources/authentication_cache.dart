@@ -34,6 +34,5 @@ class AuthenticationCache extends IAuthenticationCache {
     } catch (e) {
       throw CacheException();
     }
-    return null;
   }
 }

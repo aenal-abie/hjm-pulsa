@@ -5,8 +5,8 @@ import 'package:pulsa/product/di.dart';
 
 import 'transaction/di.dart';
 
-void injectDI() {
-  injectCore();
+Future<void> injectDI() async {
+  await injectCore();
   injectAuthentication();
   injectProduct();
   injectCustomer();

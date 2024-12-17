@@ -1,4 +1,5 @@
 import 'package:pulsa/authentication/data/local/data_sources/base/authentication_cache.dart';
+import 'package:pulsa/authentication/domain/use_cases/get_token.dart';
 import 'package:pulsa/authentication/domain/use_cases/login.dart';
 
 import '../../../core/data/remotes/custom_exception.dart';
@@ -18,6 +19,16 @@ class AuthenticationRepository extends IAuthenticationRepository {
       var result = await _authenticationRemote.login(loginParams);
       _iAuthenticationCache.saveUser(result);
       return Right(true);
+    } on CustomException catch (e) {
+      return Left(e.toFailure());
+    }
+  }
+
+  @override
+  EGetToken getToken() async {
+    try {
+      var token = await _iAuthenticationCache.getToken();
+      return Right(token ?? "");
     } on CustomException catch (e) {
       return Left(e.toFailure());
     }

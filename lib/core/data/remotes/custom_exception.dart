@@ -65,7 +65,13 @@ class ForbiddenException extends CustomException {
   Failure toFailure() => const ForbiddenFailure();
 }
 
-class CacheException implements Exception {}
+class CacheException implements CustomException {
+  @override
+  String? get _message => throw UnimplementedError();
+
+  @override
+  Failure toFailure() => const CacheFailure(message: "Kesalahan");
+}
 
 class ConnectionException implements CustomException {
   ConnectionException() : super();

@@ -5,9 +5,9 @@ import 'package:pulsa/di.dart';
 import 'core/presentation/atoms/utils/keyboard.dart';
 import 'dashboard/presentation/pages/navigation_screen.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  injectDI();
+  await injectDI();
   runApp(const MyApp());
 }
 

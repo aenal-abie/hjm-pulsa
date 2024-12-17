@@ -6,9 +6,11 @@ import 'package:pulsa/authentication/domain/repositories/authentication_reposito
 import '../core/di/container.dart';
 import 'data/remote/data_sources/authentication_remote.dart';
 import 'data/repositories/authentication_repository.dart';
+import 'domain/use_cases/get_token.dart';
 import 'domain/use_cases/login.dart';
 
 Future<void> injectAuthentication() async {
+  di.registerLazySingleton(() => GetToken(di()));
   di.registerLazySingleton(() => Login(di()));
   di.registerLazySingleton<IAuthenticationRepository>(
       () => AuthenticationRepository(di(), di()));

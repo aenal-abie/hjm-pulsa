@@ -17,7 +17,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final LoginController loginController = Get.put(LoginController(di()));
+  final LoginController loginController = Get.put(LoginController(di(), di()));
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
 
@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
               const Gap(22),
               PText.heading2Medium("Masuk ke"),
               PText.heading4Regular(
-                "CHM Pulsa Agent",
+                "HJM Pulsa Agent",
                 color: bluePothan[800],
               ),
               const Gap(41),
@@ -60,7 +60,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
               const Gap(42),
-              PrimaryButton(text: "Login", onPressed: loginPressed)
+              Obx(() {
+                if (loginController.loading.isTrue) {
+                  return const Center(
+                      child: CircularProgressIndicator(
+                    color: bluePothan,
+                  ));
+                }
+                return PrimaryButton(text: "Login", onPressed: loginPressed);
+              })
             ],
           ),
         ),

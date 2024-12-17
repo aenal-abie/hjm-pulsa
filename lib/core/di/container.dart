@@ -7,7 +7,7 @@ import '../data/remotes/api_provider.dart';
 
 final di = GetIt.instance;
 
-void injectCore()async {
+Future<void> injectCore() async {
   //remotes
   di.registerLazySingleton<ApiProvider>(() => ApiProvider(di()));
   di.registerSingleton<Dio>(initDio);
