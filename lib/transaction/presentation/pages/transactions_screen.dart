@@ -53,24 +53,31 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
           )
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Obx(
-          () => controller.getTransactionsLoading.isTrue
-              ? const Center(
-                  child: CircularProgressIndicator(
-                  color: bluePothan,
-                ))
-              : ListView.builder(
-                  controller: scrollController,
-                  shrinkWrap: true,
-                  itemCount: controller.transactions.length + 1,
-                  itemBuilder: (context, index) {
-                    return (index == controller.transactions.length)
-                        ? ShowLoading(transactionController: controller)
-                        : ItemTransaction(
-                            transaction: controller.transactions[index]);
-                  }),
+      body: RefreshIndicator(
+        color: bluePothan,
+        onRefresh: () {
+          controller.getTransactions(initPage: true);
+          return Future.value();
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Obx(
+            () => controller.getTransactionsLoading.isTrue
+                ? const Center(
+                    child: CircularProgressIndicator(
+                    color: bluePothan,
+                  ))
+                : ListView.builder(
+                    controller: scrollController,
+                    shrinkWrap: true,
+                    itemCount: controller.transactions.length + 1,
+                    itemBuilder: (context, index) {
+                      return (index == controller.transactions.length)
+                          ? ShowLoading(transactionController: controller)
+                          : ItemTransaction(
+                              transaction: controller.transactions[index]);
+                    }),
+          ),
         ),
       ),
     );
