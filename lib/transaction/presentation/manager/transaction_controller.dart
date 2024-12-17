@@ -22,8 +22,8 @@ class TransactionController {
   bool hasMaxReached = false;
   var currentPage = 0;
 
-  void getTransaction(int id) async {
-    getTransactionLoading.value = true;
+  void getTransaction(int id, {bool inBackground = false}) async {
+    if (inBackground == false) getTransactionLoading.value = true;
     var results = await _getTransaction(id);
     results.fold((fail) {}, (transaction) {
       this.transaction.value = transaction;

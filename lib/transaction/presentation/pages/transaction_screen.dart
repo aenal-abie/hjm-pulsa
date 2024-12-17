@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:indonesia/indonesia.dart';
 import 'package:pulsa/core/presentation/atoms/buttons/primary_button.dart';
@@ -22,11 +24,12 @@ class TransactionScreen extends StatefulWidget {
 class _TransactionScreenState extends State<TransactionScreen> {
   final TransactionController _transactionController =
       Get.put(TransactionController(di(), di()));
-
+  late Timer timer;
   @override
   void initState() {
     super.initState();
     _transactionController.getTransaction(widget.transactionId);
+    fetchDelay();
   }
 
   @override
@@ -199,5 +202,28 @@ class _TransactionScreenState extends State<TransactionScreen> {
           style: heading4Bold.copyWith(color: brightRed));
     }
     return PText("Menunggu", style: heading4Bold.copyWith(color: bluePothan));
+  }
+
+  void fetchDelay() {
+    if (_transactionController.transaction.value.status ==
+            TransactionStatus.success.value ||
+        _transactionController.transaction.value.status ==
+            TransactionStatus.failed.value) return;
+    timer = Timer.periodic(const Duration(seconds: 5), (timer) async {
+      _transactionController.getTransaction(widget.transactionId,
+          inBackground: true);
+      if (_transactionController.transaction.value.status ==
+              TransactionStatus.success.value ||
+          _transactionController.transaction.value.status ==
+              TransactionStatus.failed.value) {
+        timer.cancel();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    timer.cancel();
   }
 }
