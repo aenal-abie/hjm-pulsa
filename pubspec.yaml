@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  cupertino_icons: ^1.0.8
   dio: 5.7.0
   either_dart: ^1.0.0
   equatable: 2.0.7
@@ -24,9 +25,7 @@ dependencies:
   indonesia: ^2.0.0
   mask_text_input_formatter: ^2.9.0
   path_provider: ^2.1.5
-
-
-  cupertino_icons: ^1.0.8
+  pinput: 5.0.0
 
 dev_dependencies:
   flutter_test:
