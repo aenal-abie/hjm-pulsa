@@ -114,11 +114,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
               children: [
                 Expanded(
                   child: _buildIconTile(
-                      HeroiconsSolid.devicePhoneMobile, "Pulsa",
+                      HeroiconsOutline.devicePhoneMobile, "Pulsa",
                       onTap: () => Get.to(PhoneCreditScreen())),
                 ),
                 Expanded(
-                    child: _buildIconTile(HeroiconsSolid.bell, "Paket Data")),
+                    child: _buildIconTile(
+                        HeroiconsOutline.arrowsUpDown, "Paket Data")),
               ],
             ),
           ),
@@ -129,11 +130,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(
-                    child: _buildIconTile(
-                        HeroiconsSolid.archiveBox, "Token Listrik")),
+                    child: _buildIconTile(HeroiconsOutline.bolt, "Token Listrik")),
                 Expanded(
-                    child: _buildIconTile(
-                        HeroiconsSolid.adjustmentsVertical, "Top Up")),
+                    child: _buildIconTile(HeroiconsSolid.wallet, "Top Up")),
               ],
             ),
           ),
