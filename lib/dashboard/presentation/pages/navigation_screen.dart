@@ -39,15 +39,15 @@ class _NavigationScreenState extends State<NavigationScreen> {
         selectedItemColor: bluePothan[500],
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(HeroiconsSolid.home),
+            icon: Icon(HeroiconsOutline.home),
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(HeroiconsSolid.queueList),
+            icon: Icon(HeroiconsOutline.queueList),
             label: "Transaksi",
           ),
           BottomNavigationBarItem(
-            icon: Icon(HeroiconsSolid.cog),
+            icon: Icon(HeroiconsOutline.cog),
             label: "Pengaturan",
           ),
         ],

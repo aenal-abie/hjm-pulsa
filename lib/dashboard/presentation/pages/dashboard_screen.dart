@@ -132,7 +132,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Expanded(
                     child: _buildIconTile(HeroiconsOutline.bolt, "Token Listrik")),
                 Expanded(
-                    child: _buildIconTile(HeroiconsSolid.wallet, "Top Up")),
+                    child: _buildIconTile(HeroiconsOutline.wallet, "Top Up")),
               ],
             ),
           ),
