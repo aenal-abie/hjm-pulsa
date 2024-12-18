@@ -41,10 +41,10 @@ class BuyController {
     selectedProduct.value = product;
   }
 
-  Future<bool> buyProduct() async {
+  Future<bool> buyProduct(String pin) async {
     var success = false;
     secondNavigation.value = "";
-    var param = setBuyProductParam();
+    var param = setBuyProductParam(pin);
     var results = await _buyProduct(param);
     results.fold((fail) {
       Get.back();
@@ -80,8 +80,10 @@ class BuyController {
     });
   }
 
-  BuyProductParam setBuyProductParam() => BuyProductParam(
-      productId: selectedProduct.value.id, phoneNumber: phoneNumber.value);
+  BuyProductParam setBuyProductParam(String pin) => BuyProductParam(
+      productId: selectedProduct.value.id,
+      phoneNumber: phoneNumber.value,
+      pin: pin);
 
   void setPhoneNumber(String value) {
     if (value.length == 4) {

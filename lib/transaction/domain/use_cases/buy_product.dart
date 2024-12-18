@@ -28,9 +28,11 @@ class BuyProductParam {
   BuyProductParam({
     this.productId,
     this.phoneNumber,
+    this.pin,
   });
 
   int? productId;
+  String? pin;
   String? phoneNumber;
 
   void isValid() {
@@ -54,6 +56,7 @@ class BuyProductParam {
   Map<String, dynamic> toJson() => {
         'product_id': productId,
         'phone_number': phoneNumber,
+        'pin': pin,
       };
 
   bool isProductValid() => productId != null;

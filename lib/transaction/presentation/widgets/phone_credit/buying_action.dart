@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:indonesia/indonesia.dart';
+import 'package:pinput/pinput.dart';
 import 'package:pulsa/core/presentation/atoms/style/colors.dart';
 import 'package:pulsa/core/presentation/atoms/style/text_style.dart';
 
@@ -46,9 +47,51 @@ class BuyingAction extends StatelessWidget {
 
   void buyProduct(BuildContext context) async {
     controller.secondNavigation.value = "";
-    !context.mounted ? null : showDialogProcess(context);
-    await controller.buyProduct();
-    //todo; handle failure
+    inputPin(context);
+  }
+
+  void inputPin(BuildContext context) {
+    final defaultPinTheme = PinTheme(
+      width: 56,
+      height: 56,
+      textStyle: heading1Bold.copyWith(color: bluePothan[950]),
+      decoration: BoxDecoration(
+        border: Border.all(color: bluePothan),
+        borderRadius: BorderRadius.circular(5),
+      ),
+    );
+
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        barrierColor: natural[50]!.withOpacity(.7),
+        builder: (context) {
+          return Scaffold(
+            backgroundColor: natural[50]!.withOpacity(.7),
+            body: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  PText.heading4Medium("Masukkan PIN"),
+                  Gap(10),
+                  Pinput(
+                    defaultPinTheme: defaultPinTheme,
+                    focusNode: FocusNode(),
+                    autofocus: true,
+                    obscureText: true,
+                    pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
+                    showCursor: false,
+                    onCompleted: (pin) async {
+                      Get.back();
+                      !context.mounted ? null : showDialogProcess(context);
+                      await controller.buyProduct(pin);
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 
   void showDialogProcess(BuildContext context) {
