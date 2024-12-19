@@ -4,6 +4,7 @@ import 'package:pulsa/transaction/domain/repositories/transaction_repository.dar
 import '../../../core/domain/error/failures.dart';
 import '../../../core/domain/use_cases/either.dart';
 import '../../../core/domain/use_cases/usecase.dart';
+import '../../../product/domain/entities/category_entity.dart';
 
 typedef EBuyProduct = Future<Either<Failure, TransactionEntity>>;
 
@@ -27,19 +28,20 @@ class BuyProduct extends UseCase<TransactionEntity, BuyProductParam> {
 class BuyProductParam {
   BuyProductParam({
     this.productId,
-    this.phoneNumber,
+    this.customerNumber,
     this.pin,
+    this.category,
   });
 
   int? productId;
   String? pin;
-  String? phoneNumber;
+  String? customerNumber;
+  Category? category;
 
   void isValid() {
-    if (!isPhoneNumberValid()) {
-      throw InvalidParam(
-          message: 'Nomor telepon tidak sesuai, harus 10-15 angka');
-    } else if (!isProductValid()) {
+    if (!validateCustomerNumber) {
+      throw InvalidParam(message: getInvalidCustomerNumberMessage);
+    } else if (!isProductValid) {
       throw InvalidParam(message: 'Anda belum memilih paket pulsa');
     }
   }
@@ -50,19 +52,32 @@ class BuyProductParam {
   }) =>
       BuyProductParam(
         productId: productId ?? this.productId,
-        phoneNumber: phoneNumber ?? this.phoneNumber,
+        customerNumber: phoneNumber ?? this.customerNumber,
       );
 
   Map<String, dynamic> toJson() => {
         'product_id': productId,
-        'phone_number': phoneNumber,
+        'phone_number': customerNumber,
         'pin': pin,
       };
 
-  bool isProductValid() => productId != null;
+  bool get isProductValid => productId != null;
+
+  bool get validateCustomerNumber => (category == Category.electricity)
+      ? isPlnNumberValid()
+      : isPhoneNumberValid();
+
+  get getInvalidCustomerNumberMessage => category == Category.electricity
+      ? 'ID Pelanggan/No Meter tidak sesuai, harus 11-12 angka'
+      : 'Nomor telepon tidak sesuai, harus 10-15 angka';
 
   bool isPhoneNumberValid() {
     final regex = RegExp(r'^\d{10,15}$');
-    return phoneNumber != null && regex.hasMatch(phoneNumber!);
+    return customerNumber != null && regex.hasMatch(customerNumber!);
+  }
+
+  bool isPlnNumberValid() {
+    final regex = RegExp(r'^\d{11,12}$');
+    return customerNumber != null && regex.hasMatch(customerNumber!);
   }
 }

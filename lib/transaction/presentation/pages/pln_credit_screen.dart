@@ -8,20 +8,26 @@ import '../../../core/di/container.dart';
 import '../../../core/presentation/atoms/utils/gap.dart';
 import '../../../product/domain/entities/category_entity.dart';
 import '../manager/buy_controller.dart';
-import '../widgets/phone_credit/add_phone_number.dart';
+import '../widgets/phone_credit/add_pln_number.dart';
 import '../widgets/phone_credit/product_list.dart';
 
-class PhoneCreditScreen extends StatefulWidget {
+class PlnCreditScreen extends StatefulWidget {
   final Category packetType;
 
-  const PhoneCreditScreen({super.key, required this.packetType});
+  const PlnCreditScreen({super.key, required this.packetType});
 
   @override
-  State<PhoneCreditScreen> createState() => _PhoneCreditScreenState();
+  State<PlnCreditScreen> createState() => _PlnCreditScreenState();
 }
 
-class _PhoneCreditScreenState extends State<PhoneCreditScreen> {
+class _PlnCreditScreenState extends State<PlnCreditScreen> {
   BuyController controller = Get.put(BuyController(di(), di()));
+
+  @override
+  void initState() {
+    super.initState();
+    controller.getProducts(widget.packetType.value, widget.packetType.value);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +41,7 @@ class _PhoneCreditScreenState extends State<PhoneCreditScreen> {
       ),
       body: Column(
         children: [
-          AddPhoneNumber(
+          AddPlnNumber(
             buyController: controller,
             packetType: widget.packetType,
           ),
@@ -52,7 +58,7 @@ class _PhoneCreditScreenState extends State<PhoneCreditScreen> {
                             strokeWidth: 2,
                           )),
                     )
-                  : controller.emptyList
+                  : controller.products.isEmpty
                       ? Center(
                           child: NoProvider(
                             packetType: widget.packetType,
@@ -87,7 +93,7 @@ class NoProvider extends StatelessWidget {
         ),
         Gap(19),
         PText.body1Medium(
-          "Silahkan masukkan no hp yang\n akan diisikan ${packetType.value.toLowerCase()}",
+          "Silahkan masukkan no pelangan/No.Meter yang akan diisikan token",
           color: bluePothan,
           textAlign: TextAlign.center,
         )

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:heroicons_flutter/heroicons_flutter.dart';
 import 'package:indonesia/indonesia.dart';
-import 'package:pulsa/transaction/presentation/manager/buy_controller.dart';
 
 import '../../../core/di/container.dart';
 import '../../../core/presentation/atoms/style/colors.dart';
@@ -9,7 +8,9 @@ import '../../../core/presentation/atoms/style/text_style.dart';
 import '../../../core/presentation/atoms/text/p_text.dart';
 import '../../../core/presentation/atoms/utils/gap.dart';
 import '../../../customer/presentation/manager/customer_controller.dart';
+import '../../../product/domain/entities/category_entity.dart';
 import '../../../transaction/presentation/pages/phone_credit_screen.dart';
+import '../../../transaction/presentation/pages/pln_credit_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -119,7 +120,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     "Pulsa",
                     onTap: () => Get.to(
                       PhoneCreditScreen(
-                        packetType: PacketType.voice,
+                        packetType: Category.voice,
                       ),
                     ),
                   ),
@@ -129,8 +130,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     HeroiconsOutline.arrowsUpDown,
                     "Paket Data",
                     onTap: () => Get.to(
-                      PhoneCreditScreen(
-                        packetType: PacketType.data,
+                      () => PhoneCreditScreen(
+                        packetType: Category.data,
                       ),
                     ),
                   ),
@@ -145,8 +146,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(
-                    child:
-                        _buildIconTile(HeroiconsOutline.bolt, "Token Listrik")),
+                    child: _buildIconTile(
+                  HeroiconsOutline.bolt,
+                  "Token Listrik",
+                  onTap: () => Get.to(
+                    () => PlnCreditScreen(packetType: Category.electricity),
+                  ),
+                )),
                 Expanded(
                     child: _buildIconTile(HeroiconsOutline.wallet, "Top Up")),
               ],

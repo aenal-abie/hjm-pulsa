@@ -7,11 +7,12 @@ import 'package:pulsa/core/presentation/atoms/style/text_style.dart';
 import '../../../../core/presentation/atoms/buttons/primary_button.dart';
 import '../../../../core/presentation/atoms/text/p_text.dart';
 import '../../../../core/presentation/atoms/utils/gap.dart';
+import '../../../../product/domain/entities/category_entity.dart';
 import '../../manager/buy_controller.dart';
 import 'processing_product.dart';
 
 class BuyingAction extends StatelessWidget {
-  final PacketType packetType;
+  final Category packetType;
   final BuyController controller;
 
   const BuyingAction(
@@ -38,10 +39,13 @@ class BuyingAction extends StatelessWidget {
           }),
           SizedBox(
               width: 150,
-              child: PrimaryButton(
-                text: "Pesan",
-                onPressed: () => buyProduct(context),
-              ))
+              child: Obx(() {
+                return PrimaryButton(
+                  text: "Pesan",
+                  enabled: controller.enableSendButton,
+                  onPressed: () => buyProduct(context),
+                );
+              }))
         ],
       ),
     );

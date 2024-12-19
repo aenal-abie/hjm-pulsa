@@ -6,12 +6,14 @@ import '../../../../core/presentation/atoms/fields/text_field.dart';
 import '../../../../product/domain/entities/category_entity.dart';
 import '../../manager/buy_controller.dart';
 
-class AddPhoneNumber extends StatelessWidget {
+class AddPlnNumber extends StatelessWidget {
   final Category packetType;
 
-  const AddPhoneNumber(
+  const AddPlnNumber(
       {super.key, required this.buyController, required this.packetType});
+
   final BuyController buyController;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,18 +24,18 @@ class AddPhoneNumber extends StatelessWidget {
         children: [
           Expanded(
             child: PTextField(
-              hintText: "081 907 666 555",
+              hintText: "1441 7666 555",
               keyboardType: TextInputType.phone,
-              labelText: "NO HP",
+              labelText: "ID Pelanggan/No. Meter",
               hintStyle: heading4Regular.copyWith(color: Colors.black26),
               style: heading4Regular.copyWith(color: Colors.black),
               onChanged: (temp) {
                 var value = temp.replaceAll(' ', '');
-                buyController.setPhoneNumber(value, packetType);
+                buyController.setElectricityNumber(value);
               },
               inputFormatters: [
                 MaskTextInputFormatter(
-                  mask: '### ### ### ### ##',
+                  mask: '#### #### ####',
                   filter: {
                     '#': RegExp(r'[0-9]'),
                   },

@@ -7,11 +7,12 @@ import 'package:pulsa/product/domain/entities/product_entity.dart';
 
 import '../../../../core/presentation/atoms/text/p_text.dart';
 import '../../../../core/presentation/atoms/utils/gap.dart';
+import '../../../../product/domain/entities/category_entity.dart';
 import '../../manager/buy_controller.dart';
 import 'buying_action.dart';
 
 class ProductList extends StatelessWidget {
-  final PacketType packetType;
+  final Category packetType;
   final BuyController controller;
 
   const ProductList(
@@ -32,7 +33,7 @@ class ProductList extends StatelessWidget {
       children: [
         PText(
           "Pilih Paket ${packetType.value}",
-          style: heading6Regular.copyWith(color: bluePothan[400]),
+          style: heading6Semibold.copyWith(color: black[950]),
         ),
         const Gap(5),
         Expanded(

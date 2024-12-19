@@ -6,19 +6,11 @@ import 'package:pulsa/core/presentation/atoms/style/colors.dart';
 import 'package:pulsa/product/domain/entities/product_entity.dart';
 import 'package:pulsa/transaction/domain/entities/transaction_entity.dart';
 
+import '../../../product/domain/entities/category_entity.dart';
 import '../../../product/domain/entities/provider_type.dart';
 import '../../../product/domain/use_cases/get_products.dart';
 import '../../domain/use_cases/buy_product.dart';
 import '../pages/transaction_screen.dart';
-
-enum PacketType {
-  data("Data"),
-  voice("Pulsa");
-
-  final String value;
-
-  const PacketType(this.value);
-}
 
 class BuyController {
   final GetProducts _getProducts;
@@ -28,15 +20,23 @@ class BuyController {
   var products = <ProductEntity>[].obs;
   var selectedProduct = ProductEntity().obs;
   var phoneNumber = ''.obs;
+  var electricityNumber = ''.obs;
   var orderSuccess = false.obs;
   var secondNavigation = "0".obs;
   var getProductLoading = false.obs;
+  var category = Category.voice;
 
   bool get emptyList => products.isEmpty || phoneNumber.isEmpty;
 
-  void getProducts(String categoryCode, String phoneNumber) async {
+  bool get enableSendButton =>
+      selectedProduct.value.id != null && validCustomer;
+
+  bool get validCustomer => category == Category.electricity
+      ? electricityNumber.isNotEmpty
+      : phoneNumber.isNotEmpty;
+
+  void getProducts(String categoryCode, String groupCode) async {
     getProductLoading.value = true;
-    var groupCode = getOperatorName(phoneNumber);
     var param =
         GetProductsParam(categoryCode: categoryCode, groupCode: groupCode);
     var results = await _getProducts(param);
@@ -50,7 +50,7 @@ class BuyController {
     selectedProduct.value = product;
   }
 
-  Future<bool> buyProduct(String pin, PacketType packetType) async {
+  Future<bool> buyProduct(String pin, Category packetType) async {
     var success = false;
     secondNavigation.value = "";
     var param = setBuyProductParam(pin);
@@ -91,16 +91,31 @@ class BuyController {
 
   BuyProductParam setBuyProductParam(String pin) => BuyProductParam(
       productId: selectedProduct.value.id,
-      phoneNumber: phoneNumber.value,
+      customerNumber: category == Category.electricity
+          ? electricityNumber.value
+          : phoneNumber.value,
+      category: category,
       pin: pin);
 
-  void setPhoneNumber(String value, PacketType packetType) {
-    if (value.length == 4) {
-      getProducts(packetType.value, value);
-    } else if (value.length < 4) {
+  void setPhoneNumber(String phoneNumber, Category packetType) {
+    if (phoneNumber.length == 4) {
+      var groupCode = getOperatorName(phoneNumber);
+      category = packetType;
+      getProducts(packetType.value, groupCode ?? "");
+    } else if (phoneNumber.length < 4) {
       products.clear();
       selectedProduct.value = ProductEntity();
     }
-    phoneNumber.value = value;
+    this.phoneNumber.value = phoneNumber;
+  }
+
+  void setElectricityNumber(String electricityNumber) {
+    category = Category.electricity;
+    if (electricityNumber.length >= 11) {
+      // todo: check electricityNumber
+      this.electricityNumber.value = electricityNumber;
+    } else {
+      this.electricityNumber.value = "";
+    }
   }
 }

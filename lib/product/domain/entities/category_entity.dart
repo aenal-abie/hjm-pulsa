@@ -1,3 +1,13 @@
+enum Category {
+  data("Data"),
+  voice("Pulsa"),
+  electricity("Pln");
+
+  final String value;
+
+  const Category(this.value);
+}
+
 class CategoryEntity {
   CategoryEntity({
     this.id,
