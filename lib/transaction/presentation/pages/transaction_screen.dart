@@ -38,10 +38,9 @@ class _TransactionScreenState extends State<TransactionScreen> {
       backgroundColor: Colors.white,
       appBar: PAppBar(
         title: "Detail Transaksi",
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {},
-        ),
+        onPressed: () {
+          Get.back();
+        },
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

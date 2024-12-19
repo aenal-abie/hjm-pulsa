@@ -43,6 +43,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PAppBar(
+        backIconVisible: false,
         backgroundColor: Colors.white,
         elevation: 0,
         title: "Transaksi",
@@ -107,7 +108,11 @@ class ItemTransaction extends StatelessWidget {
           contentPadding: EdgeInsets.all(12),
           leading: CircleAvatar(
             radius: 24,
-            backgroundColor: bluePothan[50],
+            backgroundColor:
+                transaction.productEntity?.groupEntity?.name?.toLowerCase() ==
+                        "pln"
+                    ? Colors.yellow
+                    : bluePothan[50],
             child: SvgPicture.asset(
               "assets/provider/${transaction.productEntity?.groupEntity?.name?.toLowerCase()}.svg",
             ),

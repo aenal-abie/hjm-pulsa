@@ -28,6 +28,9 @@ class _PhoneCreditScreenState extends State<PhoneCreditScreen> {
       backgroundColor: Colors.white,
       appBar: PAppBar(
         title: "Pembelian",
+        onPressed: () {
+          Get.back();
+        },
       ),
       body: Column(
         children: [

@@ -9,6 +9,8 @@ class PAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color backgroundColor;
   final double elevation;
   final String title;
+  final bool backIconVisible;
+  final VoidCallback? onPressed;
 
   const PAppBar({
     super.key,
@@ -17,6 +19,8 @@ class PAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.backgroundColor = Colors.white,
     this.elevation = 4.0,
     this.title = '',
+    this.onPressed,
+    this.backIconVisible = true,
   });
 
   @override
@@ -24,15 +28,18 @@ class PAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: backgroundColor,
       title: PText.heading6Semibold(title),
-      leading: IconButton(
-        onPressed: () {},
-        icon: Icon(
-          // Solid Icon
-          Icons.arrow_back_ios,
-          size: 12.5,
-          color: black[950]!,
-        ),
-      ),
+      centerTitle: !backIconVisible,
+      leading: backIconVisible
+          ? IconButton(
+              onPressed: onPressed,
+              icon: Icon(
+                // Solid Icon
+                Icons.arrow_back_ios,
+                size: 12.5,
+                color: black[950]!,
+              ),
+            )
+          : SizedBox.shrink(),
     );
   }
 
