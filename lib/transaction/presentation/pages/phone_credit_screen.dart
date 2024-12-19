@@ -11,7 +11,9 @@ import '../widgets/phone_credit/add_phone_number.dart';
 import '../widgets/phone_credit/product_list.dart';
 
 class PhoneCreditScreen extends StatefulWidget {
-  const PhoneCreditScreen({super.key});
+  final PacketType packetType;
+
+  const PhoneCreditScreen({super.key, required this.packetType});
 
   @override
   State<PhoneCreditScreen> createState() => _PhoneCreditScreenState();
@@ -29,7 +31,10 @@ class _PhoneCreditScreenState extends State<PhoneCreditScreen> {
       ),
       body: Column(
         children: [
-          AddPhoneNumber(buyController: controller),
+          AddPhoneNumber(
+            buyController: controller,
+            packetType: widget.packetType,
+          ),
           Obx(() {
             return Expanded(
                 child: Padding(
@@ -44,11 +49,14 @@ class _PhoneCreditScreenState extends State<PhoneCreditScreen> {
                           )),
                     )
                   : controller.emptyList
-                      ? const Center(
-                          child: NoProvider(),
+                      ? Center(
+                          child: NoProvider(
+                            packetType: widget.packetType,
+                          ),
                         )
                       : ProductList(
                           controller: controller,
+                          packetType: widget.packetType,
                         ),
             ));
           }),
@@ -59,7 +67,9 @@ class _PhoneCreditScreenState extends State<PhoneCreditScreen> {
 }
 
 class NoProvider extends StatelessWidget {
-  const NoProvider({super.key});
+  final PacketType packetType;
+
+  const NoProvider({super.key, required this.packetType});
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +83,7 @@ class NoProvider extends StatelessWidget {
         ),
         Gap(19),
         PText.body1Medium(
-          "Silahkan masukkan no hp yang\n akan diisikan pulsa",
+          "Silahkan masukkan no hp yang\n akan diisikan ${packetType.value.toLowerCase()}",
           color: bluePothan,
           textAlign: TextAlign.center,
         )

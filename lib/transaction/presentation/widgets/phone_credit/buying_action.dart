@@ -11,9 +11,11 @@ import '../../manager/buy_controller.dart';
 import 'processing_product.dart';
 
 class BuyingAction extends StatelessWidget {
+  final PacketType packetType;
   final BuyController controller;
 
-  const BuyingAction({super.key, required this.controller});
+  const BuyingAction(
+      {super.key, required this.controller, required this.packetType});
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +86,7 @@ class BuyingAction extends StatelessWidget {
                     onCompleted: (pin) async {
                       Get.back();
                       !context.mounted ? null : showDialogProcess(context);
-                      await controller.buyProduct(pin);
+                      await controller.buyProduct(pin, packetType);
                     },
                   ),
                 ],
@@ -101,7 +103,7 @@ class BuyingAction extends StatelessWidget {
         builder: (context) {
           return AlertDialog(
             title: PText(
-              "Pembelian pulsa",
+              "Pembelian ${packetType.value}",
               style: heading6Bold,
               textAlign: TextAlign.center,
             ),

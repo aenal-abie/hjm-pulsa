@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:heroicons_flutter/heroicons_flutter.dart';
 import 'package:indonesia/indonesia.dart';
+import 'package:pulsa/transaction/presentation/manager/buy_controller.dart';
 
 import '../../../core/di/container.dart';
 import '../../../core/presentation/atoms/style/colors.dart';
@@ -114,12 +115,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
               children: [
                 Expanded(
                   child: _buildIconTile(
-                      HeroiconsOutline.devicePhoneMobile, "Pulsa",
-                      onTap: () => Get.to(PhoneCreditScreen())),
+                    HeroiconsOutline.devicePhoneMobile,
+                    "Pulsa",
+                    onTap: () => Get.to(
+                      PhoneCreditScreen(
+                        packetType: PacketType.voice,
+                      ),
+                    ),
+                  ),
                 ),
                 Expanded(
-                    child: _buildIconTile(
-                        HeroiconsOutline.arrowsUpDown, "Paket Data")),
+                  child: _buildIconTile(
+                    HeroiconsOutline.arrowsUpDown,
+                    "Paket Data",
+                    onTap: () => Get.to(
+                      PhoneCreditScreen(
+                        packetType: PacketType.data,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -130,7 +145,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(
-                    child: _buildIconTile(HeroiconsOutline.bolt, "Token Listrik")),
+                    child:
+                        _buildIconTile(HeroiconsOutline.bolt, "Token Listrik")),
                 Expanded(
                     child: _buildIconTile(HeroiconsOutline.wallet, "Top Up")),
               ],

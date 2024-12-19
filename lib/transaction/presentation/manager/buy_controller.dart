@@ -11,6 +11,15 @@ import '../../../product/domain/use_cases/get_products.dart';
 import '../../domain/use_cases/buy_product.dart';
 import '../pages/transaction_screen.dart';
 
+enum PacketType {
+  data("Data"),
+  voice("Pulsa");
+
+  final String value;
+
+  const PacketType(this.value);
+}
+
 class BuyController {
   final GetProducts _getProducts;
   final BuyProduct _buyProduct;
@@ -41,7 +50,7 @@ class BuyController {
     selectedProduct.value = product;
   }
 
-  Future<bool> buyProduct(String pin) async {
+  Future<bool> buyProduct(String pin, PacketType packetType) async {
     var success = false;
     secondNavigation.value = "";
     var param = setBuyProductParam(pin);
@@ -85,9 +94,9 @@ class BuyController {
       phoneNumber: phoneNumber.value,
       pin: pin);
 
-  void setPhoneNumber(String value) {
+  void setPhoneNumber(String value, PacketType packetType) {
     if (value.length == 4) {
-      getProducts("PULSA", value);
+      getProducts(packetType.value, value);
     } else if (value.length < 4) {
       products.clear();
       selectedProduct.value = ProductEntity();

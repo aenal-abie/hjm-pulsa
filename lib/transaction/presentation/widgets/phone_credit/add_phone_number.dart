@@ -6,7 +6,10 @@ import '../../../../core/presentation/atoms/fields/text_field.dart';
 import '../../manager/buy_controller.dart';
 
 class AddPhoneNumber extends StatelessWidget {
-  const AddPhoneNumber({super.key, required this.buyController});
+  final PacketType packetType;
+
+  const AddPhoneNumber(
+      {super.key, required this.buyController, required this.packetType});
   final BuyController buyController;
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,7 @@ class AddPhoneNumber extends StatelessWidget {
               style: heading4Regular.copyWith(color: Colors.black),
               onChanged: (temp) {
                 var value = temp.replaceAll(' ', '');
-                buyController.setPhoneNumber(value);
+                buyController.setPhoneNumber(value, packetType);
               },
               inputFormatters: [
                 MaskTextInputFormatter(

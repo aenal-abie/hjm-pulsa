@@ -11,9 +11,11 @@ import '../../manager/buy_controller.dart';
 import 'buying_action.dart';
 
 class ProductList extends StatelessWidget {
+  final PacketType packetType;
   final BuyController controller;
 
-  const ProductList({super.key, required this.controller});
+  const ProductList(
+      {super.key, required this.controller, required this.packetType});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class ProductList extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         PText(
-          "Pilih jumlah pulsa",
+          "Pilih Paket ${packetType.value}",
           style: heading6Regular.copyWith(color: bluePothan[400]),
         ),
         const Gap(5),
@@ -78,6 +80,7 @@ class ProductList extends StatelessWidget {
           children: [
             BuyingAction(
               controller: controller,
+              packetType: packetType,
             )
           ],
         ),
