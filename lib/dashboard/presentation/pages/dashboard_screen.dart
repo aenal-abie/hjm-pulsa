@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:heroicons_flutter/heroicons_flutter.dart';
 import 'package:indonesia/indonesia.dart';
+import 'package:pulsa/transaction/presentation/pages/wallet_screen.dart';
 
 import '../../../core/di/container.dart';
 import '../../../core/presentation/atoms/style/colors.dart';
@@ -154,7 +155,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 )),
                 Expanded(
-                    child: _buildIconTile(HeroiconsOutline.wallet, "Top Up")),
+                    child: _buildIconTile(
+                  HeroiconsOutline.wallet,
+                  "Top Up Wallet",
+                  onTap: () => Get.to(
+                    () => WalletScreen(
+                      category: Category.wallet,
+                    ),
+                  ),
+                )),
               ],
             ),
           ),

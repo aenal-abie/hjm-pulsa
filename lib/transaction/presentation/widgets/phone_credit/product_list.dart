@@ -68,7 +68,7 @@ class ProductList extends StatelessWidget {
                                     : natural[100]!)),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(10))),
-                        child: PriceItem(product: products[index]),
+                        child: ProductItem(product: products[index]),
                       );
                     }),
                   ),
@@ -90,8 +90,8 @@ class ProductList extends StatelessWidget {
   }
 }
 
-class PriceItem extends StatelessWidget {
-  const PriceItem({
+class ProductItem extends StatelessWidget {
+  const ProductItem({
     super.key,
     required this.product,
   });
@@ -105,7 +105,9 @@ class PriceItem extends StatelessWidget {
       children: [
         Text(
           '${product.name}',
-          style: heading3Medium.copyWith(fontSize: 20, color: bluePothan[950]),
+          style: heading3Medium.copyWith(
+              fontSize: ((product.name?.length ?? 0) > 11) ? 16 : 20,
+              color: bluePothan[950]),
           textAlign: TextAlign.center,
           overflow: TextOverflow.ellipsis,
         ),

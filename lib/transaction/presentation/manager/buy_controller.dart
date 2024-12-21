@@ -30,6 +30,7 @@ class BuyController {
   var getProductLoading = false.obs;
   var category = Category.voice;
   var electricityNumberEntity = ElectricityNumberEntity().obs;
+  var eWalletName = "".obs;
 
   bool get emptyList => products.isEmpty || phoneNumber.isEmpty;
 
@@ -111,6 +112,10 @@ class BuyController {
       products.clear();
       selectedProduct.value = ProductEntity();
     }
+    this.phoneNumber.value = phoneNumber;
+  }
+
+  void setWalletNumber(String phoneNumber, Category packetType) {
     this.phoneNumber.value = phoneNumber;
   }
 

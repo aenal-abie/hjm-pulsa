@@ -113,8 +113,11 @@ class ItemTransaction extends StatelessWidget {
                         "pln"
                     ? Colors.yellow
                     : bluePothan[50],
-            child: SvgPicture.asset(
-              "assets/provider/${transaction.productEntity?.groupEntity?.name?.toLowerCase()}.svg",
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: SvgPicture.asset(
+                "assets/provider/${transaction.productEntity?.groupEntity?.name?.toLowerCase()}.svg",
+              ),
             ),
           ),
           title: Text(

@@ -1,7 +1,8 @@
 enum Category {
   data("Data"),
   voice("Pulsa"),
-  electricity("Pln");
+  electricity("Pln"),
+  wallet("Wallet");
 
   final String value;
 
