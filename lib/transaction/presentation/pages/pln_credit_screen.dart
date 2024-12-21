@@ -21,7 +21,7 @@ class PlnCreditScreen extends StatefulWidget {
 }
 
 class _PlnCreditScreenState extends State<PlnCreditScreen> {
-  BuyController controller = Get.put(BuyController(di(), di()));
+  BuyController controller = Get.put(BuyController(di(), di(), di()));
 
   @override
   void initState() {
