@@ -174,23 +174,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: PText(
-              "Paket Terlaris",
+              "Pascabayar",
               style: heading4Medium.copyWith(color: bluePothan[600]),
             ),
           ),
           Expanded(
-            child: GridView.count(
-              crossAxisCount: 2,
-              childAspectRatio: (itemWidth / itemHeight),
-              padding: const EdgeInsets.all(16),
-              mainAxisSpacing: 12,
-              crossAxisSpacing: 12,
-              children: [
-                _buildRateCard("Telkomsel", "Rate 0,73", "30.000 - 10.000.000"),
-                _buildRateCard("XL", "Rate 0,72", "50.000 - 10.000.000"),
-                _buildRateCard("Axis", "Rate 0,72", "50.000 - 10.000.000"),
-                _buildRateCard("Three", "Rate 0,78", "30.000 - 10.000.000"),
-              ],
+            child: Center(
+              child: PText(
+                "Fitur-fitur lain masih proses pengembangan\n Segera hadir",
+                style: heading6Regular.copyWith(color: natural),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         ],
