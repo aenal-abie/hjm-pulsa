@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:indonesia/indonesia.dart';
 import 'package:pulsa/core/presentation/atoms/buttons/primary_button.dart';
 import 'package:pulsa/core/presentation/atoms/style/colors.dart';
+import 'package:pulsa/core/presentation/atoms/utils/copy.dart';
 import 'package:pulsa/transaction/domain/entities/transaction_entity.dart';
 import 'package:pulsa/transaction/presentation/manager/transaction_controller.dart';
 
@@ -12,6 +13,7 @@ import '../../../core/presentation/atoms/style/text_style.dart';
 import '../../../core/presentation/atoms/text/p_text.dart';
 import '../../../core/presentation/atoms/utils/gap.dart';
 import '../../../core/presentation/atoms/widgets/app_bar.dart';
+import '../widgets/phone_credit/pln_token.dart';
 
 class TransactionScreen extends StatefulWidget {
   final int transactionId; // Pass the transaction
@@ -70,13 +72,11 @@ class _TransactionScreenState extends State<TransactionScreen> {
               ),
               SizedBox(height: 4),
               Divider(height: 32, thickness: 1),
-              PText('Waktu Pembelian',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+              PText('Waktu Pembelian', style: body1Bold),
               PText(tanggal(DateTime.parse(data.createdAt ?? '')),
                   style: TextStyle(fontSize: 14)),
               SizedBox(height: 16),
-              PText('ID Transaksi',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+              PText('ID Transaksi', style: body1Bold),
               Row(
                 children: [
                   Expanded(
@@ -85,10 +85,29 @@ class _TransactionScreenState extends State<TransactionScreen> {
                   ),
                   IconButton(
                     icon: Icon(Icons.copy),
-                    onPressed: () {},
+                    onPressed: () {
+                      copyToClipboard(context, data.refId ?? '-');
+                    },
                   ),
                 ],
               ),
+              if (data.productEntity?.groupEntity?.name != "PLN")
+                Row(
+                  children: [
+                    Expanded(child: PText('Serial Number', style: body1Bold)),
+                    PText(data.sn ?? "-"),
+                    IconButton(
+                      icon: Icon(Icons.copy),
+                      onPressed: () {
+                        copyToClipboard(context, data.refId ?? '-');
+                      },
+                    ),
+                  ],
+                ),
+              if (data.productEntity?.groupEntity?.name == "PLN")
+                PlnToken(
+                  textToCopy: (data.sn ?? "-"),
+                ),
               Divider(height: 32, thickness: 1),
               PText('Detail Pembayaran',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
@@ -133,15 +152,6 @@ class _TransactionScreenState extends State<TransactionScreen> {
                 ],
               ),
               SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  PText('Serial Number', style: TextStyle(fontSize: 14)),
-                  PText(data.sn ?? "-",
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-                ],
-              ),
               Divider(height: 32, thickness: 1),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

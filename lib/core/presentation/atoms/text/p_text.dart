@@ -4,7 +4,8 @@ import '../style/text_style.dart';
 
 // Kelas PText untuk mempermudah penggunaan gaya teks
 class PText extends Text {
-  const PText(super.text, {super.key, super.style, super.overflow, super.textAlign});
+  const PText(super.text,
+      {super.key, super.style, super.overflow, super.textAlign});
 
   factory PText.title1Regular(String text) => PText(text, style: title1Regular);
   factory PText.title1Medium(String text) => PText(text, style: title1Medium);
@@ -49,7 +50,14 @@ class PText extends Text {
       PText(text, style: heading4Medium);
   factory PText.heading4Semibold(String text) =>
       PText(text, style: heading4Semibold);
-  factory PText.heading4Bold(String text) => PText(text, style: heading4Bold);
+
+  factory PText.heading4Bold(String text,
+          {Color? color, TextAlign? textAlign}) =>
+      PText(
+        text,
+        style: heading4Bold.copyWith(color: color),
+        textAlign: textAlign,
+      );
 
   factory PText.heading5Regular(String text) =>
       PText(text, style: heading5Regular);
@@ -72,7 +80,11 @@ class PText extends Text {
       PText(text, style: body1Regular.copyWith(color: color));
   factory PText.body1Medium(String text,
           {Color? color, TextAlign? textAlign}) =>
-      PText(text, style: body1Medium.copyWith(color: color), textAlign: textAlign,);
+      PText(
+        text,
+        style: body1Medium.copyWith(color: color),
+        textAlign: textAlign,
+      );
   factory PText.body1Semibold(String text) => PText(text, style: body1Semibold);
   factory PText.body1Bold(String text) => PText(text, style: body1Bold);
 
