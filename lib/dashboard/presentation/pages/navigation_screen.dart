@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:heroicons_flutter/heroicons_flutter.dart';
 import 'package:pulsa/authentication/presentation/manager/login_controller.dart';
 import 'package:pulsa/dashboard/presentation/pages/dashboard_screen.dart';
+import 'package:pulsa/user/presentation/pages/profile_screen.dart';
 
 import '../../../core/di/container.dart';
 import '../../../core/presentation/atoms/style/colors.dart';
@@ -58,6 +59,9 @@ class _NavigationScreenState extends State<NavigationScreen> {
   Widget getScreen(int index) {
     if (index == 1) {
       return TransactionsScreen();
+    }
+    if (index == 2) {
+      return ProfileScreen();
     }
     return DashboardScreen();
   }

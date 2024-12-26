@@ -2,6 +2,7 @@ import 'package:pulsa/authentication/di.dart';
 import 'package:pulsa/core/di/container.dart';
 import 'package:pulsa/customer/di.dart';
 import 'package:pulsa/product/di.dart';
+import 'package:pulsa/user/di.dart';
 
 import 'transaction/di.dart';
 
@@ -10,5 +11,6 @@ Future<void> injectDI() async {
   injectAuthentication();
   injectProduct();
   injectCustomer();
+  injectUser();
   injectTransactions();
 }
