@@ -4,6 +4,7 @@ import 'package:indonesia/indonesia.dart';
 import 'package:pulsa/core/presentation/atoms/style/colors.dart';
 import 'package:pulsa/core/presentation/atoms/style/text_style.dart';
 import 'package:pulsa/user/presentation/manager/user_controller.dart';
+import 'package:pulsa/user/presentation/pages/changing_pin.dart';
 
 import '../../../core/di/container.dart';
 import '../../../core/presentation/atoms/text/p_text.dart';
@@ -18,7 +19,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final UserController userController = Get.put(UserController(di()));
+  final UserController userController = Get.put(UserController(di(), di()));
 
   @override
   void initState() {
@@ -81,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     title: Text('Ganti PIN'),
                     trailing: Icon(Icons.arrow_forward_ios, size: 16),
                     onTap: () {
-                      // Add settings functionality
+                      Get.to(() => ChangingPin());
                     },
                   ),
                   Divider(),
