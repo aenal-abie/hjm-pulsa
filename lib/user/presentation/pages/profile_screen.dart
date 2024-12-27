@@ -121,7 +121,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Divider(),
                   ListTile(
                     title: PText.heading5Semibold('Keluar aplikasi?'),
-                    leading: Icon(HeroiconsSolid.lockClosed),
+                    leading: Icon(HeroiconsOutline.lockClosed),
                     onTap: () {
                       // Add refer friends functionality
                     },
