@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:heroicons_flutter/heroicons_flutter.dart';
 import 'package:indonesia/indonesia.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:pulsa/core/presentation/atoms/style/colors.dart';
 import 'package:pulsa/core/presentation/atoms/style/text_style.dart';
 import 'package:pulsa/user/presentation/manager/user_controller.dart';
@@ -20,11 +22,13 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final UserController userController = Get.put(UserController(di(), di()));
+  String appVersion = "";
 
   @override
   void initState() {
     super.initState();
     userController.getCustomer();
+    getLocalVersion();
   }
 
   @override
@@ -107,13 +111,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   Divider(),
                   ListTile(
+                    title: PText.body1Regular("Ver. $appVersion"),
+                    leading: Icon(HeroiconsOutline.trophy),
+                    trailing: Icon(Icons.copy, size: 16),
+                    onTap: () {
+                      Clipboard.setData(ClipboardData(text: appVersion));
+                    },
+                  ),
+                  Divider(),
+                  ListTile(
                     title: PText.heading5Semibold('Keluar aplikasi?'),
                     leading: Icon(HeroiconsSolid.lockClosed),
                     onTap: () {
                       // Add refer friends functionality
                     },
                   ),
-                  Divider(),
                 ],
               ),
             ),
@@ -142,5 +154,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ],
       ],
     );
+  }
+
+  Future<void> getLocalVersion() async {
+    try {
+      final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      setState(() {
+        appVersion = "${packageInfo.version}(${packageInfo.buildNumber})";
+      });
+    } on PlatformException catch (_) {}
   }
 }

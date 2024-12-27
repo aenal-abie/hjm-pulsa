@@ -47,8 +47,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
             decoration: BoxDecoration(
               color: bluePothan[50],
               borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(24),
-                bottomRight: Radius.circular(24),
+                bottomLeft: Radius.circular(12),
+                bottomRight: Radius.circular(12),
               ),
             ),
             child: Column(
@@ -68,7 +68,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         PText(
                           "HJM Pulsa",
                           style:
-                              heading3Medium.copyWith(color: bluePothan[600]),
+                              heading5Medium.copyWith(color: bluePothan[600]),
                         ),
                       ],
                     ),
