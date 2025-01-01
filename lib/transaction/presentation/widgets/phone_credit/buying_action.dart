@@ -31,7 +31,7 @@ class BuyingAction extends StatelessWidget {
               children: [
                 PText.body1Regular("Jumlah bayar"),
                 PText(
-                  rupiah(controller.selectedProduct.value.price ?? 0),
+                  rupiah(controller.selectedProduct.value.sellingPrice ?? 0),
                   style: heading4Bold.copyWith(color: bluePothan[700]),
                 ),
               ],
