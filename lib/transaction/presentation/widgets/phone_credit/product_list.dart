@@ -50,8 +50,12 @@ class ProductList extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(10))),
                 child: Padding(
-                  padding: EdgeInsets.only(
-                      left: isEven ? 0 : 8, bottom: 8, right: isEven ? 8 : 0),
+                  padding: packetType.crossAxisCount == 1
+                      ? EdgeInsets.only(left: 8, bottom: 8, right: 8)
+                      : EdgeInsets.only(
+                          left: isEven ? 0 : 8,
+                          bottom: 8,
+                          right: isEven ? 8 : 0),
                   child: InkWell(
                     borderRadius: const BorderRadius.all(Radius.circular(7)),
                     onTap: () {
@@ -105,13 +109,16 @@ class ProductItem extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          '${product.name}',
-          style: heading3Medium.copyWith(
-              fontSize: ((product.name?.length ?? 0) > 11) ? 16 : 20,
-              color: bluePothan[950]),
-          textAlign: TextAlign.center,
-          overflow: TextOverflow.ellipsis,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Text(
+            '${product.name}',
+            style: heading3Medium.copyWith(
+                fontSize: ((product.name?.length ?? 0) > 11) ? 16 : 20,
+                color: bluePothan[950]),
+            textAlign: TextAlign.center,
+            maxLines: 2,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(4.0),
