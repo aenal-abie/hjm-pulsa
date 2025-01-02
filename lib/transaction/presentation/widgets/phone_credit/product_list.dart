@@ -38,10 +38,12 @@ class ProductList extends StatelessWidget {
         const Gap(5),
         Expanded(
           child: GridView.count(
-            childAspectRatio: (itemWidth / itemHeight),
+            childAspectRatio: packetType.crossAxisCount == 1
+                ? itemWidth / itemHeight * 2
+                : (itemWidth / itemHeight),
             // Create a grid with 2 columns. If you change the scrollDirection to
             // horizontal, this produces 2 rows.
-            crossAxisCount: 2,
+            crossAxisCount: packetType.crossAxisCount,
             children: List.generate(products.length, (index) {
               var isEven = index % 2 == 0;
               return Container(

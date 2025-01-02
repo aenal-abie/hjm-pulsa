@@ -1,12 +1,13 @@
 enum Category {
-  data("Data"),
+  data("Data", crossAxisCount: 1),
   voice("Pulsa"),
   electricity("Pln"),
   wallet("Wallet");
 
   final String value;
+  final int crossAxisCount;
 
-  const Category(this.value);
+  const Category(this.value, {this.crossAxisCount = 2});
 }
 
 class CategoryEntity {
