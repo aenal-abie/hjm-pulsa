@@ -10,6 +10,7 @@ import '../../../core/presentation/atoms/text/p_text.dart';
 import '../../../core/presentation/atoms/utils/gap.dart';
 import '../../../customer/presentation/manager/customer_controller.dart';
 import '../../../product/domain/entities/category_entity.dart';
+import '../../../transaction/presentation/pages/payments_screen.dart';
 import '../../../transaction/presentation/pages/phone_credit_screen.dart';
 import '../../../transaction/presentation/pages/pln_credit_screen.dart';
 
@@ -72,27 +73,32 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        Icon(
-                          HeroiconsMicro.wallet,
-                          color: bluePothan,
-                        ),
-                        Gap(5),
-                        Obx(() {
-                          return PText.heading6Medium(
-                            rupiah(
-                              customerController.balance.value.balance ?? 0,
-                            ),
-                            color: bluePothan[950],
-                          );
-                        }),
-                        SizedBox(width: 16),
-                        Icon(
-                          HeroiconsOutline.bell,
-                          color: bluePothan[500],
-                        ),
-                      ],
+                    InkWell(
+                      onTap: () {
+                        Get.to(() => PaymentsScreen());
+                      },
+                      child: Row(
+                        children: [
+                          Icon(
+                            HeroiconsMicro.wallet,
+                            color: bluePothan,
+                          ),
+                          Gap(5),
+                          Obx(() {
+                            return PText.heading6Medium(
+                              rupiah(
+                                customerController.balance.value.balance ?? 0,
+                              ),
+                              color: bluePothan[950],
+                            );
+                          }),
+                          SizedBox(width: 16),
+                          Icon(
+                            HeroiconsOutline.bell,
+                            color: bluePothan[500],
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

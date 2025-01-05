@@ -1,6 +1,7 @@
 import 'package:pulsa/transaction/domain/use_cases/get_transaction.dart';
 
 import '../use_cases/buy_product.dart';
+import '../use_cases/get_payments.dart';
 import '../use_cases/get_transactions.dart';
 
 abstract class ITransactionRepository {
@@ -9,4 +10,6 @@ abstract class ITransactionRepository {
   EGetTransaction getTransaction(int id);
 
   EGetTransactions getTransactions(int page);
+
+  EGetPayments getPayments(int page);
 }

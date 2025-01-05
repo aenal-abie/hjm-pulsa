@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pulsa/core/presentation/atoms/text/p_text.dart';
 
 import '../style/colors.dart';
+import '../utils/gap.dart';
 
 class PAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget> actions;
@@ -31,7 +32,7 @@ class PAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: !backIconVisible,
       leading: backIconVisible
           ? IconButton(
-              onPressed: onPressed,
+              onPressed: onPressed ?? backPressed,
               icon: Icon(
                 // Solid Icon
                 Icons.arrow_back_ios,
@@ -45,4 +46,8 @@ class PAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
+  void backPressed() {
+    Get.back();
+  }
 }

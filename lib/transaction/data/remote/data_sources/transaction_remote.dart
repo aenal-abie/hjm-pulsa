@@ -3,6 +3,7 @@ import 'package:pulsa/transaction/data/remote/dto/transaction_dto.dart';
 
 import '../../../../core/data/remotes/api_provider.dart';
 import '../../../domain/use_cases/buy_product.dart';
+import '../dto/payment_dto.dart';
 
 class TransactionRemote extends ITransactionRemoteData {
   final ApiProvider apiProvider;
@@ -30,6 +31,15 @@ class TransactionRemote extends ITransactionRemoteData {
         authToken: authToken, queryParameters: {"page": page});
     return (data['data']['data'] as List)
         .map((e) => TransactionDto.fromJson(e))
+        .toList();
+  }
+
+  @override
+  Future<List<PaymentDto>> getPayments(int page, String authToken) async {
+    var data = await apiProvider.get("customers/bills/payments",
+        authToken: authToken, queryParameters: {"page": page});
+    return (data['data']['data'] as List)
+        .map((e) => PaymentDto.fromJson(e))
         .toList();
   }
 }

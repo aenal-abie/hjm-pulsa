@@ -1,3 +1,4 @@
+import 'package:pulsa/transaction/domain/use_cases/get_payments.dart';
 import 'package:pulsa/transaction/domain/use_cases/get_transaction.dart';
 import 'package:pulsa/transaction/domain/use_cases/get_transactions.dart';
 
@@ -43,6 +44,17 @@ class TransactionRepository extends ITransactionRepository {
     try {
       var data = await transactionRemoteData.getTransactions(
           page, await getToken ?? "");
+      return Right(data.map((e) => e.toEntity()).toList());
+    } catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  EGetPayments getPayments(int page) async {
+    try {
+      var data =
+          await transactionRemoteData.getPayments(page, await getToken ?? "");
       return Right(data.map((e) => e.toEntity()).toList());
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));

@@ -21,7 +21,7 @@ class TransactionsScreen extends StatefulWidget {
 
 class _TransactionsScreenState extends State<TransactionsScreen> {
   final TransactionController controller =
-      Get.put(TransactionController(di(), di()), tag: "transactions");
+      Get.put(TransactionController(di(), di(), di()), tag: "transactions");
   ScrollController scrollController = ScrollController();
   @override
   void initState() {

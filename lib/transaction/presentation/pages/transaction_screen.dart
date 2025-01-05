@@ -25,7 +25,7 @@ class TransactionScreen extends StatefulWidget {
 
 class _TransactionScreenState extends State<TransactionScreen> {
   final TransactionController _transactionController =
-      Get.put(TransactionController(di(), di()));
+      Get.put(TransactionController(di(), di(), di()));
   late Timer timer;
   @override
   void initState() {
