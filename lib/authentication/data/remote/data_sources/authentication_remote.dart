@@ -14,4 +14,11 @@ class AuthenticationRemote extends IAuthenticationRemote {
     var result = await apiProvider.post(url, params.toJson());
     return UserDto.fromJson(result);
   }
+
+  @override
+  Future<bool> logout() async {
+    var url = "logout";
+    await apiProvider.post(url, {});
+    return true;
+  }
 }

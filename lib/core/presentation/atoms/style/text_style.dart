@@ -4,6 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'colors.dart';
 
 // Title 1 (48px)
+TextStyle title1Light = GoogleFonts.poppins(
+  fontSize: 48,
+  color: black[950],
+  fontWeight: FontWeight.w300, // Light
+);
+
 TextStyle title1Regular = GoogleFonts.poppins(
   fontSize: 48,
   color: black[950],
@@ -29,6 +35,12 @@ TextStyle title1Bold = GoogleFonts.poppins(
 );
 
 // Title 2 (40px)
+TextStyle title2Light = GoogleFonts.poppins(
+  fontSize: 40,
+  color: black[950],
+  fontWeight: FontWeight.w300, // Light
+);
+
 TextStyle title2Regular = GoogleFonts.poppins(
   fontSize: 40,
   color: black[950],
@@ -54,6 +66,12 @@ TextStyle title2Bold = GoogleFonts.poppins(
 );
 
 // Heading 1 (36px)
+TextStyle heading1Light = GoogleFonts.poppins(
+  fontSize: 36,
+  color: black[950],
+  fontWeight: FontWeight.w300, // Light
+);
+
 TextStyle heading1Regular = GoogleFonts.poppins(
   fontSize: 36,
   color: black[950],
@@ -79,6 +97,12 @@ TextStyle heading1Bold = GoogleFonts.poppins(
 );
 
 // Heading 2 (30px)
+TextStyle heading2Light = GoogleFonts.poppins(
+  fontSize: 30,
+  color: black[950],
+  fontWeight: FontWeight.w300, // Light
+);
+
 TextStyle heading2Regular = GoogleFonts.poppins(
   fontSize: 30,
   color: black[950],
@@ -104,6 +128,12 @@ TextStyle heading2Bold = GoogleFonts.poppins(
 );
 
 // Heading 3 (24px)
+TextStyle heading3Light = GoogleFonts.poppins(
+  fontSize: 24,
+  color: black[950],
+  fontWeight: FontWeight.w300, // Light
+);
+
 TextStyle heading3Regular = GoogleFonts.poppins(
   fontSize: 24,
   color: black[950],
@@ -129,6 +159,12 @@ TextStyle heading3Bold = GoogleFonts.poppins(
 );
 
 // Heading 4 (18px)
+TextStyle heading4Light = GoogleFonts.poppins(
+  fontSize: 18,
+  color: black[950],
+  fontWeight: FontWeight.w300, // Light
+);
+
 TextStyle heading4Regular = GoogleFonts.poppins(
   fontSize: 18,
   color: black[950],
@@ -154,6 +190,12 @@ TextStyle heading4Bold = GoogleFonts.poppins(
 );
 
 // Heading 5 (16px)
+TextStyle heading5Light = GoogleFonts.poppins(
+  fontSize: 16,
+  color: black[950],
+  fontWeight: FontWeight.w300, // Light
+);
+
 TextStyle heading5Regular = GoogleFonts.poppins(
   fontSize: 16,
   color: black[950],
@@ -179,6 +221,12 @@ TextStyle heading5Bold = GoogleFonts.poppins(
 );
 
 // Heading 6 (14px)
+TextStyle heading6Light = GoogleFonts.poppins(
+  fontSize: 14,
+  color: black[950],
+  fontWeight: FontWeight.w300, // Light
+);
+
 TextStyle heading6Regular = GoogleFonts.poppins(
   fontSize: 14,
   color: black[950],
@@ -204,6 +252,12 @@ TextStyle heading6Bold = GoogleFonts.poppins(
 );
 
 // Body 1 (14px)
+TextStyle body1Light = GoogleFonts.poppins(
+  fontSize: 14,
+  color: black[950],
+  fontWeight: FontWeight.w300, // Light
+);
+
 TextStyle body1Regular = GoogleFonts.poppins(
   fontSize: 14,
   color: black[950],
@@ -229,6 +283,12 @@ TextStyle body1Bold = GoogleFonts.poppins(
 );
 
 // Body 2 (12px)
+TextStyle body2Light = GoogleFonts.poppins(
+  fontSize: 12,
+  color: black[950],
+  fontWeight: FontWeight.w300, // Light
+);
+
 TextStyle body2Regular = GoogleFonts.poppins(
   fontSize: 12,
   color: black[950],
@@ -254,6 +314,12 @@ TextStyle body2Bold = GoogleFonts.poppins(
 );
 
 // Caption 1 (10px)
+TextStyle caption1Light = GoogleFonts.poppins(
+  fontSize: 10,
+  color: black[950],
+  fontWeight: FontWeight.w300, // Light
+);
+
 TextStyle caption1Regular = GoogleFonts.poppins(
   fontSize: 10,
   color: black[950],
@@ -279,6 +345,12 @@ TextStyle caption1Bold = GoogleFonts.poppins(
 );
 
 // Caption 2 (8px)
+TextStyle caption2Light = GoogleFonts.poppins(
+  fontSize: 8,
+  color: black[950],
+  fontWeight: FontWeight.w300, // Light
+);
+
 TextStyle caption2Regular = GoogleFonts.poppins(
   fontSize: 8,
   color: black[950],

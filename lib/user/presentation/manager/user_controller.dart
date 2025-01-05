@@ -1,15 +1,18 @@
+import 'package:pulsa/authentication/domain/use_cases/logout.dart';
 import 'package:pulsa/core/domain/use_cases/usecase.dart';
 import 'package:pulsa/customer/domain/entities/customer_entity.dart';
 import 'package:pulsa/customer/domain/use_cases/get_customer.dart';
 import 'package:pulsa/user/domain/use_cases/changing_pin.dart';
 
+import '../../../authentication/presentation/pages/login_screen.dart';
 import '../../../core/presentation/atoms/utils/gap.dart';
 
 class UserController extends GetxController {
   final GetCustomer _getCustomer;
   final ChangingPin _changingPin;
+  final Logout _logout;
 
-  UserController(this._getCustomer, this._changingPin);
+  UserController(this._getCustomer, this._changingPin, this._logout);
 
   var customer = CustomerEntity().obs;
   var oldPin = "";
@@ -57,5 +60,15 @@ class UserController extends GetxController {
           snackPosition: SnackPosition.TOP, overlayBlur: 10, barBlur: 10);
     }
     return isSame;
+  }
+
+  Future<void> logout() async {
+    var result = await _logout(NoParams());
+    result.fold((fail) {
+      Get.snackbar('Logout Gagal', "Silahkan coba kembali");
+    }, (success) {
+      Get.back();
+      Get.offAll(LoginScreen());
+    });
   }
 }

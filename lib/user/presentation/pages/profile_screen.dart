@@ -21,7 +21,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final UserController userController = Get.put(UserController(di(), di()));
+  final UserController userController =
+      Get.put(UserController(di(), di(), di()));
   String appVersion = "";
 
   @override
@@ -122,8 +123,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ListTile(
                     title: PText.heading5Semibold('Keluar aplikasi?'),
                     leading: Icon(HeroiconsOutline.lockClosed),
-                    onTap: () {
-                      // Add refer friends functionality
+                    onTap: () async {
+                      await _showLogoutDialog(context);
                     },
                   ),
                 ],
@@ -163,5 +164,86 @@ class _ProfileScreenState extends State<ProfileScreen> {
         appVersion = "${packageInfo.version}(${packageInfo.buildNumber})";
       });
     } on PlatformException catch (_) {}
+  }
+
+  Future<void> _showLogoutDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return dialogContent();
+      },
+    );
+  }
+
+  Widget dialogContent() {
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 24.0, left: 20.0, right: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Icon(
+                        HeroiconsOutline.shieldExclamation,
+                        color: brightRed,
+                        size: 24,
+                      ),
+                      const Gap(5),
+                      Expanded(
+                          child: PText.heading5Light(
+                        'Apakah anda akan keluar dari Aplikasi ini ?',
+                        color: brightRed,
+                      )),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(right: 20.0, bottom: 10, top: 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        child: PText.heading6Regular(
+                          'Batal',
+                        ),
+                        onPressed: () async {
+                          Get.back();
+                        },
+                      ),
+                      TextButton(
+                        child: PText.heading6Regular(
+                          'Iya',
+                          color: brightRed,
+                        ),
+                        onPressed: () async {
+                          await userController.logout();
+                        },
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

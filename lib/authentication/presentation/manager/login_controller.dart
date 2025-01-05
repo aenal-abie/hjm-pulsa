@@ -22,7 +22,8 @@ class LoginController extends GetxController {
       password: password.value,
     ));
     result.fold((fail) {
-      Get.snackbar('Login failed', fail.message ?? "");
+      Get.snackbar(
+          'Login Gagal', "Silahkan cek kembali username dan password anda");
     }, (success) {
       Get.snackbar('Sukses', "Anda berhasil login $username");
       Get.offAll(NavigationScreen());

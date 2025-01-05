@@ -3,4 +3,6 @@ import 'package:pulsa/authentication/domain/use_cases/login.dart';
 
 abstract class IAuthenticationRemote {
   Future<UserDto> login(LoginParams params);
+
+  Future<bool> logout();
 }

@@ -126,7 +126,7 @@ class ItemTransaction extends StatelessWidget {
                 fontWeight: FontWeight.bold, color: Colors.black),
           ),
           subtitle: PText.body2Regular(
-            rupiah(transaction.productEntity?.price),
+            rupiah(transaction.price ?? 0),
           ),
           trailing: Column(
             mainAxisAlignment: MainAxisAlignment.center,

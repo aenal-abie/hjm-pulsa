@@ -35,4 +35,16 @@ class AuthenticationCache extends IAuthenticationCache {
       throw CacheException();
     }
   }
+
+  @override
+  Future<void> deleteUser() async {
+    try {
+      if (Hive.isBoxOpen(userHive)) {
+        final box = Hive.box(userHive);
+        await box.delete(userData);
+      }
+    } catch (e) {
+      throw CacheException();
+    }
+  }
 }
