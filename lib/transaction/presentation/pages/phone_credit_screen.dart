@@ -103,10 +103,14 @@ class NoProvider extends StatelessWidget {
       child: Column(
         children: [
           Gap(50),
-          SvgPicture.asset("assets/backgrounds/no_phone_number.svg"),
-          PText.body1Light(
-            "Silahkan masukkan no hp yang\n akan diisikan ${packetType.value.toLowerCase()}",
-            color: bluePothan[500],
+          SvgPicture.asset(
+            "assets/backgrounds/no_phone_number.svg",
+            height: MediaQuery.of(context).size.width * 0.7,
+          ),
+          Gap(50),
+          PText.body1Regular(
+            "Silahkan masukkan Nomor Handphone",
+            color: bluePothan[950],
             textAlign: TextAlign.center,
           )
         ],

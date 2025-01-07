@@ -41,7 +41,7 @@ class AddPhoneNumber extends StatelessWidget {
                       child: PTextField(
                         hintText: "081 907 666 555",
                         keyboardType: TextInputType.phone,
-                        labelText: "NO HP",
+                        labelText: "Nomor Handphone",
                         hintStyle:
                             heading4Regular.copyWith(color: Colors.black26),
                         style: heading4Regular.copyWith(color: Colors.black),
