@@ -6,8 +6,8 @@ import '../utils/gap.dart';
 
 class PAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget> actions;
-  final Widget leading;
   final Color backgroundColor;
+  final Color? titleColor;
   final double elevation;
   final String title;
   final bool backIconVisible;
@@ -16,19 +16,22 @@ class PAppBar extends StatelessWidget implements PreferredSizeWidget {
   const PAppBar({
     super.key,
     this.actions = const [],
-    this.leading = const Icon(Icons.menu),
     this.backgroundColor = Colors.white,
     this.elevation = 4.0,
     this.title = '',
     this.onPressed,
     this.backIconVisible = true,
+    this.titleColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: backgroundColor,
-      title: PText.heading6Semibold(title),
+      title: PText.heading6Semibold(
+        title,
+        color: titleColor,
+      ),
       centerTitle: !backIconVisible,
       leading: backIconVisible
           ? IconButton(
@@ -37,7 +40,7 @@ class PAppBar extends StatelessWidget implements PreferredSizeWidget {
                 // Solid Icon
                 Icons.arrow_back_ios,
                 size: 12.5,
-                color: black[950]!,
+                color: titleColor ?? black[950]!,
               ),
             )
           : SizedBox.shrink(),

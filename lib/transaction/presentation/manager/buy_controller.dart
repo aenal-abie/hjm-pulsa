@@ -29,6 +29,8 @@ class BuyController {
   var secondNavigation = "0".obs;
   var getProductLoading = false.obs;
   var category = Category.voice;
+  var group = "".obs;
+
   var electricityNumberEntity = ElectricityNumberEntity().obs;
   var eWalletName = "".obs;
 
@@ -106,11 +108,13 @@ class BuyController {
   void setPhoneNumber(String phoneNumber, Category packetType) {
     if (phoneNumber.length == 4) {
       var groupCode = getOperatorName(phoneNumber);
+      group.value = groupCode?.toLowerCase() ?? "";
       category = packetType;
       getProducts(packetType.value, groupCode ?? "");
     } else if (phoneNumber.length < 4) {
       products.clear();
       selectedProduct.value = ProductEntity();
+      group.value = "";
     }
     this.phoneNumber.value = phoneNumber;
   }
