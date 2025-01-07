@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pulsa/product/domain/entities/category_entity.dart';
-import 'package:pulsa/transaction/presentation/pages/select_wallet_screen.dart';
 import 'package:pulsa/transaction/presentation/widgets/phone_credit/select_wallet.dart';
 
 import '../../../core/di/container.dart';
@@ -30,17 +29,9 @@ class _WalletScreenState extends State<WalletScreen> {
           Get.back();
         },
       ),
-      body: Obx(() {
-        return controller.eWalletName.isEmpty
-            ? SelectWallet(
-                buyController: controller,
-              )
-            : Center(
-                child: SelectWalletScreen(
-                packetType: Category.wallet,
-              ));
-        SizedBox();
-      }),
+      body: SelectWallet(
+        buyController: controller,
+      ),
     );
   }
 }

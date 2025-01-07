@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:heroicons_flutter/heroicons_flutter.dart';
 import 'package:pulsa/core/presentation/atoms/style/colors.dart';
+import 'package:pulsa/transaction/presentation/pages/select_wallet_screen.dart';
 
 import '../../../../core/presentation/atoms/style/text_style.dart';
 import '../../../../core/presentation/atoms/text/p_text.dart';
+import '../../../../core/presentation/atoms/utils/gap.dart';
+import '../../../../product/domain/entities/category_entity.dart';
 import '../../manager/buy_controller.dart';
 
 class SelectWallet extends StatelessWidget {
@@ -110,7 +113,10 @@ class ListWallet extends StatelessWidget {
                   onTap: () {
                     buyController.eWalletName.value = eWallet['name'];
                     buyController.getProducts("WALLET", eWallet['name']);
-                    Navigator.pop(context);
+                    Get.back();
+                    Get.off(() => SelectWalletScreen(
+                          packetType: Category.wallet,
+                        ));
                     // Handle tap here
                   },
                 ),
