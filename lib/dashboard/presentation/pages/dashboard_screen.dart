@@ -236,7 +236,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                   padding: const EdgeInsets.all(8.0),
                   child: PText(
                     title,
-                    style: body1Light.copyWith(
+                    style: body1Medium.copyWith(
                       color: bluePothan[500],
                     ),
                   ),

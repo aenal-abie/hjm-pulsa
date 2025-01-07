@@ -34,16 +34,33 @@ class _PlnCreditScreenState extends State<PlnCreditScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PAppBar(
-        title: "Pembelian",
+        backgroundColor: bluePothan[950]!,
+        title: "Token  PLN ",
+        titleColor: Colors.white,
         onPressed: () {
           Get.back();
         },
       ),
       body: Column(
         children: [
-          AddPlnNumber(
-            buyController: controller,
-            packetType: widget.packetType,
+          Stack(
+            children: [
+              Container(
+                height: 90,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16),
+                decoration: BoxDecoration(
+                    color: bluePothan[950],
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(4),
+                      bottomRight: Radius.circular(4),
+                    )),
+              ),
+              AddPlnNumber(
+                buyController: controller,
+                packetType: widget.packetType,
+              ),
+            ],
           ),
           Obx(() {
             return Expanded(

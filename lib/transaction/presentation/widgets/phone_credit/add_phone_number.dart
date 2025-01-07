@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:heroicons_flutter/heroicons_flutter.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:pulsa/core/presentation/atoms/style/colors.dart';
 import 'package:pulsa/core/presentation/atoms/style/text_style.dart';
 
 import '../../../../core/presentation/atoms/fields/text_field.dart';
@@ -24,7 +25,7 @@ class AddPhoneNumber extends StatelessWidget {
       child: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 16.0),
+            padding: const EdgeInsets.only(top: 25.0),
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -66,17 +67,20 @@ class AddPhoneNumber extends StatelessWidget {
           Positioned(
             right: 10,
             child: Container(
-                height: 50,
-                width: 50,
+                height: 45,
+                width: 45,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: bluePothan[50],
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Obx(() {
                   return Padding(
                     padding: const EdgeInsets.all(3.0),
                     child: buyController.group.isEmpty
-                        ? Icon(HeroiconsOutline.devicePhoneMobile)
+                        ? Icon(
+                            HeroiconsSolid.devicePhoneMobile,
+                            color: bluePothan,
+                          )
                         : SvgPicture.asset(
                             "assets/provider/${buyController.group}.svg"),
                   );
