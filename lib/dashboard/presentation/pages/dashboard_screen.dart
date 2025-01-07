@@ -148,7 +148,6 @@ class _DashboardScreenState extends State<DashboardScreen>
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _buildIconTile(
                   HeroiconsOutline.devicePhoneMobile,
@@ -187,7 +186,6 @@ class _DashboardScreenState extends State<DashboardScreen>
               ],
             ),
           ),
-
           const Gap(24),
 
           // Rate Pulsa Section
@@ -213,57 +211,40 @@ class _DashboardScreenState extends State<DashboardScreen>
   }
 
   Widget _buildIconTile(IconData icon, String title, {VoidCallback? onTap}) {
-    return Center(
-      child: InkWell(
-        onTap: onTap,
-        overlayColor: WidgetStateProperty.all(bluePothan[200]),
-        borderRadius: BorderRadius.circular(50),
-        child: Padding(
-          padding: const EdgeInsets.all(3.0),
-          child: CircleAvatar(
-            backgroundColor: natural[50],
-            radius: 38,
+    return Expanded(
+      child: Center(
+        child: InkWell(
+          onTap: onTap,
+          overlayColor: WidgetStateProperty.all(bluePothan[200]),
+          hoverColor: bluePothan[200],
+          borderRadius: BorderRadius.circular(50),
+          child: Padding(
+            padding: const EdgeInsets.all(3.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(
-                  icon,
-                  size: 22,
-                  color: bluePothan[500],
-                ),
-                PText(
-                  title,
-                  style: body2Bold.copyWith(
+                CircleAvatar(
+                  backgroundColor: natural[50],
+                  radius: 28,
+                  child: Icon(
+                    icon,
+                    size: 22,
                     color: bluePothan[500],
                   ),
-                )
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: PText(
+                    title,
+                    style: body1Light.copyWith(
+                      color: bluePothan[500],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildRateCard(String title, String rate, String nominal) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: bluePothan[50],
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: body1Regular,
-          ),
-          const SizedBox(height: 8),
-          PText(rate),
-          const SizedBox(height: 4),
-          PText(nominal),
-        ],
       ),
     );
   }
