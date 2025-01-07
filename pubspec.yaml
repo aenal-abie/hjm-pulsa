@@ -41,3 +41,4 @@ flutter:
   assets:
     - assets/provider/
     - assets/icons/
+    - assets/backgrounds/

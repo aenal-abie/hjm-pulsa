@@ -51,6 +51,14 @@ class _PlnCreditScreenState extends State<PlnCreditScreen> {
                     const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16),
                 decoration: BoxDecoration(
                     color: bluePothan[950],
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        bluePothan[950]!,
+                        bluePothan[600]!,
+                      ],
+                    ),
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(4),
                       bottomRight: Radius.circular(4),

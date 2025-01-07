@@ -66,6 +66,14 @@ class _DashboardScreenState extends State<DashboardScreen>
             padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16),
             decoration: BoxDecoration(
               color: bluePothan[950],
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  bluePothan[950]!,
+                  bluePothan[600]!,
+                ],
+              ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

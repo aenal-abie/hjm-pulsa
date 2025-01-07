@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heroicons_flutter/heroicons_flutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pulsa/core/presentation/atoms/style/colors.dart';
 import 'package:pulsa/core/presentation/atoms/text/p_text.dart';
 import 'package:pulsa/core/presentation/atoms/widgets/app_bar.dart';
@@ -44,7 +44,14 @@ class _PhoneCreditScreenState extends State<PhoneCreditScreen> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16),
                 decoration: BoxDecoration(
-                    color: bluePothan[950],
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        bluePothan[950]!,
+                        bluePothan[600]!,
+                      ],
+                    ),
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(4),
                       bottomRight: Radius.circular(4),
@@ -70,10 +77,8 @@ class _PhoneCreditScreenState extends State<PhoneCreditScreen> {
                           )),
                     )
                   : controller.emptyList
-                      ? Center(
-                          child: NoProvider(
-                            packetType: widget.packetType,
-                          ),
+                      ? NoProvider(
+                          packetType: widget.packetType,
                         )
                       : ProductList(
                           controller: controller,
@@ -94,21 +99,18 @@ class NoProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Icon(
-          HeroiconsOutline.devicePhoneMobile,
-          size: 100,
-          color: bluePothan,
-        ),
-        Gap(19),
-        PText.body1Medium(
-          "Silahkan masukkan no hp yang\n akan diisikan ${packetType.value.toLowerCase()}",
-          color: bluePothan,
-          textAlign: TextAlign.center,
-        )
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Gap(50),
+          SvgPicture.asset("assets/backgrounds/no_phone_number.svg"),
+          PText.body1Light(
+            "Silahkan masukkan no hp yang\n akan diisikan ${packetType.value.toLowerCase()}",
+            color: bluePothan[500],
+            textAlign: TextAlign.center,
+          )
+        ],
+      ),
     );
   }
 }
