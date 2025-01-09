@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pulsa/core/presentation/atoms/style/text_style.dart';
-import 'package:pulsa/transaction/presentation/widgets/phone_credit/select_wallet.dart';
+import 'package:pulsa/transaction/presentation/widgets/phone_credit/select_game.dart';
 
 import '../../../../core/presentation/atoms/fields/text_field.dart';
 import '../../../../core/presentation/atoms/style/colors.dart';
@@ -74,7 +74,7 @@ class AddGameId extends StatelessWidget {
                         BorderRadius.vertical(top: Radius.circular(16)),
                   ),
                   builder: (BuildContext context) {
-                    return ListWallet(buyController: buyController);
+                    return ListGame(buyController: buyController);
                   },
                 );
               },

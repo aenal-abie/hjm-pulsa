@@ -276,12 +276,12 @@ class _DashboardScreenState extends State<DashboardScreen>
               mainAxisSize: MainAxisSize.min,
               children: [
                 CircleAvatar(
-                  backgroundColor: natural[50],
+                  backgroundColor: bluePothan[500],
                   radius: 28,
                   child: Icon(
                     icon,
-                    size: 22,
-                    color: color ?? bluePothan[500],
+                    size: 26,
+                    color: color ?? Colors.white,
                   ),
                 ),
                 Padding(
@@ -289,7 +289,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                   child: PText(
                     title,
                     style: body1Medium.copyWith(
-                      color: color ?? bluePothan[500],
+                      color: bluePothan[500],
                     ),
                   ),
                 ),
