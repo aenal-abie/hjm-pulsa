@@ -67,5 +67,5 @@ class TransactionEntity {
       );
 
   DateTime get getCreatedAt =>
-      DateTime.parse(createdAt ?? DateTime.now().toString());
+      DateTime.parse(createdAt ?? DateTime.now().toString()).toLocal();
 }
