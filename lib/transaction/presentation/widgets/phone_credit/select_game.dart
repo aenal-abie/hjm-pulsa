@@ -20,7 +20,7 @@ class SelectedGame extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(HeroiconsOutline.wallet, size: 100, color: bluePothan[400]),
+          Icon(HeroiconsOutline.fire, size: 100, color: bluePothan[400]),
           ElevatedButton(
             onPressed: () {
               showModalBottomSheet(
