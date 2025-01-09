@@ -28,13 +28,17 @@ class TransactionController {
   bool hasMaxReached = false;
   var currentPage = 0;
 
-  void getTransaction(int id, {bool inBackground = false}) async {
+  Future<TransactionEntity?> getTransaction(int id,
+      {bool inBackground = false}) async {
+    TransactionEntity? result;
     if (inBackground == false) getTransactionLoading.value = true;
     var results = await _getTransaction(id);
     results.fold((fail) {}, (transaction) {
       this.transaction.value = transaction;
+      result = transaction;
     });
     getTransactionLoading.value = false;
+    return result;
   }
 
   void getTransactions({bool initPage = false}) async {
@@ -49,6 +53,7 @@ class TransactionController {
     if (hasMaxReached) return;
     var results = await _getTransactions(currentPage);
     results.fold((fail) {}, (transactions) {
+      reloadIfPendingExist(transactions);
       this.transactions.value = this.transactions.value + transactions;
       hasMaxReached = transactions.isEmpty || transactions.length < 20;
     });
@@ -71,5 +76,17 @@ class TransactionController {
       hasMaxReached = payments.isEmpty || payments.length < 20;
     });
     getPaymentsLoading.value = false;
+  }
+
+  void reloadIfPendingExist(List<TransactionEntity> transactions) async {
+    var pendingTransaction = transactions.firstWhereOrNull(
+        (transaction) => transaction.status == TransactionStatus.pending.value);
+    if (pendingTransaction == null) return;
+    var result =
+        await getTransaction(pendingTransaction.id!, inBackground: true);
+    if (result == null) return;
+    if (result.status != TransactionStatus.pending.value) {
+      getTransactions(initPage: true);
+    }
   }
 }

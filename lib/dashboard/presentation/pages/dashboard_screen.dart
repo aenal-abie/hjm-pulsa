@@ -182,7 +182,7 @@ class _DashboardScreenState extends State<DashboardScreen>
             child: Row(
               children: [
                 _buildIconTile(
-                  HeroiconsOutline.devicePhoneMobile,
+                  HeroiconsSolid.devicePhoneMobile,
                   "Pulsa",
                   onTap: () => Get.to(
                     PhoneCreditScreen(
@@ -191,7 +191,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                   ),
                 ),
                 _buildIconTile(
-                  HeroiconsOutline.arrowsUpDown,
+                  HeroiconsSolid.arrowsUpDown,
                   "Data",
                   onTap: () => Get.to(
                     () => PhoneCreditScreen(
@@ -200,14 +200,14 @@ class _DashboardScreenState extends State<DashboardScreen>
                   ),
                 ),
                 _buildIconTile(
-                  HeroiconsOutline.bolt,
+                  HeroiconsSolid.bolt,
                   "Listrik",
                   onTap: () => Get.to(
                     () => PlnCreditScreen(packetType: Category.electricity),
                   ),
                 ),
                 _buildIconTile(
-                  HeroiconsOutline.wallet,
+                  HeroiconsSolid.wallet,
                   "Dompet",
                   onTap: () => Get.to(
                     () => WalletScreen(
@@ -224,7 +224,7 @@ class _DashboardScreenState extends State<DashboardScreen>
             child: Row(
               children: [
                 _buildIconTile(
-                  HeroiconsOutline.fire,
+                  HeroiconsSolid.fire,
                   "Game",
                   onTap: () => Get.to(
                     GameScreen(
@@ -262,7 +262,7 @@ class _DashboardScreenState extends State<DashboardScreen>
   }
 
   Widget _buildIconTile(IconData icon, String title,
-      {VoidCallback? onTap, Color? color}) {
+      {VoidCallback? onTap, Color? color, Color? iconColor}) {
     return Expanded(
       child: Center(
         child: InkWell(
@@ -276,12 +276,12 @@ class _DashboardScreenState extends State<DashboardScreen>
               mainAxisSize: MainAxisSize.min,
               children: [
                 CircleAvatar(
-                  backgroundColor: bluePothan[500],
+                  backgroundColor: color ?? bluePothan[800],
                   radius: 28,
                   child: Icon(
                     icon,
                     size: 26,
-                    color: color ?? Colors.white,
+                    color: iconColor ?? Colors.white,
                   ),
                 ),
                 Padding(
