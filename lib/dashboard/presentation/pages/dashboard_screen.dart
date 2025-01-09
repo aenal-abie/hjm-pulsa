@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:heroicons_flutter/heroicons_flutter.dart';
 import 'package:indonesia/indonesia.dart';
 import 'package:pulsa/transaction/presentation/pages/wallet_screen.dart';
@@ -10,6 +11,7 @@ import '../../../core/presentation/atoms/text/p_text.dart';
 import '../../../core/presentation/atoms/utils/gap.dart';
 import '../../../core/presentation/atoms/utils/windows.dart';
 import '../../../product/domain/entities/category_entity.dart';
+import '../../../transaction/presentation/pages/game_screen.dart';
 import '../../../transaction/presentation/pages/payments_screen.dart';
 import '../../../transaction/presentation/pages/phone_credit_screen.dart';
 import '../../../transaction/presentation/pages/pln_credit_screen.dart';
@@ -63,7 +65,6 @@ class _DashboardScreenState extends State<DashboardScreen>
           // Header Section
           Container(
             height: 180,
-            padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16),
             decoration: BoxDecoration(
               color: bluePothan[950],
               gradient: LinearGradient(
@@ -75,67 +76,90 @@ class _DashboardScreenState extends State<DashboardScreen>
                 ],
               ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Stack(
               children: [
-                Gap(20),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          PText.body2Light(
-                            "Assalamu'alaikum",
-                            color: Colors.white,
-                          ),
-                          Obx(() {
-                            return PText(
-                              userController.customer.value.name ?? "",
-                              style:
-                                  heading5Medium.copyWith(color: Colors.white),
-                            );
-                          }),
-                        ],
+                Positioned(
+                  right: 0,
+                  bottom: -80,
+                  child: Transform.rotate(
+                    angle: 250,
+                    child: Opacity(
+                      opacity: .3,
+                      child: SvgPicture.asset(
+                        "assets/backgrounds/bg1.svg",
+                        width: size.width * 0.7,
                       ),
                     ),
-                    Icon(
-                      HeroiconsOutline.bell,
-                      color: Colors.white,
-                    ),
-                  ],
+                  ),
                 ),
-                Gap(28),
-                InkWell(
-                  onTap: () {
-                    Get.to(() => PaymentsScreen());
-                  },
-                  child: Row(
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 24.0, horizontal: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(
-                        HeroiconsMicro.wallet,
-                        color: Colors.white,
-                        size: 42,
-                      ),
-                      Gap(5),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Gap(20),
+                      Row(
                         children: [
-                          PText.body2Light(
-                            "Saldo Anda",
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                PText.body2Light(
+                                  "Assalamu'alaikum",
+                                  color: Colors.white,
+                                ),
+                                Obx(() {
+                                  return PText(
+                                    userController.customer.value.name ?? "",
+                                    style: heading5Medium.copyWith(
+                                        color: Colors.white),
+                                  );
+                                }),
+                              ],
+                            ),
+                          ),
+                          Icon(
+                            HeroiconsOutline.bell,
                             color: Colors.white,
                           ),
-                          Obx(() {
-                            return PText.heading6Medium(
-                                rupiah(
-                                  userController.customer.value.balance ?? "",
-                                ),
-                                color: Colors.white);
-                          }),
                         ],
                       ),
-                      SizedBox(width: 16),
+                      Gap(28),
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => PaymentsScreen());
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              HeroiconsMicro.wallet,
+                              color: Colors.white,
+                              size: 42,
+                            ),
+                            Gap(5),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                PText.body2Light(
+                                  "Saldo Anda",
+                                  color: Colors.white,
+                                ),
+                                Obx(() {
+                                  return PText.heading6Medium(
+                                      rupiah(
+                                        userController.customer.value.balance ??
+                                            "",
+                                      ),
+                                      color: Colors.white);
+                                }),
+                              ],
+                            ),
+                            SizedBox(width: 16),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -194,6 +218,25 @@ class _DashboardScreenState extends State<DashboardScreen>
               ],
             ),
           ),
+          const Gap(10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              children: [
+                _buildIconTile(
+                  HeroiconsOutline.fire,
+                  "Game",
+                  onTap: () => Get.to(
+                    GameScreen(
+                      category: Category.game,
+                    ),
+                  ),
+                ),
+                ...List.generate(
+                    3, (index) => Expanded(child: SizedBox.shrink()))
+              ],
+            ),
+          ),
           const Gap(24),
 
           // Rate Pulsa Section
@@ -218,7 +261,8 @@ class _DashboardScreenState extends State<DashboardScreen>
     );
   }
 
-  Widget _buildIconTile(IconData icon, String title, {VoidCallback? onTap}) {
+  Widget _buildIconTile(IconData icon, String title,
+      {VoidCallback? onTap, Color? color}) {
     return Expanded(
       child: Center(
         child: InkWell(
@@ -237,7 +281,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                   child: Icon(
                     icon,
                     size: 22,
-                    color: bluePothan[500],
+                    color: color ?? bluePothan[500],
                   ),
                 ),
                 Padding(
@@ -245,7 +289,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                   child: PText(
                     title,
                     style: body1Medium.copyWith(
-                      color: bluePothan[500],
+                      color: color ?? bluePothan[500],
                     ),
                   ),
                 ),

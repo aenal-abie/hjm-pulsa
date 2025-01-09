@@ -2,6 +2,7 @@ enum Category {
   data("Data", crossAxisCount: 1),
   voice("Pulsa"),
   electricity("Pln"),
+  game("Game", crossAxisCount: 1),
   wallet("Wallet");
 
   final String value;

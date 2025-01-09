@@ -23,7 +23,7 @@ class BuyController {
   BuyController(this._getProducts, this._buyProduct, this._inquiryElectricity);
   var products = <ProductEntity>[].obs;
   var selectedProduct = ProductEntity().obs;
-  var phoneNumber = ''.obs;
+  var customerNumber = ''.obs;
   var electricityNumber = ''.obs;
   var orderSuccess = false.obs;
   var secondNavigation = "0".obs;
@@ -33,15 +33,17 @@ class BuyController {
 
   var electricityNumberEntity = ElectricityNumberEntity().obs;
   var eWalletName = "".obs;
+  var gameName = "".obs;
+  var gameIcon = "".obs;
 
-  bool get emptyList => products.isEmpty || phoneNumber.isEmpty;
+  bool get emptyList => products.isEmpty || customerNumber.isEmpty;
 
   bool get enableSendButton =>
       selectedProduct.value.id != null && validCustomer;
 
   bool get validCustomer => category == Category.electricity
       ? electricityNumber.isNotEmpty
-      : phoneNumber.isNotEmpty;
+      : customerNumber.isNotEmpty;
 
   void getProducts(String categoryCode, String groupCode) async {
     getProductLoading.value = true;
@@ -101,7 +103,7 @@ class BuyController {
       productId: selectedProduct.value.id,
       customerNumber: category == Category.electricity
           ? electricityNumber.value
-          : phoneNumber.value,
+          : customerNumber.value,
       category: category,
       pin: pin);
 
@@ -116,11 +118,11 @@ class BuyController {
       selectedProduct.value = ProductEntity();
       group.value = "";
     }
-    this.phoneNumber.value = phoneNumber;
+    this.customerNumber.value = phoneNumber;
   }
 
   void setWalletNumber(String phoneNumber, Category packetType) {
-    this.phoneNumber.value = phoneNumber;
+    this.customerNumber.value = phoneNumber;
   }
 
   void setElectricityNumber(String electricityNumber) {
