@@ -182,8 +182,9 @@ class _DashboardScreenState extends State<DashboardScreen>
             child: Row(
               children: [
                 _buildIconTile(
-                  HeroiconsSolid.devicePhoneMobile,
+                  "pulsa.png",
                   "Pulsa",
+                  color: Color(0xFF0092FF),
                   onTap: () => Get.to(
                     PhoneCreditScreen(
                       packetType: Category.voice,
@@ -191,8 +192,9 @@ class _DashboardScreenState extends State<DashboardScreen>
                   ),
                 ),
                 _buildIconTile(
-                  HeroiconsSolid.arrowsUpDown,
+                  "data.png",
                   "Data",
+                  color: Color(0xff0092FF),
                   onTap: () => Get.to(
                     () => PhoneCreditScreen(
                       packetType: Category.data,
@@ -200,14 +202,16 @@ class _DashboardScreenState extends State<DashboardScreen>
                   ),
                 ),
                 _buildIconTile(
-                  HeroiconsSolid.bolt,
+                  "electricity.png",
+                  color: Color(0xffFFC107),
                   "Listrik",
                   onTap: () => Get.to(
                     () => PlnCreditScreen(packetType: Category.electricity),
                   ),
                 ),
                 _buildIconTile(
-                  HeroiconsSolid.wallet,
+                  "wallet.png",
+                  color: Color(0xffF03938),
                   "Dompet",
                   onTap: () => Get.to(
                     () => WalletScreen(
@@ -224,7 +228,8 @@ class _DashboardScreenState extends State<DashboardScreen>
             child: Row(
               children: [
                 _buildIconTile(
-                  HeroiconsSolid.fire,
+                  "game.png",
+                  color: Color(0xff005DAF),
                   "Game",
                   onTap: () => Get.to(
                     GameScreen(
@@ -261,7 +266,7 @@ class _DashboardScreenState extends State<DashboardScreen>
     );
   }
 
-  Widget _buildIconTile(IconData icon, String title,
+  Widget _buildIconTile(String icon, String title,
       {VoidCallback? onTap, Color? color, Color? iconColor}) {
     return Expanded(
       child: Center(
@@ -275,21 +280,13 @@ class _DashboardScreenState extends State<DashboardScreen>
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                CircleAvatar(
-                  backgroundColor: color ?? bluePothan[800],
-                  radius: 28,
-                  child: Icon(
-                    icon,
-                    size: 26,
-                    color: iconColor ?? Colors.white,
-                  ),
-                ),
+                Image.asset("assets/icons/$icon", width: 60),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: PText(
                     title,
                     style: body1Medium.copyWith(
-                      color: bluePothan[500],
+                      color: color ?? bluePothan[500],
                     ),
                   ),
                 ),
