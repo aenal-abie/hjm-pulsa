@@ -10,7 +10,7 @@ class TransactionDto {
     this.status,
     this.createdAt,
     this.updatedAt,
-    this.phoneNumber,
+    this.customerNumber,
     this.trxId,
     this.refId,
     this.sn,
@@ -25,7 +25,7 @@ class TransactionDto {
     status = json['status'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    phoneNumber = json['phone_number'];
+    customerNumber = json['customer_no'];
     trxId = json['trx_id'];
     refId = json['ref_id'];
     sn = json['sn'];
@@ -39,7 +39,7 @@ class TransactionDto {
   String? status;
   String? createdAt;
   String? updatedAt;
-  String? phoneNumber;
+  String? customerNumber;
   String? trxId;
   String? refId;
   String? sn;
@@ -53,7 +53,7 @@ class TransactionDto {
     String? status,
     String? createdAt,
     String? updatedAt,
-    String? phoneNumber,
+    String? customerNumber,
     String? trxId,
     String? refId,
     String? sn,
@@ -66,7 +66,7 @@ class TransactionDto {
         status: status ?? this.status,
         createdAt: createdAt ?? this.createdAt,
         updatedAt: updatedAt ?? this.updatedAt,
-        phoneNumber: phoneNumber ?? this.phoneNumber,
+        customerNumber: customerNumber ?? this.customerNumber,
         trxId: trxId ?? this.trxId,
         refId: refId ?? this.refId,
         sn: sn ?? this.sn,
@@ -80,7 +80,7 @@ class TransactionDto {
     map['status'] = status;
     map['created_at'] = createdAt;
     map['updated_at'] = updatedAt;
-    map['phone_number'] = phoneNumber;
+    map['customer_no'] = customerNumber;
     map['trx_id'] = trxId;
     map['ref_id'] = refId;
     map['sn'] = sn;
@@ -96,7 +96,7 @@ class TransactionDto {
         status: status,
         createdAt: createdAt,
         updatedAt: updatedAt,
-        phoneNumber: phoneNumber,
+        customerNumber: customerNumber,
         trxId: trxId,
         refId: refId,
         sn: sn,

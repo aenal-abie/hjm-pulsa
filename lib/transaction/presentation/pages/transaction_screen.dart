@@ -146,7 +146,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   PText('Nomor', style: TextStyle(fontSize: 14)),
-                  PText(data.phoneNumber ?? "-",
+                  PText(data.customerNumber ?? "-",
                       style:
                           TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
                 ],

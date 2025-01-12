@@ -19,7 +19,7 @@ class TransactionEntity {
     this.status,
     this.createdAt,
     this.updatedAt,
-    this.phoneNumber,
+    this.customerNumber,
     this.trxId,
     this.refId,
     this.sn,
@@ -33,7 +33,7 @@ class TransactionEntity {
   String? status;
   String? createdAt;
   String? updatedAt;
-  String? phoneNumber;
+  String? customerNumber;
   String? trxId;
   String? refId;
   String? sn;
@@ -47,7 +47,7 @@ class TransactionEntity {
     String? status,
     String? createdAt,
     String? updatedAt,
-    String? phoneNumber,
+    String? customerNumber,
     String? trxId,
     String? refId,
     String? sn,
@@ -60,7 +60,7 @@ class TransactionEntity {
         status: status ?? this.status,
         createdAt: createdAt ?? this.createdAt,
         updatedAt: updatedAt ?? this.updatedAt,
-        phoneNumber: phoneNumber ?? this.phoneNumber,
+        customerNumber: customerNumber ?? this.customerNumber,
         trxId: trxId ?? this.trxId,
         refId: refId ?? this.refId,
         sn: sn ?? this.sn,

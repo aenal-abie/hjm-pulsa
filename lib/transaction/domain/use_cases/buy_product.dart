@@ -48,16 +48,16 @@ class BuyProductParam {
 
   BuyProductParam copyWith({
     int? productId,
-    String? phoneNumber,
+    String? customerNumber,
   }) =>
       BuyProductParam(
         productId: productId ?? this.productId,
-        customerNumber: phoneNumber ?? this.customerNumber,
+        customerNumber: customerNumber ?? this.customerNumber,
       );
 
   Map<String, dynamic> toJson() => {
         'product_id': productId,
-        'phone_number': customerNumber,
+        'customer_no': customerNumber,
         'pin': pin,
       };
 
@@ -65,13 +65,13 @@ class BuyProductParam {
 
   bool get validateCustomerNumber => (category == Category.electricity)
       ? isPlnNumberValid()
-      : isPhoneNumberValid();
+      : isCustomerNumberValid();
 
   get getInvalidCustomerNumberMessage => category == Category.electricity
       ? 'ID Pelanggan/No Meter tidak sesuai, harus 11-12 angka'
       : 'Nomor telepon tidak sesuai, harus 10-15 angka';
 
-  bool isPhoneNumberValid() {
+  bool isCustomerNumberValid() {
     final regex = RegExp(r'^\d{10,15}$');
     return customerNumber != null && regex.hasMatch(customerNumber!);
   }
