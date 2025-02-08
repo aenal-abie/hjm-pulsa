@@ -27,6 +27,7 @@ class PAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      scrolledUnderElevation: 0.0,
       backgroundColor: backgroundColor,
       title: PText.heading6Semibold(
         title,

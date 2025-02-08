@@ -24,6 +24,7 @@ class BuyController {
   var products = <ProductEntity>[].obs;
   var selectedProduct = ProductEntity().obs;
   var customerNumber = ''.obs;
+  var customerNumberFromContact = ''.obs;
   var electricityNumber = ''.obs;
   var orderSuccess = false.obs;
   var secondNavigation = "0".obs;
@@ -107,8 +108,9 @@ class BuyController {
       category: category,
       pin: pin);
 
-  void setPhoneNumber(String phoneNumber, Category packetType) {
-    if (phoneNumber.length == 4) {
+  void setPhoneNumber(String phoneNumber, Category packetType,
+      {bool fromContact = false}) {
+    if (phoneNumber.length == 4 || fromContact) {
       var groupCode = getOperatorName(phoneNumber);
       group.value = groupCode?.toLowerCase() ?? "";
       category = packetType;
@@ -118,11 +120,11 @@ class BuyController {
       selectedProduct.value = ProductEntity();
       group.value = "";
     }
-    this.customerNumber.value = phoneNumber;
+    customerNumber.value = phoneNumber;
   }
 
   void setWalletNumber(String phoneNumber, Category packetType) {
-    this.customerNumber.value = phoneNumber;
+    customerNumber.value = phoneNumber;
   }
 
   void setElectricityNumber(String electricityNumber) {
@@ -141,5 +143,17 @@ class BuyController {
     await _inquiryElectricity(electricityNumber).fold((fail) {}, (result) {
       electricityNumberEntity.value = result;
     });
+  }
+
+  void setPhoneNumberFromContact(String phoneNumber, Category packetType) {
+    var tempPhoneNumber = phoneNumber.replaceAll(RegExp(r'[^0-9]'), '');
+    if (tempPhoneNumber.startsWith('62')) {
+      tempPhoneNumber = tempPhoneNumber.replaceFirst('62', '0');
+    }
+    setPhoneNumber(tempPhoneNumber, packetType, fromContact: true);
+    customerNumberFromContact.value =
+        '${tempPhoneNumber.substring(0, 3)} ${tempPhoneNumber.substring(3, 6)} '
+        '${tempPhoneNumber.substring(6, 9)} ${tempPhoneNumber.length < 12 ? tempPhoneNumber.substring(9) : tempPhoneNumber.substring(9, 12)} '
+        '${tempPhoneNumber.length < 12 ? "" : tempPhoneNumber.substring(12)}';
   }
 }

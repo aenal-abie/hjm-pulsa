@@ -4,19 +4,27 @@ import 'package:heroicons_flutter/heroicons_flutter.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pulsa/core/presentation/atoms/style/colors.dart';
 import 'package:pulsa/core/presentation/atoms/style/text_style.dart';
+import 'package:pulsa/transaction/presentation/pages/contact_screen.dart';
 
 import '../../../../core/presentation/atoms/fields/text_field.dart';
 import '../../../../core/presentation/atoms/utils/gap.dart';
 import '../../../../product/domain/entities/category_entity.dart';
 import '../../manager/buy_controller.dart';
 
-class AddPhoneNumber extends StatelessWidget {
+class AddPhoneNumber extends StatefulWidget {
   final Category packetType;
 
   const AddPhoneNumber(
-      {super.key, required this.buyController, required this.packetType});
+      {super.key, required this.packetType, required this.buyController});
 
   final BuyController buyController;
+
+  @override
+  State<AddPhoneNumber> createState() => _AddPhoneNumberState();
+}
+
+class _AddPhoneNumberState extends State<AddPhoneNumber> {
+  final TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,23 +46,52 @@ class AddPhoneNumber extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
-                      child: PTextField(
-                        hintText: "081 907 666 555",
-                        keyboardType: TextInputType.phone,
-                        labelText: "Nomor Handphone",
-                        hintStyle:
-                            heading4Regular.copyWith(color: Colors.black26),
-                        style: heading4Regular.copyWith(color: Colors.black),
-                        onChanged: (temp) {
-                          var value = temp.replaceAll(' ', '');
-                          buyController.setPhoneNumber(value, packetType);
-                        },
-                        inputFormatters: [
-                          MaskTextInputFormatter(
-                            mask: '### ### ### ### ##',
-                            filter: {
-                              '#': RegExp(r'[0-9]'),
-                            },
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Obx(() {
+                              return PTextField(
+                                controller: TextEditingController(
+                                    text: widget.buyController
+                                        .customerNumberFromContact.value),
+                                hintText: "081 907 666 555",
+                                keyboardType: TextInputType.phone,
+                                labelText: "Nomor Handphone",
+                                hintStyle: heading4Regular.copyWith(
+                                    color: Colors.black26),
+                                style: heading4Regular.copyWith(
+                                    color: Colors.black),
+                                onChanged: (temp) {
+                                  var value = temp.replaceAll(' ', '');
+                                  widget.buyController
+                                      .setPhoneNumber(value, widget.packetType);
+                                },
+                                inputFormatters: [
+                                  MaskTextInputFormatter(
+                                    mask: '### ### ### ### ##',
+                                    filter: {
+                                      '#': RegExp(r'[0-9]'),
+                                    },
+                                  ),
+                                ],
+                              );
+                            }),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 18.0),
+                            child: Center(
+                              child: IconButton(
+                                icon: Icon(HeroiconsOutline.identification,
+                                    color: bluePothan),
+                                onPressed: () {
+                                  Get.to(ContactsScreen(
+                                    buyController: widget.buyController,
+                                    packetType: widget.packetType,
+                                  ));
+                                },
+                                iconSize: 40,
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -76,16 +113,15 @@ class AddPhoneNumber extends StatelessWidget {
                 child: Obx(() {
                   return Padding(
                     padding: const EdgeInsets.all(3.0),
-                    child: buyController.group.isEmpty
+                    child: widget.buyController.group.isEmpty
                         ? Icon(
                             HeroiconsSolid.devicePhoneMobile,
                             color: bluePothan,
                           )
                         : SvgPicture.asset(
-                            "assets/provider/${buyController.group}.svg"),
+                            "assets/provider/${widget.buyController.group}.svg"),
                   );
-                }) //Icon(HeroiconsOutline.devicePhoneMobile),
-                ),
+                })),
           ),
         ],
       ),
