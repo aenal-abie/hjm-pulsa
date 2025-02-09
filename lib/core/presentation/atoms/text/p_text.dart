@@ -4,8 +4,16 @@ import '../style/text_style.dart';
 
 // Kelas PText untuk mempermudah penggunaan gaya teks
 class PText extends Text {
-  const PText(super.text,
-      {super.key, super.style, super.overflow, super.textAlign});
+  PText(
+    super.text, {
+    super.key,
+    TextStyle? style,
+    super.overflow,
+    super.textAlign,
+    Color? color,
+  }) : super(
+          style: style?.copyWith(color: color) ?? TextStyle(color: color),
+        );
 
   // Title
   factory PText.title1Regular(String text,

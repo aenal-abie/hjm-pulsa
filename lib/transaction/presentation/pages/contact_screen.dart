@@ -109,8 +109,18 @@ class _ContactScreenState extends State<ContactsScreen> {
                               ? CircleAvatar(
                                   backgroundImage: MemoryImage(contact.photo!))
                               : CircleAvatar(
-                                  child: PText(contact.displayName[0])),
-                          title: PText.body1Semibold(contact.displayName),
+                                  backgroundColor: bluePothan,
+                                  child: PText(
+                                    contact.displayName.isNotEmpty
+                                        ? contact.displayName[0]
+                                        : "-",
+                                    color: Colors.white,
+                                  ),
+                                ),
+                          title: PText.body1Semibold(
+                              contact.displayName.isNotEmpty
+                                  ? contact.displayName
+                                  : "(Nama Belum Ada)"),
                           subtitle: PText(contact.phones.isNotEmpty
                               ? contact.phones.first.number
                               : "Tidak Ada Nomor"),
