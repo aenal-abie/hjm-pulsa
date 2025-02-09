@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:heroicons_flutter/heroicons_flutter.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:pulsa/core/presentation/atoms/style/text_style.dart';
 import 'package:pulsa/transaction/presentation/widgets/phone_credit/select_wallet.dart';
@@ -9,6 +10,7 @@ import '../../../../core/presentation/atoms/style/colors.dart';
 import '../../../../core/presentation/atoms/utils/gap.dart';
 import '../../../../product/domain/entities/category_entity.dart';
 import '../../manager/buy_controller.dart';
+import '../../pages/contact_screen.dart';
 
 class AddWalletNumber extends StatelessWidget {
   final Category packetType;
@@ -38,23 +40,52 @@ class AddWalletNumber extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
-                      child: PTextField(
-                        hintText: "081 907 666 555",
-                        keyboardType: TextInputType.phone,
-                        labelText: "No Wallet",
-                        hintStyle:
-                            heading4Regular.copyWith(color: Colors.black26),
-                        style: heading4Regular.copyWith(color: Colors.black),
-                        onChanged: (temp) {
-                          var value = temp.replaceAll(' ', '');
-                          buyController.setWalletNumber(value, packetType);
-                        },
-                        inputFormatters: [
-                          MaskTextInputFormatter(
-                            mask: '### ### ### ### ##',
-                            filter: {
-                              '#': RegExp(r'[0-9]'),
-                            },
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Obx(() {
+                              return PTextField(
+                                controller: TextEditingController(
+                                    text: buyController
+                                        .customerNumberFromContact.value),
+                                hintText: "081 907 666 555",
+                                keyboardType: TextInputType.phone,
+                                labelText: "No Wallet",
+                                hintStyle: heading4Regular.copyWith(
+                                    color: Colors.black26),
+                                style: heading4Regular.copyWith(
+                                    color: Colors.black),
+                                onChanged: (temp) {
+                                  var value = temp.replaceAll(' ', '');
+                                  buyController.setWalletNumber(
+                                      value, packetType);
+                                },
+                                inputFormatters: [
+                                  MaskTextInputFormatter(
+                                    mask: '### ### ### ### ##',
+                                    filter: {
+                                      '#': RegExp(r'[0-9]'),
+                                    },
+                                  ),
+                                ],
+                              );
+                            }),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 18.0),
+                            child: Center(
+                              child: IconButton(
+                                icon: Icon(HeroiconsOutline.identification,
+                                    color: bluePothan),
+                                onPressed: () {
+                                  Get.to(ContactsScreen(
+                                    buyController: buyController,
+                                    packetType: packetType,
+                                  ));
+                                },
+                                iconSize: 40,
+                              ),
+                            ),
                           ),
                         ],
                       ),

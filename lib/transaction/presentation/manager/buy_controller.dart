@@ -145,12 +145,16 @@ class BuyController {
     });
   }
 
-  void setPhoneNumberFromContact(String phoneNumber, Category packetType) {
+  void setCustomerNumberFromContact(String phoneNumber, Category packetType) {
     var tempPhoneNumber = phoneNumber.replaceAll(RegExp(r'[^0-9]'), '');
     if (tempPhoneNumber.startsWith('62')) {
       tempPhoneNumber = tempPhoneNumber.replaceFirst('62', '0');
     }
-    setPhoneNumber(tempPhoneNumber, packetType, fromContact: true);
+    if (packetType == Category.wallet) {
+      setWalletNumber(tempPhoneNumber, packetType);
+    } else {
+      setPhoneNumber(tempPhoneNumber, packetType, fromContact: true);
+    }
     customerNumberFromContact.value =
         '${tempPhoneNumber.substring(0, 3)} ${tempPhoneNumber.substring(3, 6)} '
         '${tempPhoneNumber.substring(6, 9)} ${tempPhoneNumber.length < 12 ? tempPhoneNumber.substring(9) : tempPhoneNumber.substring(9, 12)} '

@@ -125,7 +125,7 @@ class _ContactScreenState extends State<ContactsScreen> {
                               ? contact.phones.first.number
                               : "Tidak Ada Nomor"),
                           onTap: () {
-                            widget.buyController.setPhoneNumberFromContact(
+                            widget.buyController.setCustomerNumberFromContact(
                                 contact.phones.isNotEmpty
                                     ? contact.phones.first.number
                                     : "",
